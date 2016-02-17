@@ -2,19 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ibm.mobile</groupId>
+    <groupId>com.ibm.mfp</groupId>
     <artifactId>mfp-adapters-extension-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
-               <!-- Jgitflow properties -->
+        <dependency-javax.ws.rs-api-version>2.0</dependency-javax.ws.rs-api-version>
+        <dependency-javaee-web-api-version>6.0</dependency-javaee-web-api-version>
+        <dependency-httpclient-version>4.3.4</dependency-httpclient-version>
+        <dependency-httpcore-version>4.3.2</dependency-httpcore-version>
+        <dependency-commons-logging-version>1.1.3</dependency-commons-logging-version>
+        <dependency-jaxp-api-version>1.4.2</dependency-jaxp-api-version>
+        <dependency-rhino-version>1.7.7</dependency-rhino-version>
+        <dependency-swagger-annotations-version>1.5.6</dependency-swagger-annotations-version>
+        <dependency-com.ibm.websphere.appserver.api.json-version>1.0</dependency-com.ibm.websphere.appserver.api.json-version>
+        <dependency-javax.servlet-api-version>3.0.1</dependency-javax.servlet-api-version>
+
+        <!-- Jgitflow properties -->
         <jgitflowFeatureBranchPrefix>release/</jgitflowFeatureBranchPrefix>
         <jgitflowMasterBranchName>master</jgitflowMasterBranchName>
         <jgitflowDevelopBranchName>develop</jgitflowDevelopBranchName>
     </properties>
 
     <modules>
+        <module>mfp-adapters-spring-integration</module>
     </modules>
 
     <repositories>
@@ -158,6 +170,19 @@
                 <version>${mfp.analytics.version}</version>
             </dependency>
             <!-- Spring -->
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>4.1.6.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>4.1.6.RELEASE</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
@@ -214,6 +239,13 @@
                 <groupId>com.fasterxml.jackson.jaxrs</groupId>
                 <artifactId>jackson-jaxrs-json-provider</artifactId>
                 <version>2.2.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>adapter-maven-api</artifactId>
+                <scope>provided</scope>
+                <version>8.0.0</version>
             </dependency>
 
             <!-- servlet API -->
