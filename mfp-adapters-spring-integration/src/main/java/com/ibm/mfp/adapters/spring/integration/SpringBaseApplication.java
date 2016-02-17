@@ -11,6 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.ext.Provider;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -50,6 +51,8 @@ public class SpringBaseApplication extends Application {
         if (registries.size() == 0){
             Map<String, Object> resourceBeans = ctx.getBeansWithAnnotation(Path.class);
             singletones.addAll(resourceBeans.values());
+            Map<String, Object> providerBeans = ctx.getBeansWithAnnotation(Provider.class);
+            singletones.addAll(providerBeans.values());
         }else{
             for (JAXRSResourcesRegistry registry : registries.values()){
                 singletones.addAll(Arrays.asList(registry.getResources()));

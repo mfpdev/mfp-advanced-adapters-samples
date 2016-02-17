@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   IBM Confidential OCO Source Materials
+
+   5725-I43 Copyright IBM Corp. 2006, 2015
+
+   The source code for this program is not published or otherwise
+   divested of its trade secrets, irrespective of what has
+   been deposited with the U.S. Copyright Office.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="res1" class="com.ibm.sample.SpringAdapterResource"/>
+
+    <bean class="com.ibm.sample.ReqBean" scope="request">
+        <aop:scoped-proxy proxy-target-class="false"/>
+    </bean>
+
+    <bean class="com.ibm.sample.NonRequestBean"/>
+
+    <bean class="com.ibm.mfp.adapters.spring.integration.JAXRSResourcesRegistryImpl">
+        <property name="resources">
+            <list>
+                <ref bean="res1"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>
