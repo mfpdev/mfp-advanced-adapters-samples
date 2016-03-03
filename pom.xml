@@ -8,6 +8,9 @@
     <packaging>pom</packaging>
 
     <properties>
+        <dependency-dagger-version>2.0</dependency-dagger-version>
+        <dependency-adapter-maven-api-version>8.0.0</dependency-adapter-maven-api-version>
+        <dependency-spring-version>4.1.6.RELEASE</dependency-spring-version>
         <dependency-javax.ws.rs-api-version>2.0</dependency-javax.ws.rs-api-version>
         <dependency-javaee-web-api-version>6.0</dependency-javaee-web-api-version>
         <dependency-jaxp-api-version>1.4.2</dependency-jaxp-api-version>
@@ -102,76 +105,88 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.google.dagger</groupId>
-                <artifactId>dagger</artifactId>
-                <version>2.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.dagger</groupId>
-                <artifactId>dagger-compiler</artifactId>
-                <version>2.0</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.ibm.mfp</groupId>
                 <artifactId>mfp-adapters-dagger-integration</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.ibm.mfp</groupId>
                 <artifactId>mfp-adapters-spring-integration</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger</artifactId>
+                <version>${dependency-dagger-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger-compiler</artifactId>
+                <version>${dependency-dagger-version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
-                <version>4.1.6.RELEASE</version>
+                <version>${dependency-spring-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
-                <version>4.1.6.RELEASE</version>
+                <version>${dependency-spring-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
-                <version>4.1.6.RELEASE</version>
+                <version>${dependency-spring-version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-expression</artifactId>
-                <version>4.1.6.RELEASE</version>
+                <version>${dependency-spring-version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>4.1.6.RELEASE</version>
+                <version>${dependency-spring-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
-                <version>4.1.6.RELEASE</version>
+                <version>${dependency-spring-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>4.1.6.RELEASE</version>
+                <version>${dependency-spring-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
-                <version>4.1.6.RELEASE</version>
+                <version>${dependency-spring-version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${dependency-spring-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.ibm.mfp</groupId>
                 <artifactId>adapter-maven-api</artifactId>
                 <scope>provided</scope>
-                <version>8.0.0</version>
+                <version>${dependency-adapter-maven-api-version}</version>
             </dependency>
 
             <!-- servlet API -->
@@ -182,28 +197,11 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!-- TODO - @@ofirbe: Ask Jus what to do with the following: -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>4.1.6.RELEASE</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>4.1.6.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>4.1.6.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>javax.ws.rs</groupId>
