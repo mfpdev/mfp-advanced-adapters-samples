@@ -11,12 +11,11 @@ import org.springframework.context.annotation.Configuration;
 public class OtherConfig {
     @Bean
     public BestBean getBest(){
-
         return new BestBean();
     }
 
     @Bean
-    public SpringAdapterResource getResource(ConfigurationAPI configurationAPI1){
+    public SpringAdapterResource getResource(){
         return new SpringAdapterResource();
     }
 }

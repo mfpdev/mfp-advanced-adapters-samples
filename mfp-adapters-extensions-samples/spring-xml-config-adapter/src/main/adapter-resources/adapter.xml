@@ -14,4 +14,6 @@
 	<description>Adapter that uses spring xml file to define all it's resources providers and beans</description>
 
 	<JAXRSApplicationClass>com.ibm.mfp.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
+
+	<property name="mytest" defaultValue="33" type="string" description="just a property" displayName="My Test"/>
 </mfp:adapter>

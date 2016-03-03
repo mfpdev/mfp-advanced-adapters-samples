@@ -23,7 +23,10 @@
         <aop:scoped-proxy proxy-target-class="false"/>
     </bean>
 
-    <bean class="com.ibm.sample.NonRequestBean"/>
+    <bean class="com.ibm.sample.NonRequestBean">
+        <property name="myProp" value="${mytest}"/>
+
+    </bean>
 
     <bean class="com.ibm.mfp.adapters.spring.integration.JAXRSResourcesRegistryImpl">
         <property name="resources">

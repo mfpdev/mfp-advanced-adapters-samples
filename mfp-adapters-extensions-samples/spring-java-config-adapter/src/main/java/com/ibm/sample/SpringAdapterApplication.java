@@ -17,26 +17,13 @@ import javax.ws.rs.core.Context;
 import java.util.logging.Logger;
 
 @Configuration
-@Import(OtherConfig.class)
 public class SpringAdapterApplication extends SpringBaseApplication {
 
 	static Logger logger = Logger.getLogger(SpringAdapterApplication.class.getName());
 
 
-	@Bean
-	public SpringAdapterResource getResource(ConfigurationAPI configurationAPI1){
-		return new SpringAdapterResource();
-	}
-
-	@Context
-	ConfigurationAPI configurationAPI;
-
-
 	@Override
 	protected Class<?> getConfigurationClass() {
-		if (configurationAPI == null){
-			throw new RuntimeException("NULLLLLL");
-		}
 		return OtherConfig.class;
 	}
 }

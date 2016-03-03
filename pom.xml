@@ -10,13 +10,7 @@
     <properties>
         <dependency-javax.ws.rs-api-version>2.0</dependency-javax.ws.rs-api-version>
         <dependency-javaee-web-api-version>6.0</dependency-javaee-web-api-version>
-        <dependency-httpclient-version>4.3.4</dependency-httpclient-version>
-        <dependency-httpcore-version>4.3.2</dependency-httpcore-version>
-        <dependency-commons-logging-version>1.1.3</dependency-commons-logging-version>
         <dependency-jaxp-api-version>1.4.2</dependency-jaxp-api-version>
-        <dependency-rhino-version>1.7.7</dependency-rhino-version>
-        <dependency-swagger-annotations-version>1.5.6</dependency-swagger-annotations-version>
-        <dependency-com.ibm.websphere.appserver.api.json-version>1.0</dependency-com.ibm.websphere.appserver.api.json-version>
         <dependency-javax.servlet-api-version>3.0.1</dependency-javax.servlet-api-version>
 
         <!-- Jgitflow properties -->
@@ -108,75 +102,38 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger</artifactId>
+                <version>2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger-compiler</artifactId>
+                <version>2.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>mfp-adapters-dagger-integration</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.ibm.mfp</groupId>
                 <artifactId>mfp-adapters-spring-integration</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-jpa_1.0_spec</artifactId>
-                <version>1.1.2</version>
-            </dependency>
+
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
                 <version>4.1.6.RELEASE</version>
             </dependency>
             <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.compendium</artifactId>
-                <version>4.2.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.core</artifactId>
-                <version>4.3.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>${dependency-httpclient-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpmime</artifactId>
-                <version>4.3.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpcore</artifactId>
-                <version>${dependency-httpcore-version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
                 <version>4.1.6.RELEASE</version>
             </dependency>
-            <dependency>
-                <groupId>com.ibm.json</groupId>
-                <artifactId>json4j</artifactId>
-                <version>1.0.0.1wl</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.ccil.cowan.tagsoup</groupId>
-                <artifactId>tagsoup</artifactId>
-                <version>1.2.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-dbcp</groupId>
-                <artifactId>commons-dbcp</artifactId>
-                <version>1.4</version>
-            </dependency>
-
-            <dependency>
-                <groupId>mfp.analytics</groupId>
-                <artifactId>analytics-sdk-java</artifactId>
-                <version>${mfp.analytics.version}</version>
-            </dependency>
-            <!-- Spring -->
-
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
@@ -209,43 +166,6 @@
                 <artifactId>spring-core</artifactId>
                 <version>4.1.6.RELEASE</version>
             </dependency>
-            <!-- swagger -->
-
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>18.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>2.3.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-jaxrs</artifactId>
-                <version>1.5.3</version>
-                <scope>compile</scope>
-            </dependency>
-
-            <!-- jackson JSON -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>2.5.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.5.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.jaxrs</groupId>
-                <artifactId>jackson-jaxrs-json-provider</artifactId>
-                <version>2.2.2</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.ibm.mfp</groupId>
@@ -262,70 +182,11 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!-- TODO - @@ofirbe: Shouldn't this one be in <pluginManagement> ? -->
-            <dependency>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>1.2</version>
-            </dependency>
-
-            <dependency>
-                <groupId>net.lingala.zip4j</groupId>
-                <artifactId>zip4j</artifactId>
-                <version>1.3.2</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-configuration</groupId>
-                <artifactId>commons-configuration</artifactId>
-                <version>1.10</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>2.6</version>
-            </dependency>
-
-            <!-- copy dependencies plugin -->
-            <!-- TODO - @@ofirbe: Shouldn't this one be in <pluginManagement> ? -->
-            <dependency>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.10</version>
-            </dependency>
-
-            <!-- unit tests -->
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-all</artifactId>
-                <version>1.3</version>
-                <scope>test</scope>
-            </dependency>
-
             <!-- TODO - @@ofirbe: Ask Jus what to do with the following: -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>hamcrest-core</artifactId>
-                        <groupId>org.hamcrest</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -335,91 +196,14 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path</artifactId>
-                <version>2.0.0</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path-assert</artifactId>
-                <version>2.0.0</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mozilla</groupId>
-                <artifactId>rhino</artifactId>
-                <version>1.7.7</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ow2.asm</groupId>
-                <artifactId>asm</artifactId>
-                <version>5.0.4</version>
-            </dependency>
-           
-
-            <dependency>
-                <groupId>org.quartz-scheduler</groupId>
-                <artifactId>quartz</artifactId>
-                <version>2.2.0</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
                 <version>4.1.6.RELEASE</version>
             </dependency>
-
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-tx</artifactId>
                 <version>4.1.6.RELEASE</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.cloudant</groupId>
-                <artifactId>cloudant-client</artifactId>
-                <version>1.0.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ibm.mobile</groupId>
-                <artifactId>cloudant-client</artifactId>
-                <version>1.0.1-wl-201506181645</version>
-            </dependency>
-
-            <dependency>
-                <groupId>javax.persistence</groupId>
-                <artifactId>persistence-api</artifactId>
-                <version>1.0.2</version>
-            </dependency>
-
-
-            <!-- Documentation -->
-            <dependency>
-                <groupId>com.ibm.mobile</groupId>
-                <artifactId>ibmjavadoc</artifactId>
-                <version>1.7.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ibm.mobile</groupId>
-                <artifactId>TOCNavDoclet</artifactId>
-                <version>1.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ibm.mobile</groupId>
-                <artifactId>ExcludeDoclet</artifactId>
-                <version>1.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ibm.mobile</groupId>
-                <artifactId>ilog-jsdoc</artifactId>
-                <version>1.1</version>
-                <type>zip</type>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.14</version>
             </dependency>
             <dependency>
                 <groupId>javax.ws.rs</groupId>
@@ -430,29 +214,6 @@
                 <groupId>javax</groupId>
                 <artifactId>javaee-web-api</artifactId>
                 <version>${dependency-javaee-web-api-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>${dependency-commons-logging-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.xml</groupId>
-                <artifactId>jaxp-api</artifactId>
-                <version>${dependency-jaxp-api-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${dependency-swagger-annotations-version}</version>
-            </dependency>
-
-            <!-- for tests -->
-            <dependency>
-                <groupId>org.apache.derby</groupId>
-                <artifactId>derby</artifactId>
-                <version>10.11.1.1</version>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

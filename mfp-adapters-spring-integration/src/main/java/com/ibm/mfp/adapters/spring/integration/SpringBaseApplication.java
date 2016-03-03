@@ -1,6 +1,7 @@
 package com.ibm.mfp.adapters.spring.integration;
 
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
+import com.ibm.mfp.adapters.spring.integration.internal.PropertiesConfig;
 import com.ibm.mfp.adapters.spring.integration.internal.RequestScopeConfig;
 import com.ibm.mfp.adapters.spring.integration.internal.SpringRequestFinishListener;
 import com.ibm.mfp.adapters.spring.integration.internal.SpringRequestStartListener;
@@ -33,6 +34,7 @@ public class SpringBaseApplication extends Application {
         defaultListableBeanFactory.registerSingleton("mfp_configurationAPI", configurationAPI);
         appContext = new AnnotationConfigApplicationContext(defaultListableBeanFactory);
         appContext.register(RequestScopeConfig.class);
+        appContext.register(PropertiesConfig.class);
         appContext.register(getConfigurationClass());
         appContext.refresh();
         return appContext;

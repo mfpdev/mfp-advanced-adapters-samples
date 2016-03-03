@@ -46,7 +46,7 @@ public class SpringAdapterResource {
 		//log message to server log
 		logger.info("Logging info message...");
 
-		return "Hello from the Java REST adapter: "+reqBean.getMessage()+" and also: "+nonRequestBean.getMessage();
+		return "Hello from the Java REST adapter: "+reqBean.getMessage()+" and also: "+nonRequestBean.getMyProp();
 	}
 		
 	/* Path for method: "<server address>/mfp/api/adapters/springAdapter/users/{username}" */

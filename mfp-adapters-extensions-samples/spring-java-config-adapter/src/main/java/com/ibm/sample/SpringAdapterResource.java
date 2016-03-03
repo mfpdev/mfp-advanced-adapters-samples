@@ -9,6 +9,7 @@ package com.ibm.sample;
 
 import com.ibm.json.java.JSONObject;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
+import com.ibm.mfp.adapter.api.OAuthSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
@@ -30,14 +31,18 @@ public class SpringAdapterResource {
 	@Autowired
 	ConfigurationAPI configApi;
 
+	@Autowired
+	BestBean bestBean;
+
 	/* Path for method: "<server address>/mfp/api/adapters/springAdapter/users" */
 	@GET
 	@Produces("text/plain")
+	@OAuthSecurity(enabled = false)
 	public String hello(){
 		//log message to server log
 		logger.info("Logging info message...");
 
-		return "Hello from the Java REST adapter";
+		return "Hello from the Java REST adapter: "+bestBean;
 	}
 		
 	/* Path for method: "<server address>/mfp/api/adapters/springAdapter/users/{username}" */
