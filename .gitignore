@@ -15,4 +15,4 @@ hs_err_pid*
 *.iml
 
 #mvn target folder
-*/target/**
+target/

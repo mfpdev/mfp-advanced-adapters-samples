@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IBM Confidential OCO Source Materials
+
+  5725-I43 Copyright IBM Corp. 2006, 2015
+
+  The source code for this program is not published or otherwise
+  divested of its trade secrets, irrespective of what has
+  been deposited with the U.S. Copyright Office.
+  -->
+
+<wl:adapter name="mfpAdaptersExtensionsSamplesSmsOtpAdapter" xmlns:wl="http://www.ibm.com/mfp/integration">
+
+    <displayName>SMS OTP Adapter</displayName>
+    <description>SMS OTP Security Check</description>
+
+    <securityCheckDefinition name="smsOTP" class="com.mfp.security.SMSOTPSecurityCheck">
+        <property name="twilioAccountSid" displayName="Twilio Account Sid" defaultValue="ACe642ccc1eec71b764efece394ae8e9bd"/>
+        <property name="twilioAuthToken"  displayName="Twilio Auth Token" defaultValue="3ec902841ccc0445a1177f67c47bf681"/>
+        <property name="twilioPhoneNumber" displayName="Twilio Phone Number" defaultValue="972526287122"/>
+
+        <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="10"/>
+    </securityCheckDefinition>
+
+    <securityCheckDefinition name="userLogin" class="com.mfp.security.UserLoginSecurityCheck"/>
+
+</wl:adapter>
