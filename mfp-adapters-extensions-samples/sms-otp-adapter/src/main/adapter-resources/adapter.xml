@@ -21,7 +21,4 @@
 
         <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="10"/>
     </securityCheckDefinition>
-
-    <securityCheckDefinition name="userLogin" class="com.mfp.security.UserLoginSecurityCheck"/>
-
 </wl:adapter>
