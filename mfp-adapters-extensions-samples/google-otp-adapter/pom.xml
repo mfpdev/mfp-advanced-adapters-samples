@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	    
+	 <parent>
+        <artifactId>mfp-adapters-extensions-samples</artifactId>
+        <groupId>com.ibm.mfp</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ibm.mfp</groupId>
+	<artifactId>mfp-adapters-extensions-samples-google-otp-adapter</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>adapter</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ibm.mfp</groupId>
+			<artifactId>adapter-maven-api</artifactId>
+			<scope>provided</scope>
+			<version>8.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.mfp</groupId>
+			<artifactId>mfp-security-checks-base</artifactId>
+			<version>8.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.mfp</groupId>
+			<artifactId>mfp-security-checks-base</artifactId>
+			<version>8.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+
+		<!-- Maven dependency for Google Authentication  -->
+		<dependency>
+			<groupId>com.warrenstrange</groupId>
+			<artifactId>googleauth</artifactId>
+			<version>0.5.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.httpcomponents</groupId>
+					<artifactId>httpclient</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+
+	<properties>
+        <!-- parameters for deploy mfpf adapter -->
+        <mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
+        <mfpfUser>admin</mfpfUser>
+        <mfpfPassword>admin</mfpfPassword>
+        <mfpfRuntime>mfp</mfpfRuntime>
+    </properties>
+    
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>adapter-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

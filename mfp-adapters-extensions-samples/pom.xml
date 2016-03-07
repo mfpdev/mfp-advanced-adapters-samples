@@ -6,6 +6,7 @@
     <modules>
         <module>spring-java-config-adapter</module>
         <module>spring-xml-config-adapter</module>
+        <module>google-otp-adapter</module>
     </modules>
     <parent>
         <artifactId>mfp-adapters-extensions</artifactId>
@@ -31,7 +32,11 @@
                 <artifactId>mfp-adapters-extensions-samples-spring-xml-config-adapter</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>mfp-adapters-extentions-samples-google-otp-adapter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

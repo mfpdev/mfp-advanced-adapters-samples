@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Licensed Materials - Property of IBM
+5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+US Government Users Restricted Rights - Use, duplication or
+disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+
+<!-- Adapter Configuration -->
+
+<wl:adapter name="mfpAdaptersExtensionsSamplesGoogleOtpAdapter" xmlns:wl="http://www.ibm.com/mfp/integration">
+
+    <displayName>Google OTP Adapter</displayName>
+    <description>Google OTP Security Check</description>
+
+   <JAXRSApplicationClass>com.mfp.rest.GoogleOTPApplication</JAXRSApplicationClass>
+
+    <property name="qrCodeOrgName" defaultValue="MFP"/>
+    <property name="qrCodeEmail" defaultValue="user@mfp.com"/>
+
+    <securityCheckDefinition name="googleOTP" class="com.mfp.security.GoogleOTPSecurityCheck">
+        <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="20"/>
+    </securityCheckDefinition>
+
+    <securityCheckDefinition name="userLogin" class="com.mfp.security.UserLoginSecurityCheck"/>
+
+</wl:adapter>
