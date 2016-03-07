@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="PhoneRecordAPI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>User-Phone Number Binder</displayName>
+	<description>
+        An API that relate users and phone numbers by registering users and validating their phone numbers
+        using SMS and validation codes.
+    </description>
+
+    <JAXRSApplicationClass>com.ibm.mfp.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
+
+    <property name="sid"
+              displayName="The Twilio API SID to be used"
+              defaultValue="Enter a SID"
+              type="string"
+              description="Enter the Twilio API SID to be used (obtained from the Twilio console)"/>
+    <property name="token"
+              displayName="The Twilio API Token to be used"
+              defaultValue="Enter a valid token"
+              type="string"
+              description="Enter the Twilio API token to be used (obtained from the Twilio console)"/>
+    <property name="fromNumber"
+              displayName="Number used to send SMS notifications"
+              defaultValue="Enter a valid From number"
+              type="string"
+              description="Enter the Twilio 'from' Phone number to be used (obtained from the Twilio console)"/>
+
+    <property name="databaseLocation"
+              displayName="JNDI location for the registration database"
+              defaultValue="jdbc/pglocal"
+              type="string"
+              description="Enter the JNDI URL to the DataSource that was configured in the application server"/>
+
+</mfp:adapter>

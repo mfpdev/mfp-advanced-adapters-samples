@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   IBM Confidential OCO Source Materials
+
+   5725-I43 Copyright IBM Corp. 2006, 2015
+
+   The source code for this program is not published or otherwise
+   divested of its trade secrets, irrespective of what has
+   been deposited with the U.S. Copyright Office.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <context:annotation-config/>
+
+    <!-- Setup the database access components - Starts              -->
+    <!-- Step #1, lookup the datasource in the JEE JNDI Environment -->
+    <jee:jndi-lookup id="dataSource"
+                     jndi-name="${databaseLocation}"
+                     expected-type="javax.sql.DataSource" />
+
+    <!-- Step #2, Use the DataSource to construct a JdbcTemplate    -->
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate"
+          p:dataSource-ref="dataSource"/>
+
+    <!-- Step #3, Inject the JdbcTemplate into our DAO              -->
+    <bean id="dataAccessBean"
+          class="com.ibm.mfp.sample.phoneuser.DataAccess"
+          c:t-ref="jdbcTemplate"/>
+    <!-- Setup the database access components - Ends                -->
+
+    <!-- Initialize the Twilio access Object, by injecting the
+         configuration into the constructor                         -->
+    <bean id="twilioAccessBean"
+          class="com.ibm.mfp.sample.phoneuser.TwilioAccess"
+          c:sid="${sid}"
+          c:token="${token}"
+          c:from="${fromNumber}"/>
+
+    <!-- We use annotations to inject the access objects into the
+         resource. Nothing fancy here                               -->
+    <bean id="apiBean" class="com.ibm.mfp.sample.phoneuser.PhoneRecordAPIResource"/>
+
+    <!-- This is specific to the MFPF-Spring integration. Tell us
+         where is your resource                                     -->
+    <bean class="com.ibm.mfp.adapters.spring.integration.JAXRSResourcesRegistryImpl">
+        <property name="resources">
+            <list>
+                <ref bean="apiBean"/>
+            </list>
+        </property>
+    </bean>
+</beans>
