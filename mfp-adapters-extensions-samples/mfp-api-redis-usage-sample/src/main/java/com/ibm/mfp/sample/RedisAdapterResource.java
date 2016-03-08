@@ -63,31 +63,12 @@ public class RedisAdapterResource {
      * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
 	 */
 
-    @ApiModel(value = "A User",
-            description = "The user data saved in the server"
-    )
-    public static class UserData {
-
-        @ApiModelProperty(required = true, notes = "The user's full name")
-        public String name = null;
-        @ApiModelProperty(required = true, notes = "The user's age in years")
-        public int age = -1;
-
-        @ApiModelProperty(required = true, notes = "The user's ID")
-        public String id = null;
-
-        // used by REST marshalling/unmarshalling
-        public UserData() {
-        }
-    }
+    //Define logger (Standard java.util.Logger)
+    static Logger logger = Logger.getLogger(RedisAdapterResource.class.getName());
 
     @Context
     AdaptersAPI adaptersAPI;
 
-    //Define logger (Standard java.util.Logger)
-    static Logger logger = Logger.getLogger(RedisAdapterResource.class.getName());
-
-    //Inject the MFP configuration API:
     @Context
     ConfigurationAPI configApi;
 
@@ -215,6 +196,24 @@ public class RedisAdapterResource {
             if (redisClient != null) {
                 redisClient.close();
             }
+        }
+    }
+
+    @ApiModel(value = "A User",
+            description = "The user data saved in the server"
+    )
+    public static class UserData {
+
+        @ApiModelProperty(required = true, notes = "The user's full name")
+        public String name = null;
+        @ApiModelProperty(required = true, notes = "The user's age in years")
+        public int age = -1;
+
+        @ApiModelProperty(required = true, notes = "The user's ID")
+        public String id = null;
+
+        // used by REST marshalling/unmarshalling
+        public UserData() {
         }
     }
 }

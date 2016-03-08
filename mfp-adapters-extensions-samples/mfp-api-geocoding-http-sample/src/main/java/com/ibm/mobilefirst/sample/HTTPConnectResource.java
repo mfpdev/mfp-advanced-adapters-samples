@@ -63,27 +63,9 @@ public class HTTPConnectResource {
 
     //Define logger (Standard java.util.Logger)
     static Logger logger = Logger.getLogger(HTTPConnectResource.class.getName());
-
-    @ApiModel(value = "Location Data",
-            description = "The data on the address specified"
-    )
-    public static class LocationData {
-
-        @ApiModelProperty(required = true, notes = "Latitude information")
-        public double lat = 0;
-
-        @ApiModelProperty(required = true, notes = "Longitude information")
-        public double lng = 0;
-
-        // used by REST marshalling/unmarshalling
-        public LocationData() {
-        }
-    }
-
     //Inject the MFP configuration API:
     @Context
     ConfigurationAPI configApi;
-
     @Context
     AdaptersAPI adaptersAPI;
 
@@ -196,5 +178,21 @@ public class HTTPConnectResource {
         callBuilder.addQueryParameter("address", address);
 
         return callBuilder.build();
+    }
+
+    @ApiModel(value = "Location Data",
+            description = "The data on the address specified"
+    )
+    public static class LocationData {
+
+        @ApiModelProperty(required = true, notes = "Latitude information")
+        public double lat = 0;
+
+        @ApiModelProperty(required = true, notes = "Longitude information")
+        public double lng = 0;
+
+        // used by REST marshalling/unmarshalling
+        public LocationData() {
+        }
     }
 }

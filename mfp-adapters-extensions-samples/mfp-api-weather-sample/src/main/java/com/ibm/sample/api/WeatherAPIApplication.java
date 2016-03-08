@@ -7,13 +7,11 @@
 
 package com.ibm.sample.api;
 
-import java.util.logging.Logger;
-import java.util.*;
-
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 
 import javax.ws.rs.core.Context;
+import java.util.logging.Logger;
 
 public class WeatherAPIApplication extends MFPJAXRSApplication {
 

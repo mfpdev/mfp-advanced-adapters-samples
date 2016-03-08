@@ -5,10 +5,10 @@
 	US Government Users Restricted Rights - Use, duplication or
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
-<mfp:adapter name="mfpAdaptersExtentionsSamplesMfpApiWeatherSample"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<mfp:adapter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:mfp="http://www.ibm.com/mfp/integration"
-             xmlns:http="http://www.ibm.com/mfp/integration/http">
+             xmlns:http="http://www.ibm.com/mfp/integration/http"
+             name="mfpAdaptersExtentionsSamplesMfpApiWeatherSample">
 
     <displayName>Temperature Lookup API</displayName>
     <description>
