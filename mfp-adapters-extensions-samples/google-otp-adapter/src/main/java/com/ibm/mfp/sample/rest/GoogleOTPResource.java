@@ -27,8 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  Google Authenticator REST API
- *
+ * Google Authenticator REST API
+ * <p/>
  * - /setupGoogleOTP: create the google authenticator shared secret
  * - /qrCode: Get Google authenticator shared secret as a QR code for scan in the Google authenticator app
  *
@@ -60,8 +60,9 @@ public class GoogleOTPResource {
 
     /**
      * Generate a shared secret and store it in the registration data as GoogleOTPState object.
-     *
+     * <p/>
      * Mobile app should call this API in the beginning
+     *
      * @return "OK" as success
      */
     @Path("/setupGoogleOTP")
@@ -86,12 +87,11 @@ public class GoogleOTPResource {
      * Get an HTML which contains a link to the registered QR Code.
      * This QR code should be scanned by the Google Authenticator App when "Set up account".
      *
-     * @param appId the application id (e.g: bundleId in iOS / package name in Android)
+     * @param appId      the application id (e.g: bundleId in iOS / package name in Android)
      * @param appVersion the application version (e.g: CFBundleShortVersionString in iOS / versionName in Android)
-     *
-     * This method requires basic authentication and uses the authenticated user identity and the application id to locate the appropriate client registration data
+     *                   <p/>
+     *                   This method requires basic authentication and uses the authenticated user identity and the application id to locate the appropriate client registration data
      * @return HTML with link to the QRCode
-     *
      * @throws Exception
      */
     @Path("/qrCode/{appId}/{appVersion}")
@@ -135,20 +135,21 @@ public class GoogleOTPResource {
         String htmlCode;
 
         if (googleOTPState != null) {
-            htmlCode = "<a href='"+ googleOTPState.getQrCodeURL() +"'>Click to get QR code for scan inside Google Authenticator app</a>";
+            htmlCode = "<a href='" + googleOTPState.getQrCodeURL() + "'>Click to get QR code for scan inside Google Authenticator app</a>";
         } else {
-            htmlCode =  "No QR Code found.";
+            htmlCode = "No QR Code found.";
         }
 
-        return  "<html>" +
-                    "<body>" +
-                        htmlCode +
-                    "</body>" +
+        return "<html>" +
+                "<body>" +
+                htmlCode +
+                "</body>" +
                 "</html>";
     }
 
     /**
      * Get user name and password from the authorization header and decode it
+     *
      * @return Map containing user name and password
      */
     private Map<String, Object> getEncodedUsernamePassword() {
@@ -163,7 +164,7 @@ public class GoogleOTPResource {
             String basic = new String(Base64.decodeBase64(encodedBasicAuthentication));
             int sep = basic.indexOf(":");
             if (sep != -1) {
-                result = new HashMap<String,Object>();
+                result = new HashMap<String, Object>();
                 result.put(USER, basic.substring(0, sep));
                 result.put(PASSWORD, basic.substring(sep + 1));
             }
@@ -173,12 +174,13 @@ public class GoogleOTPResource {
 
     /**
      * Create GoogleOTPState object
+     *
      * @return
      */
-    private GoogleOTPState createGoogleOTPState(){
+    private GoogleOTPState createGoogleOTPState() {
         GoogleAuthenticator googleAuthenticator = new GoogleAuthenticator();
 
-        final GoogleAuthenticatorKey googleAuthenticatorKey =  googleAuthenticator.createCredentials();
+        final GoogleAuthenticatorKey googleAuthenticatorKey = googleAuthenticator.createCredentials();
         GoogleOTPState googleOTPState = new GoogleOTPState();
         googleOTPState.setSecret(googleAuthenticatorKey.getKey());
         googleOTPState.setQrCodeURL(GoogleAuthenticatorQRGenerator.getOtpAuthURL(configAPI.getPropertyValue(QR_CODE_ORG_NAME), configAPI.getPropertyValue(QR_CODE_EMAIL), googleAuthenticatorKey));

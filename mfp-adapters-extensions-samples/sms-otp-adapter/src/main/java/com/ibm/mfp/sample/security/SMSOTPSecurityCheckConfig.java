@@ -28,7 +28,7 @@ public class SMSOTPSecurityCheckConfig extends CredentialsValidationSecurityChec
     public String twilioPhoneNumber = null;
 
     public SMSOTPSecurityCheckConfig(Properties properties) {
-        super (properties);
+        super(properties);
         this.twilioAccountSid = getStringProperty("twilioAccountSid", properties, "");
         this.twilioAuthToken = getStringProperty("twilioAuthToken", properties, "");
         this.twilioPhoneNumber = getStringProperty("twilioPhoneNumber", properties, "");

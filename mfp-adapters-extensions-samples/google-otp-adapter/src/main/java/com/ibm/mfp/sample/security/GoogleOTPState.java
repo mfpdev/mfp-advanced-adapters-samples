@@ -9,7 +9,6 @@ package com.ibm.mfp.sample.security;
 import java.util.Date;
 
 /**
- *
  * Google OTP state
  *
  * @author Ishai Borovoy

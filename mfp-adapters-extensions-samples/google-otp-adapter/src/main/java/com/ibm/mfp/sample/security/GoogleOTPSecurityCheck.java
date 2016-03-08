@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Google OTP Security Check
- *
+ * <p/>
  * Validate the google one time password sent from mobile app against the stored GoogleOTPState object
  * The class is using external library called googelauth from https://github.com/wstrange/GoogleAuth
  *
@@ -33,12 +33,13 @@ public class GoogleOTPSecurityCheck extends CredentialsValidationSecurityCheck {
 
     /**
      * Validate the google one time password
+     *
      * @param credentials a Map containing the password
      * @return true if the password is correct
      */
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
-        int googleCode = Integer.valueOf((String)credentials.get(CODE_KEY));
+        int googleCode = Integer.valueOf((String) credentials.get(CODE_KEY));
 
         //Create the GoogleAuthenticatorConfig
         GoogleAuthenticatorConfig.GoogleAuthenticatorConfigBuilder googleAuthenticatorConfigBuilder =
@@ -54,12 +55,12 @@ public class GoogleOTPSecurityCheck extends CredentialsValidationSecurityCheck {
 
     /**
      * Create the GoogleOTPSecurityCheck challenge
+     *
      * @return Map containing challenge
      */
     @Override
-    protected Map<String,Object> createChallenge() {
-        return new HashMap<String, Object>()
-        {{
+    protected Map<String, Object> createChallenge() {
+        return new HashMap<String, Object>() {{
             put(CHALLENGE, GOOGLE_CODE);
         }};
     }

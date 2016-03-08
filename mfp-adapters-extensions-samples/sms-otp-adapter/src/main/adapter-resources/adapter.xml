@@ -19,6 +19,6 @@
         <property name="twilioAuthToken"  displayName="Twilio Auth Token" defaultValue="-- Add Your Twilio Auth Token --"/>
         <property name="twilioPhoneNumber" displayName="Twilio Phone Number" defaultValue="-- Add Your Twilio Phone Number --"/>
 
-        <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="10"/>
+        <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="20"/>
     </securityCheckDefinition>
 </wl:adapter>

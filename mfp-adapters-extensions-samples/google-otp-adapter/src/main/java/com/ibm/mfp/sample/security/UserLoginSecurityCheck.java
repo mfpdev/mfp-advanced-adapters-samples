@@ -28,6 +28,7 @@ public class UserLoginSecurityCheck extends UserAuthenticationSecurityCheck {
 
     /**
      * Create an authenticated user
+     *
      * @return
      */
     @Override
@@ -37,6 +38,7 @@ public class UserLoginSecurityCheck extends UserAuthenticationSecurityCheck {
 
     /**
      * Validate username and password
+     *
      * @param credentials Map containing the user name and password
      * @return true when user is equal to password
      */
@@ -52,13 +54,11 @@ public class UserLoginSecurityCheck extends UserAuthenticationSecurityCheck {
     }
 
     /**
-     *
      * @return Map containing the challenge
      */
     @Override
     protected Map<String, Object> createChallenge() {
-        return new HashMap<String, Object>()
-        {{
+        return new HashMap<String, Object>() {{
             put(CHALLENGE, "USER-LOGIN-CHALLENGE");
         }};
     }

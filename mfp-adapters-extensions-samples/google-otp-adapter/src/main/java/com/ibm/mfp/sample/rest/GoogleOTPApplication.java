@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  * The JAX-RS Application
- *
+ * <p/>
  * This is JAX-RS Application class
  * This the place to add more REST API classes like
  * GoogleOTPResource
