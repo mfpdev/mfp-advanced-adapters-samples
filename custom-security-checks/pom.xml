@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  IBM Confidential OCO Source Materials
+
+  5725-I43 Copyright IBM Corp. 2006, 2016
+
+  The source code for this program is not published or otherwise
+  divested of its trade secrets, irrespective of what has
+  been deposited with the U.S. Copyright Office.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>mfp-custom-security-checks</groupId>
+    <artifactId>mfp-custom-security-checks</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>social-login</module>
+        <module>sms-otp</module>
+        <module>google-otp</module>
+    </modules>
+</project>

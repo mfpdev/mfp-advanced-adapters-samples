@@ -1,16 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	    
-	<parent>
-        <artifactId>mfp-adapters-extensions-samples</artifactId>
-        <groupId>com.ibm.mfp</groupId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
-    
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>mfp-adapters-extensions-samples-google-otp-adapter</artifactId>
+
+	<groupId>mfp-custom-security-checks</groupId>
+	<artifactId>google-otp</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>adapter</packaging>
+    <name>google-otp</name>
 
 	<dependencies>
 		<dependency>
@@ -54,12 +50,22 @@
         <mfpfPassword>admin</mfpfPassword>
         <mfpfRuntime>mfp</mfpfRuntime>
     </properties>
-    
+
 	<build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.ibm.mfp</groupId>
                 <artifactId>adapter-maven-plugin</artifactId>
+				<version>8.0.0</version>
+				<extensions>true</extensions>
             </plugin>
         </plugins>
     </build>

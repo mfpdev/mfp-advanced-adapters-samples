@@ -9,7 +9,7 @@
   been deposited with the U.S. Copyright Office.
   -->
 
-<wl:adapter name="mfpAdaptersExtensionsSamplesSmsOtpAdapter" xmlns:wl="http://www.ibm.com/mfp/integration">
+<wl:adapter name="smsOtp" xmlns:wl="http://www.ibm.com/mfp/integration">
 
     <displayName>SMS OTP Adapter</displayName>
     <description>SMS OTP Security Check</description>

@@ -6,8 +6,6 @@
     <modules>
         <module>spring-java-config-adapter</module>
         <module>spring-xml-config-adapter</module>
-        <module>google-otp-adapter</module>
-        <module>sms-otp-adapter</module>
         <module>mfp-api-redis-usage-sample</module>
         <module>mfp-api-twilio-sql-spring-sample</module>
         <module>mfp-api-weather-sample</module>
