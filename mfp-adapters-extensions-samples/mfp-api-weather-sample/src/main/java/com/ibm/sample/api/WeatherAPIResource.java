@@ -43,40 +43,40 @@ import java.util.logging.Logger;
 @Api(value = "Temperature Lookup API")
 @Path("/temperature")
 public class WeatherAPIResource {
-	/*
-	 * For more info on JAX-RS see
+    /*
+     * For more info on JAX-RS see
 	 * https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
 	 */
 
-	// Define logger (Standard java.util.Logger)
-	static Logger logger = Logger.getLogger(WeatherAPIResource.class.getName());
+    // Define logger (Standard java.util.Logger)
+    static Logger logger = Logger.getLogger(WeatherAPIResource.class.getName());
 
-	// Inject the MFP configuration API:
-	@Context
-	ConfigurationAPI configApi;
+    // Inject the MFP configuration API:
+    @Context
+    ConfigurationAPI configApi;
 
 	/*
 	 * Path for method:
 	 * "<server address>/mfp/api/adapters/WeatherAPI/users/{username}"
 	 */
 
-	@ApiOperation(value = "Lookup the weather at a specified address",
+    @ApiOperation(value = "Lookup the weather at a specified address",
             notes = "Calls the google geocoding service and a Weather WS-* Service to return the temperature at a specific address .")
-	@ApiResponses(value = {
+    @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Greeting message returned"),
             @ApiResponse(code = 400, message = "Wrong address"),
             @ApiResponse(code = 500, message = "Backend access error")
     })
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/weather-lookup")
-	public Map<String, String> lookupTemperature(@ApiParam(value = "Address where we lookup the weather", required = true) @QueryParam("address") String address) {
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/weather-lookup")
+    public Map<String, String> lookupTemperature(@ApiParam(value = "Address where we lookup the weather", required = true) @QueryParam("address") String address) {
 
         // We need an address to work with... lets see that we got something meaningful
         address = address == null ? "" : address.trim();
         logger.fine(String.format("weather-lookup for [%s]", address));
 
-        if(address.isEmpty()) {
+        if (address.isEmpty()) {
             logger.info(String.format("weather-lookup address [%s] is empty", address));
             throw new BadRequestException(String.format("Address [%s] is invalid", address));
         }
@@ -87,26 +87,26 @@ public class WeatherAPIResource {
             final GeoApiContext context = new GeoApiContext().setApiKey(configApi.getPropertyValue("apiKey"));
             final GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
 
-            for (final GeocodingResult r: results) {
-                for(final AddressComponent c: r.addressComponents) {
-                    for (final AddressComponentType t: c.types)
-                        if(t.compareTo(AddressComponentType.POSTAL_CODE) == 0) {
+            for (final GeocodingResult r : results) {
+                for (final AddressComponent c : r.addressComponents) {
+                    for (final AddressComponentType t : c.types)
+                        if (t.compareTo(AddressComponentType.POSTAL_CODE) == 0) {
                             postalCode = c.longName;
                             fullAddress = r.formattedAddress;
                             break;
                         }
 
-                    if(postalCode != null)
+                    if (postalCode != null)
                         break;
                 }
 
-                if(postalCode != null)
+                if (postalCode != null)
                     break;
             }
         } catch (final Exception e) {
             e.printStackTrace();
             // Something went wrong here
-            logger.log(Level.SEVERE, String.format("Unexpected error when access the geolocation service"), e);
+            logger.log(Level.SEVERE, "Unexpected error when access the geolocation service", e);
             throw new InternalServerErrorException("Unexpected error", e);
         }
 
@@ -114,21 +114,21 @@ public class WeatherAPIResource {
 
         String temperature = null;
 
-        if(postalCode != null) {
+        if (postalCode != null) {
             try {
                 final Weather w = new Weather();
                 final WeatherReturn r = w.getWeatherSoap().getCityWeatherByZIP(postalCode);
                 temperature = r.getTemperature();
-            } catch(final WebServiceException e) {
+            } catch (final WebServiceException e) {
                 // Something went wrong here
-                logger.log(Level.SEVERE, String.format("Unexpected error when access the weather service"), e);
+                logger.log(Level.SEVERE, "Unexpected error when access the weather service", e);
                 throw new InternalServerErrorException("Unexpected error accessing the weather service", e);
             }
         }
 
-        Map<String, String> rc = new HashMap<String, String>();
+        Map<String, String> rc = new HashMap<>();
         rc.put("address", fullAddress);
         rc.put("temp", temperature);
         return rc;
-	}
+    }
 }

@@ -58,7 +58,7 @@ import java.util.logging.Logger;
 public class HTTPConnectResource {
 
 	/*
-	 * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
+     * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
 	 */
 
     //Define logger (Standard java.util.Logger)
@@ -93,7 +93,7 @@ public class HTTPConnectResource {
     @OAuthSecurity(enabled = false)
     @ApiOperation(value = "Finf the lng/lat information on a given address",
             notes = "Shows how one can call into a backend service with HTTP and than process the response data " +
-            "and return a reduced payload",
+                    "and return a reduced payload",
             httpMethod = "GET",
             response = LocationData.class
     )
@@ -112,14 +112,14 @@ public class HTTPConnectResource {
      * @param address the address to look up
      * @return The lng/lat data inside a LocationData object
      */
-    public LocationData helloOkHttp(@QueryParam("address") @ApiParam("The looked up address") final String address ) {
+    public LocationData helloOkHttp(@QueryParam("address") @ApiParam("The looked up address") final String address) {
         //log message to server log
         logger.info("Logging info message...");
 
         // We need an address to work with... lets see that we got something meaningful
-        if(address == null || address.trim().length() < 5) {
+        if (address == null || address.trim().length() < 5) {
             throw new BadRequestException(String.format("Address [%s] is invalid",
-                    address == null? "" : address));
+                    address == null ? "" : address));
         }
 
         final HttpUrl callURL = constructCallUrl(address);
@@ -145,7 +145,7 @@ public class HTTPConnectResource {
                 final ReadContext ctx = JsonPath.parse(response.body().string());
 
                 final String status = ctx.read("$.status");
-                if(status.equals("OK")) {
+                if (status.equals("OK")) {
                     rc.lat = ctx.read("$.results[0].geometry.location.lat");
                     rc.lng = ctx.read("$.results[0].geometry.location.lng");
                 } else {
@@ -164,7 +164,7 @@ public class HTTPConnectResource {
 
     /**
      * Constructs the URL to be called.
-     *
+     * <p/>
      * Assemble the backend URL that includes not only the google service access but also the requested content (JSON)
      * and two URL form parameters that include the API key and the address parameter
      *
@@ -184,7 +184,7 @@ public class HTTPConnectResource {
         callBuilder.host(config.host());
         callBuilder.port(config.port());
 
-        for (String segment: config.pathSegments()) {
+        for (String segment : config.pathSegments()) {
             callBuilder.addPathSegment(segment);
         }
 
