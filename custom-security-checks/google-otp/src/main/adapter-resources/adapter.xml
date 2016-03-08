@@ -9,7 +9,7 @@ disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 
 <!-- Adapter Configuration -->
 
-<wl:adapter name="mfpAdaptersExtensionsSamplesGoogleOtpAdapter" xmlns:wl="http://www.ibm.com/mfp/integration">
+<wl:adapter name="googleOtp" xmlns:wl="http://www.ibm.com/mfp/integration">
 
     <displayName>Google OTP Adapter</displayName>
     <description>Google OTP Security Check</description>
