@@ -8,6 +8,10 @@
         <module>spring-xml-config-adapter</module>
         <module>google-otp-adapter</module>
         <module>sms-otp-adapter</module>
+        <module>mfp-api-redis-usage-sample</module>
+        <module>mfp-api-twilio-sql-spring-sample</module>
+        <module>mfp-api-weather-sample</module>
+        <module>mfp-api-geocoding-http-sample</module>
     </modules>
     <parent>
         <artifactId>mfp-adapters-extensions</artifactId>
@@ -35,6 +39,26 @@
             <dependency>
                 <groupId>com.ibm.mfp</groupId>
                 <artifactId>mfp-adapters-extentions-samples-google-otp-adapter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>mfp-adapters-extentions-samples-mfp-api-geocoding-http-sample</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>mfp-adapters-extentions-samples-mfp-api-redis-usage-sample</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>mfp-adapters-extentions-samples-mfp-api-twilio-sql-spring-sample</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>mfp-adapters-extentions-samples-mfp-api-weather-sample</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

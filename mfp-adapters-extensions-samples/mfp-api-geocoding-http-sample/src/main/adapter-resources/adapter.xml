@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="mfpAdaptersExtentionsSamplesMfpApiGeocodingHttpSample"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>HTTPConnect</displayName>
+	<description>HTTPConnect</description>
+
+	<JAXRSApplicationClass>com.ibm.mobilefirst.sample.HTTPConnectApplication</JAXRSApplicationClass>
+
+	<property name="backendLogLevel"
+			  displayName="Backend Access Log Level"
+			  defaultValue="BASIC"
+			  type="['BASIC', 'HEADERS', 'BODY', 'NONE']"
+			  description="How much to log out of the HTTP traffic to the backend service"/>
+
+	<property name="requestTimeout"
+			  displayName="Backend Request Timeout"
+			  defaultValue="32"
+			  type="integer"
+			  description="Timeout (in seconds) when calling to the backend service"/>
+
+	<property name="backendURL"
+			  displayName="Backend URL"
+			  defaultValue="https://maps.googleapis.com/maps/api/geocode"
+			  type="string"
+			  description="URL of the Geolocation API"/>
+
+    <property name="apiKey"
+              displayName="Google Geolocation API Key"
+              defaultValue="AIzaSyDk97qAdzCombgZNt4maajNfVrgGd9NBig"
+              type="string"
+              description="Enter the API Key used to access the service (obtain from Google Developer Console)"/>
+
+</mfp:adapter>
