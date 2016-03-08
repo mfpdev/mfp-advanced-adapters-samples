@@ -164,7 +164,7 @@ public class GoogleOTPResource {
             String basic = new String(Base64.decodeBase64(encodedBasicAuthentication));
             int sep = basic.indexOf(":");
             if (sep != -1) {
-                result = new HashMap<String, Object>();
+                result = new HashMap<>();
                 result.put(USER, basic.substring(0, sep));
                 result.put(PASSWORD, basic.substring(sep + 1));
             }
@@ -175,7 +175,7 @@ public class GoogleOTPResource {
     /**
      * Create GoogleOTPState object
      *
-     * @return
+     * @return the new created state of GoogleOTPState
      */
     private GoogleOTPState createGoogleOTPState() {
         GoogleAuthenticator googleAuthenticator = new GoogleAuthenticator();

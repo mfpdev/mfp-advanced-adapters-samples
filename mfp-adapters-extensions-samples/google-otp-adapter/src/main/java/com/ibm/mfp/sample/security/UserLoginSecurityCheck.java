@@ -29,7 +29,7 @@ public class UserLoginSecurityCheck extends UserAuthenticationSecurityCheck {
     /**
      * Create an authenticated user
      *
-     * @return
+     * @return the authenticated suer
      */
     @Override
     protected AuthenticatedUser createUser() {
