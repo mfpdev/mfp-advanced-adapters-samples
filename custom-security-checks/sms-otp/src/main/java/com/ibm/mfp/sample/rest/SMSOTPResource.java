@@ -28,9 +28,7 @@ import java.util.regex.Pattern;
                 title = "Phone registration",
                 termsOfService = "IBM Terms and Conditions apply",
                 contact = @Contact(
-                        name = "Ishai Borovoy",
-                        email = "ishaib@il.ibm.com",
-                        url = "http://www.ibm.com"
+                        name = "Ishai Borovoy"
                 ),
                 license = @License(
                         name = "IBM Samples License"
@@ -66,9 +64,13 @@ public class SMSOTPResource {
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
-                    response = Void.class),
+                    response = String.class),
             @ApiResponse(code = 400, message = "Invalid Phone Number",
-                    response = Void.class),
+                    response = String.class),
+            @ApiResponse(code = 401, message = "Not Authorized",
+                    response = String.class),
+            @ApiResponse(code = 500, message = "Cannot register phone number",
+                    response = String.class)
     })
     public String registerPhoneNumber(@PathParam("phoneNumber") String phoneNumber) {
         if (!validate(phoneNumber)) {
@@ -77,10 +79,12 @@ public class SMSOTPResource {
 
         //Getting client data from the security context
         ClientData clientData = securityContext.getClientRegistrationData();
-        PersistentAttributes protectedAttributes = clientData.getProtectedAttributes();
+        if (clientData == null) {
+            throw new InternalServerErrorException("Register phone number currently allowed only only from a device.");
+        }
 
         //Store the phone number in registration service
-        protectedAttributes.put(SMSOTPSecurityCheck.PHONE_NUMBER, phoneNumber);
+        clientData.getProtectedAttributes().put(SMSOTPSecurityCheck.PHONE_NUMBER, phoneNumber);
         securityContext.storeClientRegistrationData(clientData);
 
         return "OK";
