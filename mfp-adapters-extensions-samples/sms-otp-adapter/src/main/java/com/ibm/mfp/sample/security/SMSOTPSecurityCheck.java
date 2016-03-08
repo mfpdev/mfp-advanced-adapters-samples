@@ -52,7 +52,7 @@ public class SMSOTPSecurityCheck extends CredentialsValidationSecurityCheck {
     }
 
     /**
-     * Validate the google SMS One Time Password
+     * Validate the SMS One-Time Password
      *
      * @param credentials a Map containing the password
      * @return true if the password is correct
