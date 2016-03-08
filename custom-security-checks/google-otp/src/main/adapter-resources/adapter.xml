@@ -12,7 +12,7 @@ disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 <wl:adapter name="googleOtp" xmlns:wl="http://www.ibm.com/mfp/integration">
 
     <displayName>Google OTP Adapter</displayName>
-    <description>Google OTP Security Check</description>
+    <description>Google Authenticator One-Time Password security check which able to validate passcode from Google Authenticator app</description>
 
    <JAXRSApplicationClass>com.ibm.mfp.sample.rest.GoogleOTPApplication</JAXRSApplicationClass>
 

@@ -12,12 +12,14 @@ package com.ibm.mfp.sample.security;
 
 import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
 import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
+import com.ibm.mfp.server.security.external.checks.AuthorizationResponse;
 import com.ibm.mfp.server.security.external.checks.SecurityCheckConfiguration;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.resource.factory.MessageFactory;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +31,6 @@ import java.util.logging.Logger;
  * The class is using external library Twillio as messaging platform
  * To used this security check you need to have a registered account which able to send SMS @ Twillio (@see https://www.twilio.com)
  *
- *
  * @author Ishai Borovoy
  * @since 06/03/206
  */
@@ -39,12 +40,14 @@ public class SMSOTPSecurityCheck extends CredentialsValidationSecurityCheck {
     private final static String CODE_KEY = "code";
     private final static String CHALLENGE = "challenge";
 
+    private static final int SMS_SEND_FAILURE = -1;
+
     static Logger logger = Logger.getLogger(SMSOTPSecurityCheck.class.getName());
 
     private String smsCode = "";
 
     // Hold the phone number until it verified
-    private String tempPhoneNumber = null;
+    private String phoneNumber = null;
 
     @Override
     public SecurityCheckConfiguration createConfiguration(Properties properties) {
@@ -59,60 +62,41 @@ public class SMSOTPSecurityCheck extends CredentialsValidationSecurityCheck {
      */
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
-        boolean isValid = false;
-        String phoneNumber = (String) credentials.get(PHONE_NUMBER);
-        if (phoneNumber != null) {
-            tempPhoneNumber = phoneNumber;
-            isValid = false;
-        } else {
-            String receivedSmsCode = (String) credentials.get(CODE_KEY);
-            if (receivedSmsCode != null && receivedSmsCode.equals(smsCode)) {
-                PersistentAttributes protectedAttributes = registrationContext.getRegisteredProtectedAttributes();
-                if (protectedAttributes.get(PHONE_NUMBER) == null) {
-
-                    //Phone number has been verified
-                    protectedAttributes.put(PHONE_NUMBER, tempPhoneNumber);
-                    tempPhoneNumber = null;
-                }
-                smsCode = null;
-                isValid = true;
-            }
-        }
-        return isValid;
+        String receivedSmsCode = (String) credentials.get(CODE_KEY);
+        return receivedSmsCode != null && !receivedSmsCode.isEmpty() && receivedSmsCode.equals(smsCode);
     }
 
     /**
      * Create the SMSOTPSecurityCheck challenge
      *
-     * The challenge can either require a phone number or the One-Time code sent via SMS.
-     * @return Map containing challenge for missing phone number or for SMS code
+     * @return Map containing challenge for SMS code
      */
     @Override
     protected Map<String, Object> createChallenge() {
         final PersistentAttributes registeredProtectedAttributes = registrationContext.getRegisteredProtectedAttributes();
 
-        String persistedPhoneNumber = registeredProtectedAttributes.get(PHONE_NUMBER);
-
         Map<String, Object> challenge = new HashMap<>();
-        // The phone number is unknown, send challenge asking for phone number
-        if (persistedPhoneNumber == null && tempPhoneNumber == null) {
-            challenge.put(CHALLENGE, PHONE_NUMBER);
-        } else {
-            // Check if phone number is in registration db
-            String phoneNumber = registeredProtectedAttributes.get(PHONE_NUMBER);
 
-            //If phone number has not been verified yet, save it as temporary var
-            if (phoneNumber == null) {
-                phoneNumber = tempPhoneNumber;
-            }
-
-            int sentSmsCode = this.sendSMSCode(phoneNumber);
-            if (sentSmsCode != -1) {
-                smsCode = String.valueOf(sentSmsCode);
-                challenge.put(CHALLENGE, SMS_CODE);
-            }
+        int sentSmsCode = sendSMSCode(phoneNumber);
+        if (sentSmsCode != SMS_SEND_FAILURE) {
+            smsCode = String.valueOf(sentSmsCode);
+            challenge.put(CHALLENGE, SMS_CODE);
         }
         return challenge;
+    }
+
+    @Override
+    public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
+        phoneNumber = registrationContext.getRegisteredProtectedAttributes().get(PHONE_NUMBER);
+
+        //Return failure in case no phone number is found in registration service
+        if (phoneNumber == null || phoneNumber.trim().isEmpty()) {
+            Map<String, Object> failure = new HashMap<>();
+            failure.put("failure", "Missing phone number");
+            response.addFailure(getName(), failure);
+        } else {
+            super.authorize(scope, credentials, request, response);
+        }
     }
 
     /**
@@ -125,12 +109,13 @@ public class SMSOTPSecurityCheck extends CredentialsValidationSecurityCheck {
         TwilioRestClient client = new TwilioRestClient(config.getTwilioAccountSid(), config.getTwilioAuthToken());
 
         List<NameValuePair> params = new ArrayList<>();
+
         //Create 4 digits random code
         int randomSmsCode = (int) (Math.random() * 9000) + 1000;
 
         params.add(new BasicNameValuePair("Body", "" + randomSmsCode));
         params.add(new BasicNameValuePair("To", phoneNumber));
-        params.add(new BasicNameValuePair("From", config.getTwilioPhoneNumber()));
+        params.add(new BasicNameValuePair("From", config.getTwilioFromPhoneNumber()));
 
         MessageFactory messageFactory = client.getAccount().getMessageFactory();
         try {
@@ -138,7 +123,7 @@ public class SMSOTPSecurityCheck extends CredentialsValidationSecurityCheck {
             return randomSmsCode;
         } catch (Exception e) {
             logger.log(Level.WARNING, "Cannot send SMS code", e);
-            return -1;
+            return SMS_SEND_FAILURE;
         }
     }
 }

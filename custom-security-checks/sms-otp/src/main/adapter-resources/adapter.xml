@@ -12,13 +12,27 @@
 <wl:adapter name="smsOtp" xmlns:wl="http://www.ibm.com/mfp/integration">
 
     <displayName>SMS OTP Adapter</displayName>
-    <description>SMS OTP Security Check</description>
+    <description>SMS One-Time Password security check which validates SMS code for registered phone number</description>
+
+    <JAXRSApplicationClass>com.ibm.mfp.sample.rest.SMSOTPApplication</JAXRSApplicationClass>
 
     <securityCheckDefinition name="smsOTP" class="com.ibm.mfp.sample.security.SMSOTPSecurityCheck">
-        <property name="twilioAccountSid" displayName="Twilio Account Sid" defaultValue="-- Add Your Twilio Account Sid --" />
-        <property name="twilioAuthToken"  displayName="Twilio Auth Token" defaultValue="-- Add Your Twilio Auth Token --"/>
-        <property name="twilioPhoneNumber" displayName="Twilio Phone Number" defaultValue="-- Add Your Twilio Phone Number --"/>
+        <property name="twilioAccountSid"
+                  displayName="The Twilio API SID to be used"
+                  defaultValue="Enter a SID"
+                  type="string"
+                  description="Enter the Twilio API SID to be used (obtained from the Twilio console)"/>
+        <property name="twilioAuthToken"
+                  displayName="The Twilio API Token to be used"
+                  defaultValue="Enter a valid token"
+                  type="string"
+                  description="Enter the Twilio API token to be used (obtained from the Twilio console)"/>
+        <property name="twilioFromPhoneNumber"
+                  displayName="Number used to send SMS notifications"
+                  defaultValue="Enter a valid From number"
+                  type="string"
+                  description="Enter the Twilio 'from' Phone number to be used (obtained from the Twilio console)"/>
 
-        <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="20"/>
+        <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="20" type="integer"/>
     </securityCheckDefinition>
 </wl:adapter>
