@@ -22,21 +22,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @SwaggerDefinition(
-		info = @Info(
-				description = "Sample showing how Redis (or any other caching service) can be used within an adapter. "+
-                              "The REST API allows storing and retriving user related information.",
-				version = "V8.0.0beta",
-				title = "Sample Redis usage in an API",
-				termsOfService = "IBM Terms and Conditions apply",
-				contact = @Contact(
-						name = "Gal Shachor" /*,
+        info = @Info(
+                description = "Sample showing how Redis (or any other caching service) can be used within an adapter. " +
+                        "The REST API allows storing and retriving user related information.",
+                version = "V8.0.0beta",
+                title = "Sample Redis usage in an API",
+                termsOfService = "IBM Terms and Conditions apply",
+                contact = @Contact(
+                        name = "Gal Shachor" /*,
                         email = "Gal@Shachor",
                         url = "http://www.ibm.com" */
-				),
-				license = @License(
-						name = "IBM Samples License"
-				)
-		)
+                ),
+                license = @License(
+                        name = "IBM Samples License"
+                )
+        )
 )
 @Path("/redis-users")
 @Api(value = "Store user information in Redis",
@@ -59,35 +59,16 @@ import java.util.logging.Logger;
  * or Redis, the usage pattern holds.
  */
 public class RedisAdapterResource {
-	/*
-	 * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
+    /*
+     * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
 	 */
-
-    @ApiModel(value = "A User",
-            description = "The user data saved in the server"
-    )
-    public static class UserData {
-
-        @ApiModelProperty(required = true, notes = "The user's full name")
-        public String name = null;
-        @ApiModelProperty(required = true, notes = "The user's age in years")
-        public int age = -1;
-
-        @ApiModelProperty(required = true, notes = "The user's ID")
-        public String id = null;
-
-        // used by REST marshalling/unmarshalling
-        public UserData() {
-        }
-    }
-
-    @Context
-    AdaptersAPI adaptersAPI;
 
     //Define logger (Standard java.util.Logger)
     static Logger logger = Logger.getLogger(RedisAdapterResource.class.getName());
 
-    //Inject the MFP configuration API:
+    @Context
+    AdaptersAPI adaptersAPI;
+
     @Context
     ConfigurationAPI configApi;
 
@@ -129,8 +110,7 @@ public class RedisAdapterResource {
             // Redis connectivity issues
             logger.log(Level.SEVERE, "Cannot connect to the Redis server", t);
             throw new InternalServerErrorException("Cannot connect to the Redis server", t);
-        }
-        finally {
+        } finally {
             if (redisClient != null) {
                 redisClient.close();
             }
@@ -179,8 +159,7 @@ public class RedisAdapterResource {
             // Redis connectivity issues
             logger.log(Level.SEVERE, "Cannot connect to the Redis server", t);
             throw new InternalServerErrorException("Cannot connect to the Redis server", t);
-        }
-        finally {
+        } finally {
             if (redisClient != null) {
                 redisClient.close();
             }
@@ -213,11 +192,28 @@ public class RedisAdapterResource {
             // Redis connectivity issues
             logger.log(Level.SEVERE, "Cannot connect to the Redis server", t);
             throw new InternalServerErrorException("Cannot connect to the Redis server", t);
-        }
-        finally {
+        } finally {
             if (redisClient != null) {
                 redisClient.close();
             }
+        }
+    }
+
+    @ApiModel(value = "A User",
+            description = "The user data saved in the server"
+    )
+    public static class UserData {
+
+        @ApiModelProperty(required = true, notes = "The user's full name")
+        public String name = null;
+        @ApiModelProperty(required = true, notes = "The user's age in years")
+        public int age = -1;
+
+        @ApiModelProperty(required = true, notes = "The user's ID")
+        public String id = null;
+
+        // used by REST marshalling/unmarshalling
+        public UserData() {
         }
     }
 }

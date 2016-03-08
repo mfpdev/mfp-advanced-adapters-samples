@@ -18,20 +18,19 @@ import java.util.logging.Logger;
 
 /**
  * Initializes the Adapter API and hosts global objects that get used thro the various requests
- *
  */
 public class HTTPConnectApplication extends MFPJAXRSApplication {
 
     /**
      * The logger used by the app
      */
-	static Logger logger = Logger.getLogger(HTTPConnectApplication.class.getName());
+    static Logger logger = Logger.getLogger(HTTPConnectApplication.class.getName());
 
     /**
      * Injected application configuration variable (injected by the MobileFirst server)
      */
-	@Context
-	ConfigurationAPI configApi;
+    @Context
+    ConfigurationAPI configApi;
 
     /**
      * The OKHTTP Client that was initialized from the provided configuration data
@@ -46,20 +45,20 @@ public class HTTPConnectApplication extends MFPJAXRSApplication {
     /**
      * Returns the OKHTTP Client that was initialized from the provided configuration data
      */
-	public OkHttpClient getOkHttpClient() {
-		return okhttp3Client;
-	}
+    public OkHttpClient getOkHttpClient() {
+        return okhttp3Client;
+    }
 
     /**
      * Returnes the API Key used to access the google geocoding service
      */
-	public String getAPIKey() {
-		return apiKey;
-	}
+    public String getAPIKey() {
+        return apiKey;
+    }
 
     /**
      * Initializes the adapter application by allocating and Configuring an OKHTTP client.
-     *
+     * <p/>
      * Init is called by the MobileFirst Server whenever an Adapter application is deployed or reconfigured. The method
      * than get the API key and the client configuration information redis URL from the adapter configuration parameters
      * validate them and allocate an OKHTTP Client
@@ -93,7 +92,7 @@ public class HTTPConnectApplication extends MFPJAXRSApplication {
          * Parse and validate the URL
          */
         final HttpUrl config = HttpUrl.parse(backURL);
-        if(null == config) {
+        if (null == config) {
             logger.severe(String.format("Cannot parse a URL out of [%s]", backURL));
             throw new IllegalArgumentException("Backend URL cannot be parsed");
         }
@@ -101,35 +100,39 @@ public class HTTPConnectApplication extends MFPJAXRSApplication {
         /*
          * Initialize the logging for OKHTTP
          */
-		final HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-			public void log(String s) {
-				System.out.println(s);
-			}
-		});
-		logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        final HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            public void log(String s) {
+                System.out.println(s);
+            }
+        });
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        if(logLevel.equals("BASIC")) {
-            logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
-        } else if(logLevel.equals("HEADERS")) {
-            logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
-        } else if(logLevel.equals("NONE")) {
-            logging.setLevel(HttpLoggingInterceptor.Level.NONE);
+        switch (logLevel) {
+            case "BASIC":
+                logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+                break;
+            case "HEADERS":
+                logging.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+                break;
+            case "NONE":
+                logging.setLevel(HttpLoggingInterceptor.Level.NONE);
+                break;
         }
 
         okhttp3Client = new okhttp3.OkHttpClient.Builder().addInterceptor(logging).build();
 
         logger.info("Adapter initialized!");
-	}
+    }
 
-	protected void destroy() throws Exception {
+    protected void destroy() throws Exception {
 
-		logger.info("Adapter destroyed!");
-	}
+        logger.info("Adapter destroyed!");
+    }
 
 
-	protected String getPackageToScan() {
-		//The package of this class will be scanned (recursively) to find JAX-RS resources. 
-		//It is also possible to override "getPackagesToScan" method in order to return more than one package for scanning
-		return getClass().getPackage().getName();
-	}
+    protected String getPackageToScan() {
+        //The package of this class will be scanned (recursively) to find JAX-RS resources.
+        //It is also possible to override "getPackagesToScan" method in order to return more than one package for scanning
+        return getClass().getPackage().getName();
+    }
 }

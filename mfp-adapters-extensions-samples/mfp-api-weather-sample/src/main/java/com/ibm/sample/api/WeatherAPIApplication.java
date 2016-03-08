@@ -7,47 +7,45 @@
 
 package com.ibm.sample.api;
 
-import java.util.logging.Logger;
-import java.util.*;
-
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 
 import javax.ws.rs.core.Context;
+import java.util.logging.Logger;
 
-public class WeatherAPIApplication extends MFPJAXRSApplication{
+public class WeatherAPIApplication extends MFPJAXRSApplication {
 
-	static Logger logger = Logger.getLogger(WeatherAPIApplication.class.getName());
+    static Logger logger = Logger.getLogger(WeatherAPIApplication.class.getName());
 
-	@Context
-	ConfigurationAPI configApi;
+    @Context
+    ConfigurationAPI configApi;
 
-	protected void init() throws Exception {
-		logger.info("Initializing a Geolocation Adapter application");
+    protected void init() throws Exception {
+        logger.info("Initializing a Geolocation Adapter application");
 
-		String apiKey = configApi.getPropertyValue("apiKey");
+        String apiKey = configApi.getPropertyValue("apiKey");
         apiKey = apiKey == null ? "" : apiKey.trim();
 
-		if (apiKey.isEmpty()) {
-			// Something is wrong
-			logger.severe(String.format("API Key [%s] is void", apiKey));
-			throw new IllegalArgumentException(String.format("API Key [%s] cannot be empty", apiKey));
-		}
+        if (apiKey.isEmpty()) {
+            // Something is wrong
+            logger.severe(String.format("API Key [%s] is void", apiKey));
+            throw new IllegalArgumentException(String.format("API Key [%s] cannot be empty", apiKey));
+        }
 
         logger.config(String.format("Using [%s] as API Key into the Geocoding service", apiKey));
 
-		logger.info("Adapter initialized!");
-	}
-	
+        logger.info("Adapter initialized!");
+    }
 
-	protected void destroy() throws Exception {
-		logger.info("Adapter destroyed!");
-	}
-	
 
-	protected String getPackageToScan() {
-		//The package of this class will be scanned (recursively) to find JAX-RS resources. 
-		//It is also possible to override "getPackagesToScan" method in order to return more than one package for scanning
-		return getClass().getPackage().getName();
-	}
+    protected void destroy() throws Exception {
+        logger.info("Adapter destroyed!");
+    }
+
+
+    protected String getPackageToScan() {
+        //The package of this class will be scanned (recursively) to find JAX-RS resources.
+        //It is also possible to override "getPackagesToScan" method in order to return more than one package for scanning
+        return getClass().getPackage().getName();
+    }
 }
