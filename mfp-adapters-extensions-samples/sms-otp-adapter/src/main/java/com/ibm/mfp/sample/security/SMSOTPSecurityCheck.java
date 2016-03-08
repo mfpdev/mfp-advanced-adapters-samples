@@ -8,7 +8,7 @@
  * been deposited with the U.S. Copyright Office.
  */
 
-package com.mfp.security;
+package com.ibm.mfp.sample.security;
 
 import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
 import com.ibm.mfp.server.security.external.checks.SecurityCheckConfiguration;
@@ -124,7 +124,7 @@ public class SMSOTPSecurityCheck extends CredentialsValidationSecurityCheck {
         try {
             messageFactory.create(params);
             return randomSmsCode;
-        } catch (TwilioRestException e) {
+        } catch (Exception e) {
             logger.log(Level.WARNING, "Cannot send SMS code", e);
             return -1;
         }

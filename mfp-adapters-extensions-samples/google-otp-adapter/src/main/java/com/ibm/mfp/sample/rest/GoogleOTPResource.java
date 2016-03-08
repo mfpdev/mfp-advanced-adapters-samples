@@ -4,15 +4,15 @@
  *    US Government Users Restricted Rights - Use, duplication or
  *    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 */
-package com.mfp.rest;
+package com.ibm.mfp.sample.rest;
 
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
+import com.ibm.mfp.sample.security.GoogleOTPState;
 import com.ibm.mfp.server.registration.external.model.ClientData;
 import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 import com.ibm.mfp.server.security.external.resource.ClientSearchCriteria;
-import com.mfp.security.GoogleOTPState;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
 import com.warrenstrange.googleauth.GoogleAuthenticatorQRGenerator;

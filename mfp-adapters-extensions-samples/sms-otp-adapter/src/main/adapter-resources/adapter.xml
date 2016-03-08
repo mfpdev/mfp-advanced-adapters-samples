@@ -14,7 +14,7 @@
     <displayName>SMS OTP Adapter</displayName>
     <description>SMS OTP Security Check</description>
 
-    <securityCheckDefinition name="smsOTP" class="com.mfp.security.SMSOTPSecurityCheck">
+    <securityCheckDefinition name="smsOTP" class="com.ibm.mfp.sample.security.SMSOTPSecurityCheck">
         <property name="twilioAccountSid" displayName="Twilio Account Sid" defaultValue="-- Add Your Twilio Account Sid --"/>
         <property name="twilioAuthToken"  displayName="Twilio Auth Token" defaultValue="-- Add Your Twilio Auth Token --"/>
         <property name="twilioPhoneNumber" displayName="Twilio Phone Number" defaultValue="-- Add Your Twilio Phone Number --"/>

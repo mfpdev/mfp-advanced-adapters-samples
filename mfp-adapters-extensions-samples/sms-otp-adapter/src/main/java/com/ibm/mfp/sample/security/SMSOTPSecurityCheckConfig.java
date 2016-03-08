@@ -8,7 +8,7 @@
  * been deposited with the U.S. Copyright Office.
  */
 
-package com.mfp.security;
+package com.ibm.mfp.sample.security;
 
 
 import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheckConfig;

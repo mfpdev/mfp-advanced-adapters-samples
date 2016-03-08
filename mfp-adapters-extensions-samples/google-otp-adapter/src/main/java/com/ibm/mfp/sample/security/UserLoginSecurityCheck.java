@@ -4,7 +4,7 @@
  *    US Government Users Restricted Rights - Use, duplication or
  *    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 */
-package com.mfp.security;
+package com.ibm.mfp.sample.security;
 
 import com.ibm.mfp.security.checks.base.UserAuthenticationSecurityCheck;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;

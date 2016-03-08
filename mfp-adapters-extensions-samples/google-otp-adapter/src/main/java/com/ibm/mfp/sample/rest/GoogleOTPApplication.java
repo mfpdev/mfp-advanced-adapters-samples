@@ -4,7 +4,7 @@
  *    US Government Users Restricted Rights - Use, duplication or
  *    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 */
-package com.mfp.rest;
+package com.ibm.mfp.sample.rest;
 
 import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 

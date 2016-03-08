@@ -14,15 +14,15 @@ disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
     <displayName>Google OTP Adapter</displayName>
     <description>Google OTP Security Check</description>
 
-   <JAXRSApplicationClass>com.mfp.rest.GoogleOTPApplication</JAXRSApplicationClass>
+   <JAXRSApplicationClass>com.ibm.mfp.sample.rest.GoogleOTPApplication</JAXRSApplicationClass>
 
     <property name="qrCodeOrgName" defaultValue="MFP"/>
     <property name="qrCodeEmail" defaultValue="user@mfp.com"/>
 
-    <securityCheckDefinition name="googleOTP" class="com.mfp.security.GoogleOTPSecurityCheck">
+    <securityCheckDefinition name="googleOTP" class="com.ibm.mfp.sample.security.GoogleOTPSecurityCheck">
         <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="20"/>
     </securityCheckDefinition>
 
-    <securityCheckDefinition name="userLogin" class="com.mfp.security.UserLoginSecurityCheck"/>
+    <securityCheckDefinition name="userLogin" class="com.ibm.mfp.sample.security.UserLoginSecurityCheck"/>
 
 </wl:adapter>
