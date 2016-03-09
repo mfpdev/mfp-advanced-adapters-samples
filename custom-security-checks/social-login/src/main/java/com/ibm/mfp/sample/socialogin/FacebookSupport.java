@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -56,15 +58,9 @@ public class FacebookSupport implements LoginVendor {
             connection = (HttpURLConnection) new URL(req).openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
-            int responseCode = connection.getResponseCode();
 
-            String content = "";
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            while ((line = in.readLine()) != null) {
-                content += line + "\n";
-            }
-            in.close();
+            int responseCode = connection.getResponseCode();
+            String content = readContent(responseCode == 200 ? connection.getInputStream() : connection.getErrorStream());
 
             if (responseCode == 200) {
                 Map data = mapper.readValue(content, Map.class);
@@ -82,5 +78,16 @@ public class FacebookSupport implements LoginVendor {
 
         logger.severe("Failed to validate Facebook access token: " + error);
         return null;
+    }
+
+    private String readContent(InputStream inputStream) throws IOException {
+        String content = "";
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        while ((line = in.readLine()) != null) {
+            content += line + "\n";
+        }
+        in.close();
+        return content;
     }
 }
