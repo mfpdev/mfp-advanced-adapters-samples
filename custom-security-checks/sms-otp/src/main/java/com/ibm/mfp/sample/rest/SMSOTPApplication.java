@@ -4,44 +4,30 @@
  *    US Government Users Restricted Rights - Use, duplication or
  *    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 */
+package com.ibm.mfp.sample.rest;
 
-package com.ibm.sample.api;
-
-import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 
-import javax.ws.rs.core.Context;
 import java.util.logging.Logger;
 
-public class WeatherAPIApplication extends MFPJAXRSApplication {
+/**
+ * The JAX-RS Application class
+ *
+ * @author Ishai Borovoy
+ * @since 06/03/206
+ */
 
-    static Logger logger = Logger.getLogger(WeatherAPIApplication.class.getName());
+public class SMSOTPApplication extends MFPJAXRSApplication{
 
-    @Context
-    ConfigurationAPI configApi;
+    static Logger logger = Logger.getLogger(SMSOTPApplication.class.getName());
 
     protected void init() throws Exception {
-        logger.info("Initializing a Geolocation Adapter application");
-
-        String apiKey = configApi.getPropertyValue("apiKey");
-        apiKey = apiKey == null ? "" : apiKey.trim();
-
-        if (apiKey.isEmpty()) {
-            // Something is wrong
-            logger.severe(String.format("API Key [%s] is void", apiKey));
-            throw new IllegalArgumentException(String.format("API Key [%s] cannot be empty", apiKey));
-        }
-
-        logger.config(String.format("Using [%s] as API Key into the Geocoding service", apiKey));
-
         logger.info("Adapter initialized!");
     }
-
 
     protected void destroy() throws Exception {
         logger.info("Adapter destroyed!");
     }
-
 
     protected String getPackageToScan() {
         //The package of this class will be scanned (recursively) to find JAX-RS resources.
@@ -49,3 +35,4 @@ public class WeatherAPIApplication extends MFPJAXRSApplication {
         return getClass().getPackage().getName();
     }
 }
+

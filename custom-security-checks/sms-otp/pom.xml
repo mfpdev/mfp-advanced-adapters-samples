@@ -6,7 +6,7 @@
 	<artifactId>sms-otp</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>adapter</packaging>
-	<name>smsOtp</name>
+	<name>sms-otp</name>
 
 	<dependencies>
 		<dependency>
@@ -45,18 +45,18 @@
 		<dependency>
 			<groupId>com.twilio.sdk</groupId>
 			<artifactId>twilio-java-sdk</artifactId>
-			<version>6.2.0-edge</version>
+			<version>6.3.0</version>
 
 		</dependency>
 	</dependencies>
 
 	<properties>
-        <!-- parameters for deploy mfpf adapter -->
-        <mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
-        <mfpfUser>admin</mfpfUser>
-        <mfpfPassword>admin</mfpfPassword>
-        <mfpfRuntime>mfp</mfpfRuntime>
-    </properties>
+		<!-- parameters for deploy mfpf adapter -->
+		<mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
+		<mfpfUser>admin</mfpfUser>
+		<mfpfPassword>admin</mfpfPassword>
+		<mfpfRuntime>mfp</mfpfRuntime>
+	</properties>
     
 	<build>
         <plugins>

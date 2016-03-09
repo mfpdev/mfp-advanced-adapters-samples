@@ -21,25 +21,24 @@ import java.util.logging.Logger;
 
 /**
  * Initializes the Adapter API and hosts global objects that get used thro the various requests
- *
  */
 public class RedisAdapterApplication extends MFPJAXRSApplication {
 
     /**
      * The logger used by the app
      */
-	static Logger logger = Logger.getLogger(RedisAdapterApplication.class.getName());
+    static Logger logger = Logger.getLogger(RedisAdapterApplication.class.getName());
 
     /**
      * Injected application configuration variable (injected by the MobileFirst server)
      */
-	@Context
-	ConfigurationAPI configApi;
+    @Context
+    ConfigurationAPI configApi;
 
     /**
      * A Pool of Redis connections to be used by API Calls
      */
-	private JedisPool pool;
+    private JedisPool pool;
 
     /**
      * Return a Redis connection from the connection pool that was initialised
@@ -53,7 +52,7 @@ public class RedisAdapterApplication extends MFPJAXRSApplication {
 
     /**
      * Initializes the adapter application by allocatng a Redis connection pool.
-     *
+     * <p/>
      * Init is called by the MobileFirst Server whenever an Adapter application is deployed or reconfigured. The method
      * than get the redis URL from the configuration parameters and try to open a connection to the Redis server
      *
@@ -98,7 +97,7 @@ public class RedisAdapterApplication extends MFPJAXRSApplication {
 
             // Make sure the connection is closed
             j.close();
-        } catch(JedisConnectionException ex) {
+        } catch (JedisConnectionException ex) {
             // The Redis server is likely down, warn the administratoor
             ex.printStackTrace();
             logger.warning(String.format("Failed: connecting to the Redis server at [%s] failed. Check if the server is up.",
@@ -107,27 +106,27 @@ public class RedisAdapterApplication extends MFPJAXRSApplication {
         pool = new JedisPool(new URI(redisURL));
 
         logger.info("Adapter initialized!");
-	}
+    }
 
     /**
      * Deinitilize the adapter application.
-     *
+     * <p/>
      * Called by the MobileFirst server when the adapter is uninstalled and delete the connection pool to the redis server.
      *
      * @throws Exception in case of an error
      */
-	protected void destroy() throws Exception {
+    protected void destroy() throws Exception {
 
-        if(pool != null)
+        if (pool != null)
             pool.destroy();
 
-		logger.info("Adapter destroyed!");
-	}
-	
+        logger.info("Adapter destroyed!");
+    }
 
-	protected String getPackageToScan() {
-		//The package of this class will be scanned (recursively) to find JAX-RS resources. 
-		//It is also possible to override "getPackagesToScan" method in order to return more than one package for scanning
-		return getClass().getPackage().getName();
-	}
+
+    protected String getPackageToScan() {
+        //The package of this class will be scanned (recursively) to find JAX-RS resources.
+        //It is also possible to override "getPackagesToScan" method in order to return more than one package for scanning
+        return getClass().getPackage().getName();
+    }
 }

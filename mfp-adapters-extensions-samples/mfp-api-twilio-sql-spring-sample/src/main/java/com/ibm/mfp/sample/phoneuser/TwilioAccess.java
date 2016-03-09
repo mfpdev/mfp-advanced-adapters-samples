@@ -7,14 +7,11 @@
 
 package com.ibm.mfp.sample.phoneuser;
 
-import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.twilio.sdk.TwilioRestClient;
-import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.MessageFactory;
 import com.twilio.sdk.resource.instance.Message;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +66,7 @@ public class TwilioAccess {
 
     public boolean send(final String to, final String body) {
         // Build a filter for the MessageList
-        final List<NameValuePair> params = new ArrayList<NameValuePair>();
+        final List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("Body", body));
         params.add(new BasicNameValuePair("To", to));
         params.add(new BasicNameValuePair("From", twilioFrom));

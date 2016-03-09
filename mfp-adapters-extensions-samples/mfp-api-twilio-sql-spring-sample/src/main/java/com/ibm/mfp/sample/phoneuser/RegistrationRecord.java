@@ -40,14 +40,7 @@ public class RegistrationRecord {
 
     public String toString() {
 
-        final StringBuilder sb = new StringBuilder(150);
-
-        sb.append("RegistrationRecord {").append(key).
-                append(userID).append(", ").
-                append(phoneNumber).append(", ").
-                append(validationCode).append(", ").
-                append(inValidation).append(" }");
-
-        return sb.toString();
+        return String.format("RegistrationRecord {%d, %s, %s, %s, %b }",
+                key, userID, phoneNumber, validationCode, inValidation);
     }
 }
