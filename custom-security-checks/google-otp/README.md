@@ -1,5 +1,6 @@
 IBM MobileFirst Platform Foundation
 ===
+Google Authenticator is commonly used security pattern, this sample adapter show you how you can integrate such to IBM MobileFirst server.
 
 ## GoogleOTPSecurityCheck
 A security check class which let validates generated pass code from [Google Authenticator](https://www.wikiwand.com/en/Google_Authenticator) app against user's registered password
@@ -8,7 +9,7 @@ A security check class which let validates generated pass code from [Google Auth
 A security check class which protect on REST API with user login.  The user login scope protect both on initial setup of the QR code entry via mobile app, and on the REST API to get the QR code.
 
 ## GoogleOTPResource
-A JAX-RS class that implement the REST API for setup and provisioning the Google Authenticator QR code URL.  The setup API needs to be caךled via mobile before call the QR Code URL API. 
+A JAX-RS class that implement the REST API for setup and provisioning the [Google Authenticator](https://www.wikiwand.com/en/Google_Authenticator) QR code URL.  The setup API needs to be caךled via mobile before call the QR Code URL API. 
 
 ### JAX-RS and Swagger Annotations
 The resource class is annotated with both JAX-RS and Swagger annotations (and than also some Spring anotations and
@@ -26,7 +27,7 @@ but not mandatory.
 
 ### Prerequisites
 * A local installation of maven (JDK 1.7 or 1.8)
-* Installed Google Authenticator App
+* Installed [Google Authenticator](https://www.wikiwand.com/en/Google_Authenticator) App
 
 ### Build and install
 * build the adapter application using maven:
@@ -35,8 +36,8 @@ but not mandatory.
 * Deploy the built adapter into your MobileFirst server by running `mvn adapter:deploy` (assure that your MobileFirst
   server connection parameters are updated in the **pom.xml** file)
 * Log into the MobileFirst console and update the Adapter configuration parameters
-    * qrCodeOrgName, The organization name that will appear in the Google Authenticator app after scan the QR code
-    * qrCodeEmail, The email that will appear in the Google Authenticator app after scan the QR code
+    * qrCodeOrgName, The organization name that will appear in the [Google Authenticator](https://www.wikiwand.com/en/Google_Authenticator) app after scan the QR code
+    * qrCodeEmail, The email that will appear in the [Google Authenticator](https://www.wikiwand.com/en/Google_Authenticator) app after scan the QR code
     * successStateExpirationSec, let you configure the time until the token created with Google OTP will be expired
 * You are done
 
