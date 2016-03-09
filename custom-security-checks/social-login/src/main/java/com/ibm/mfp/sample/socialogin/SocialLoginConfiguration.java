@@ -17,7 +17,9 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * TODO: Document!
+ * Creates and initializes the supported vendors.<br/>
+ * The configuration properties of the security check are delivered to the vendors according to
+ * their {@link LoginVendor#getConfigurationPropertyNames()} values.
  *
  * @author artem on 3/3/16.
  */
@@ -25,6 +27,11 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
 
     private Map<String, LoginVendor> vendors;
 
+    /**
+     * Create the vendors each with its relevant properties
+     *
+     * @param properties security check configuration includes the properties of all vendors
+     */
     public SocialLoginConfiguration(Properties properties) {
         super(properties);
         blockedStateExpirationSec = 1;
@@ -41,19 +48,23 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
 
     }
 
+    /**
+     * Get only the vendors that are enabled according to their configurations
+     *
+     * @return map with vendor name as a key and the vendor as a value
+     */
     public Map<String, LoginVendor> getEnabledVendors() {
-        Map<String, LoginVendor> res = new HashMap<String, LoginVendor>();
+        Map<String, LoginVendor> res = new HashMap<>();
         for (Map.Entry<String, LoginVendor> entry : vendors.entrySet()) {
             if (entry.getValue().isEnabled())
-            res.put(entry.getKey(), entry.getValue());
+                res.put(entry.getKey(), entry.getValue());
         }
         return res;
     }
 
     private void createVendors() {
-        vendors = new HashMap<String, LoginVendor>();
+        vendors = new HashMap<>();
         vendors.put("google", new GoogleSupport());
-//        vendors.put("facebook", new FacebookSupport());
-//        vendors.put("twitter", new TwitterSupport());
+        vendors.put("facebook", new FacebookSupport());
     }
 }

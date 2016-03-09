@@ -14,12 +14,10 @@
 
     <securityCheckDefinition name="socialLogin" class="com.ibm.mfp.sample.socialogin.SocialLoginSecurityCheck">
         <property name="google.clientId"
-                  defaultValue="145027708135-hmaa5h4q94rmbu37mndgaamll4p8s74a.apps.googleusercontent.com"
+                  defaultValue="-- enter your client Id here --"
                   displayName="google client Id"
-                  description="OAuth 2.0 client ID that was created for your server. Get it from the page
-                  https://console.developers.google.com/projectselector/apis/credentials"/>
+                  description="OAuth 2.0 client ID that was created for your server. Get it from Google Developers Console
+                  at https://console.developers.google.com/projectselector/apis/credentials"/>
     </securityCheckDefinition>
-
-    <securityCheckDefinition name="fakeLogin" class="com.ibm.mfp.sample.socialogin.FakeLoginSecurityCheck"/>
 
 </mfp:adapter>
