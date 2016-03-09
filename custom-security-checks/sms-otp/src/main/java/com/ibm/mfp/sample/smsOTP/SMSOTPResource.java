@@ -31,9 +31,9 @@ import java.util.regex.Pattern;
 
 @SwaggerDefinition(
         info = @Info(
-                description = "An API that let register phone number, so it can received SMS as One-Time Password.",
+                description = "A JAX-RS API which let register a phone number",
                 version = "V8.0.0beta",
-                title = "Phone registration",
+                title = "SMS OTP JAX-RS API",
                 termsOfService = "IBM Terms and Conditions apply",
                 contact = @Contact(
                         name = "Ishai Borovoy"
@@ -44,8 +44,8 @@ import java.util.regex.Pattern;
         )
 )
 @Path("/phone")
-@Api(value = "An API for the SMS One-Time Password security check",
-        description = "This REST Adapter is used for register the user phone number in the registration service.")
+@Api(value = "Register a phone number",
+        description = "This JAX-RS Adapter contains API to let register the mobile phone number")
 public class SMSOTPResource {
 
     @Context
@@ -88,7 +88,7 @@ public class SMSOTPResource {
         //Getting client data from the security context
         ClientData clientData = securityContext.getClientRegistrationData();
         if (clientData == null) {
-            throw new InternalServerErrorException("Register phone number currently allowed only from a device.");
+            throw new InternalServerErrorException("Register a phone number currently allowed only from a mobile device.");
         }
 
         //Store the phone number in registration service
