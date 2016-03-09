@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  IBM Confidential OCO Source Materials
+    Copyright 2015 IBM Corp.
 
-  5725-I43 Copyright IBM Corp. 2006, 2015
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-  The source code for this program is not published or otherwise
-  divested of its trade secrets, irrespective of what has
-  been deposited with the U.S. Copyright Office.
-  -->
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
 
 <wl:adapter name="smsOtp" xmlns:wl="http://www.ibm.com/mfp/integration">
 
     <displayName>SMS OTP Adapter</displayName>
-    <description>SMS One-Time Password security check which validates SMS code for registered phone number</description>
+    <description>SMS One-Time Password security check sample which let validates SMS code for registered phone number.</description>
 
-    <JAXRSApplicationClass>com.ibm.mfp.sample.rest.SMSOTPApplication</JAXRSApplicationClass>
+    <JAXRSApplicationClass>com.ibm.mfp.sample.smsOTP.SMSOTPApplication</JAXRSApplicationClass>
 
-    <securityCheckDefinition name="smsOTP" class="com.ibm.mfp.sample.security.SMSOTPSecurityCheck">
+    <securityCheckDefinition name="smsOTP" class="com.ibm.mfp.sample.smsOTP.SMSOTPSecurityCheck">
         <property name="twilioAccountSid"
                   displayName="The Twilio API SID to be used"
                   defaultValue="Enter a SID"
@@ -33,6 +39,7 @@
                   type="string"
                   description="Enter the Twilio 'from' Phone number to be used (obtained from the Twilio console)"/>
 
-        <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="20" type="integer"/>
+        <property name="successStateExpirationSec" displayName="Success Expiration (Sec)" defaultValue="20"
+                  type="integer"/>
     </securityCheckDefinition>
 </wl:adapter>

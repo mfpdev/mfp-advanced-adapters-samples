@@ -1,14 +1,23 @@
-/*
- *    Licensed Materials - Property of IBM
- *    5725-I43 (C) Copyright IBM Corp. 2015. All Rights Reserved.
- *    US Government Users Restricted Rights - Use, duplication or
- *    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
-*/
-package com.ibm.mfp.sample.rest;
+/**
+ * Copyright 2016 IBM Corp.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.ibm.mfp.sample.googleOTP;
 
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
-import com.ibm.mfp.sample.security.GoogleOTPState;
 import com.ibm.mfp.server.registration.external.model.ClientData;
 import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
@@ -28,21 +37,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Google Authenticator REST API
- * <p/>
- * - /setupGoogleOTP: create the google authenticator shared secret
- * - /qrCode: Get Google authenticator shared secret as a QR code for scan in the Google authenticator app
- *
- * @author Ishai Borovoy
- * @since 06/03/206
- */
-
 @SwaggerDefinition(
         info = @Info(
-                description = "An API using for Google Authenticator OTP registration.",
+                description = "An API for Google Authenticator OTP setup and provisioning.  " +
+                        "This REST API contains methods for register a new GoogelOTP state which contains the QRCode URL and the password, " +
+                        "And a method to get the QR code.",
                 version = "V8.0.0beta",
-                title = "Google OTP Authenticator registration API",
+                title = "Google One-Time Password Authenticator REST API",
                 termsOfService = "IBM Terms and Conditions apply",
                 contact = @Contact(
                         name = "Ishai Borovoy"
@@ -57,12 +58,17 @@ import java.util.Map;
 @Path("/")
 public class GoogleOTPResource {
 
-    private final static String USER = "user";
-    private final static String PASSWORD = "password";
-    private final static String GOOGLE_AUTHENTICATOR_KEY = "googleAuthenticator";
-    private final static String USER_LOGIN_SECURITY_CHECK = "userLogin";
-    private static final String QR_CODE_ORG_NAME = "qrCodeOrgName";
-    private static final String QR_CODE_EMAIL = "qrCodeEmail";
+    //Constants
+
+    //Key for adding the GoogleOTPState object into the registration service
+    protected final static String GOOGLE_OTP_STATE_KEY = "googleOtpStateKey";
+    //User login security check name
+    private final static String USER_LOGIN_SECURITY_CHECK_NAME = "userLogin";
+    //Configuration key (in adapter.xml) for the QR code org name
+    private static final String QR_CODE_ORG_NAME_CONFIG_KEY = "qrCodeOrgName";
+    //Configuration key (in adapter.xml) for the QR code email
+    private static final String QR_CODE_EMAIL_CONFIG_KEY = "qrCodeEmail";
+
 
     @Context
     private HttpServletRequest request;
@@ -94,7 +100,7 @@ public class GoogleOTPResource {
                     response = String.class)
     })
 
-    @OAuthSecurity(scope = USER_LOGIN_SECURITY_CHECK)
+    @OAuthSecurity(scope = USER_LOGIN_SECURITY_CHECK_NAME)
     public String setupGoogleOTP() {
         //Getting client data from the security context
         ClientData clientData = securityContext.getClientRegistrationData();
@@ -105,7 +111,7 @@ public class GoogleOTPResource {
 
         // Adding the GoogleOTPState object into the registration data storage
         GoogleOTPState googleOTPState = createGoogleOTPState();
-        protectedAttributes.put(GOOGLE_AUTHENTICATOR_KEY, googleOTPState);
+        protectedAttributes.put(GOOGLE_OTP_STATE_KEY, googleOTPState);
         securityContext.storeClientRegistrationData(clientData);
 
         return "OK";
@@ -114,8 +120,8 @@ public class GoogleOTPResource {
     @GET
     @OAuthSecurity(enabled = false)
     @Path("/qrCode/{appId}/{appVersion}")
-    @ApiOperation(value = "Get the Google Authenticator QR Code",
-            notes = "Get an HTML which contains a link to the registered QR Code, This QR code should be scanned by the Google Authenticator App when 'Set up account'",
+    @ApiOperation(value = "Get the Google Authenticator QR Code via REST",
+            notes = "Redirect to the QR code URL if exist in the user registration, The QR code should be scanned by the Google Authenticator App when 'Set up account'",
             httpMethod = "GET",
             response = String.class
     )
@@ -126,33 +132,34 @@ public class GoogleOTPResource {
             @ApiResponse(code = 401, message = "Unauthorized user")
     })
 
-    public void qrCode(@ApiParam(value = "Application bundleId or package name", required = true) @PathParam("appId") String appId,
-                       @ApiParam(value = "Application version", required = true) @PathParam("appVersion") String appVersion) throws Exception {
-        //Get the username and password from the basic authorization header
+    public void qrCode(@ApiParam(value = "App bundleId or package name", required = true) @PathParam("appId") String appId,
+                       @ApiParam(value = "App version", required = true) @PathParam("appVersion") String appVersion) throws Exception {
+
+        //Get the username and password from the the authorization header
         Map<String, Object> usernamePassword = getEncodedUsernamePassword();
 
         //If username & password not sent or invalid, return a basic challenge to the client
-        if (usernamePassword == null || !securityContext.validateCredentials(USER_LOGIN_SECURITY_CHECK, usernamePassword, request)) {
+        if (usernamePassword == null || !securityContext.validateCredentials(USER_LOGIN_SECURITY_CHECK_NAME, usernamePassword, request)) {
             response.addHeader("WWW-Authenticate", "Basic realm=\"Please provide your credentials\"");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
         // Get the username after pass the basic authentication
-        String user = (String) usernamePassword.get(USER);
+        String user = (String) usernamePassword.get(UserLoginSecurityCheck.USER_KEY);
 
-        // Build search credentials to locate the relevant client data
+        // Build search criteria to locate the relevant client data by application, version and user
         ClientSearchCriteria criteria = new ClientSearchCriteria().
-                byUser(USER_LOGIN_SECURITY_CHECK, user).
+                byUser(USER_LOGIN_SECURITY_CHECK_NAME, user).
                 byApplication(appId, appVersion);
 
         List<ClientData> dataList = securityContext.findClientRegistrationData(criteria);
         GoogleOTPState googleOTPState = null;
 
-        // Get the most recent generated Google shared secret
+        // Get the most recent generated GoogleOTPState object from registration service
         long lastActivityTime = -1;
         for (ClientData clientData : dataList) {
-            GoogleOTPState currentGoogleOTPState = clientData.getProtectedAttributes().get(GOOGLE_AUTHENTICATOR_KEY, GoogleOTPState.class);
+            GoogleOTPState currentGoogleOTPState = clientData.getProtectedAttributes().get(GOOGLE_OTP_STATE_KEY, GoogleOTPState.class);
             //Get the last generated key for that user and application
             if (currentGoogleOTPState.getTimeStamp() > lastActivityTime) {
                 //Get the latest client in case user logged in to more then one device
@@ -187,8 +194,8 @@ public class GoogleOTPResource {
             int sep = basic.indexOf(":");
             if (sep != -1) {
                 result = new HashMap<>();
-                result.put(USER, basic.substring(0, sep));
-                result.put(PASSWORD, basic.substring(sep + 1));
+                result.put(UserLoginSecurityCheck.USER_KEY, basic.substring(0, sep));
+                result.put(UserLoginSecurityCheck.PASSWORD_KEY, basic.substring(sep + 1));
             }
         }
         return result;
@@ -205,7 +212,7 @@ public class GoogleOTPResource {
         final GoogleAuthenticatorKey googleAuthenticatorKey = googleAuthenticator.createCredentials();
         GoogleOTPState googleOTPState = new GoogleOTPState();
         googleOTPState.setSecret(googleAuthenticatorKey.getKey());
-        googleOTPState.setQrCodeURL(GoogleAuthenticatorQRGenerator.getOtpAuthURL(configAPI.getPropertyValue(QR_CODE_ORG_NAME), configAPI.getPropertyValue(QR_CODE_EMAIL), googleAuthenticatorKey));
+        googleOTPState.setQrCodeURL(GoogleAuthenticatorQRGenerator.getOtpAuthURL(configAPI.getPropertyValue(QR_CODE_ORG_NAME_CONFIG_KEY), configAPI.getPropertyValue(QR_CODE_EMAIL_CONFIG_KEY), googleAuthenticatorKey));
 
         return googleOTPState;
     }

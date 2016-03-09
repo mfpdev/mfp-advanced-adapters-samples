@@ -1,16 +1,24 @@
-/*
- *    Licensed Materials - Property of IBM
- *    5725-I43 (C) Copyright IBM Corp. 2015. All Rights Reserved.
- *    US Government Users Restricted Rights - Use, duplication or
- *    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
-*/
-package com.ibm.mfp.sample.rest;
+/**
+ * Copyright 2016 IBM Corp.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.ibm.mfp.sample.smsOTP;
 
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
-import com.ibm.mfp.sample.security.SMSOTPSecurityCheck;
 import com.ibm.mfp.server.registration.external.model.ClientData;
-import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 import io.swagger.annotations.*;
 
@@ -80,7 +88,7 @@ public class SMSOTPResource {
         //Getting client data from the security context
         ClientData clientData = securityContext.getClientRegistrationData();
         if (clientData == null) {
-            throw new InternalServerErrorException("Register phone number currently allowed only only from a device.");
+            throw new InternalServerErrorException("Register phone number currently allowed only from a device.");
         }
 
         //Store the phone number in registration service
