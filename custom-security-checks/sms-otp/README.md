@@ -1,9 +1,9 @@
 IBM MobileFirst Platform Foundation
 ===
-SMS One-Time Password is commonly used security pattern, this sample adapter show you how you can integrate such to your IBM MobileFirst server.
+SMS One-Time Password is a commonly used security pattern.  This sample adapter shows how to integrate such a pattern to your IBM MobileFirst Foundation server.
 
 ## SMSOTPResource
-A JAX-RS class that implement the REST API for provisioning the phone number. The REST call to register the phone number is protected with default scope.
+A JAX-RS class that implements the REST API for provisioning the phone number. The REST call to register the phone number is protected with default scope.
 
 ## SMSOTPSecurityCheck
 A security check class that let validates SMS code as One-Time Password.  
