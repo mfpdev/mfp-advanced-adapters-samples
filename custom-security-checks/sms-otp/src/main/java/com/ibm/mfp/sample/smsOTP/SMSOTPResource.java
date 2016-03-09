@@ -66,7 +66,7 @@ public class SMSOTPResource {
     @OAuthSecurity(enabled = true)
 
     @ApiOperation(value = "Register a phone number",
-            notes = "Register a phone number in the registration service for sending the OTP SMS code",
+            notes = "Register a phone number in the registration service for sending the OTP SMS code. The API can be called only from mobile client containing the IBM MobileFirst SDK",
             httpMethod = "POST",
             response = Void.class
     )

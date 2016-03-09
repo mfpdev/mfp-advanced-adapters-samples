@@ -39,7 +39,7 @@ import java.util.Map;
 
 @SwaggerDefinition(
         info = @Info(
-                description = "An API for Google Authenticator OTP setup and provisioning.  " +
+                description = "An API for Google Authenticator OTP setup and provisioning." +
                         "This REST API contains methods for register a new GoogelOTP state which contains the QRCode URL and the password, " +
                         "And a method to get the QR code.",
                 version = "V8.0.0beta",
@@ -86,8 +86,8 @@ public class GoogleOTPResource {
     @Path("/setupGoogleOTP")
     @POST
     @Produces("application/json")
-    @ApiOperation(value = "Register Google OTP state",
-            notes = "Create new Google OTP state such as qrcode and password, and register it in registration service.",
+    @ApiOperation(value = "Register Google OTP State object",
+            notes = "Create new Google OTP state which contains qrcode and password, and register it in registration service.",
             httpMethod = "POST",
             response = String.class
     )
