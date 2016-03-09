@@ -39,7 +39,7 @@ but not mandatory.
 
 ### Build and install
 * build the adapter application using maven:
-    * From a **Command-line**, navigate to the **mfp-api-twilio-sql-spring-sample** project's root folder
+    * From a **Command-line**, navigate to the **sms-otp** project's root folder
     * Build the API using maven by executing `mvn clean install`
 * Deploy the built adapter into your MobileFirst server by running `mvn adapter:deploy` (assure that your MobileFirst
   server connection parameters are updated in the **pom.xml** file)
