@@ -22,7 +22,13 @@ import java.util.Properties;
 import java.util.Set;
 
 /**
- * Security check that accepts user identity created by external login vendors - Google, Facebook etc.
+ * Security check that aggregates different login vendors - Google, Facebook, etc.
+ * <p/>
+ * The challenge sent by this check includes a list of available vendors, so that the client can choose which one to use.
+ * Upon successful authentication the client sends the challenge response containing the chosen vendor name and the token.
+ * The security checks delegates the token validation to the appropriate {@link LoginVendor#validateTokenAndCreateUser(String, String)}<br/>
+ * If the validation succeeds the return value is set as the authenticated user.
+ * If the validation fails, a failure response containing the vendor name is sent to the client.
  *
  * @author artem on 3/3/16.
  */
@@ -42,15 +48,16 @@ public class SocialLoginSecurityCheck extends UserAuthenticationSecurityCheck {
     @Override
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
         super.authorize(scope, credentials, request, response);
-        Map<String, Object> failure = new HashMap<String, Object>();
-        failure.put(vendorName, "invalid token");
-        if (response.getType() == AuthorizationResponse.ResponseType.FAILURE)
+        if (response.getType() == AuthorizationResponse.ResponseType.FAILURE) {
+            Map<String, Object> failure = new HashMap<>();
+            failure.put(vendorName, "invalid token");
             response.addFailure(getName(), failure);
+        }
     }
 
     @Override
     protected Map<String, Object> createChallenge() {
-        Map<String, Object> res = new HashMap<String, Object>();
+        Map<String, Object> res = new HashMap<>();
         res.put("vendorList", getConfig().getEnabledVendors().keySet().toArray());
         return res;
     }

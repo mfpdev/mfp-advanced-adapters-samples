@@ -48,20 +48,21 @@ public class GoogleSupport implements LoginVendor {
 
     public void setConfiguration(Properties properties) {
         String clientId = properties.getProperty(CLIENT_ID_CONFIG_PROPERTY);
-        if (clientId != null && !clientId.isEmpty()) {
+        if (clientId != null && !clientId.isEmpty() && clientId.endsWith("apps.googleusercontent.com")) {
             verifiers = new GoogleIdTokenVerifier[]{
-                    new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-                            .setAudience(Collections.singletonList(clientId))
-                            .setIssuer("https://accounts.google.com")
-                            .build(),
-                    new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-                            .setAudience(Collections.singletonList(clientId))
-                            .setIssuer("accounts.google.com")
-                            .build()
+                    createTokenVerifier(clientId, "https://accounts.google.com"),
+                    createTokenVerifier(clientId, "accounts.google.com"),
             };
         } else {
             verifiers = null;
         }
+    }
+
+    private GoogleIdTokenVerifier createTokenVerifier(String clientId, String issuer) {
+        return new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
+               .setAudience(Collections.singletonList(clientId))
+               .setIssuer(issuer)
+               .build();
     }
 
     public boolean isEnabled() {
