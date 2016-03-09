@@ -1,10 +1,20 @@
-/*
- *    Licensed Materials - Property of IBM
- *    5725-I43 (C) Copyright IBM Corp. 2015. All Rights Reserved.
- *    US Government Users Restricted Rights - Use, duplication or
- *    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
-*/
-package com.ibm.mfp.sample.security;
+/**
+ * Copyright 2016 IBM Corp.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.ibm.mfp.sample.googleOTP;
 
 import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
@@ -17,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Google OTP Security Check
  * <p/>
- * Validate the google one time password sent from mobile app against the stored GoogleOTPState object
+ * Validate the Google One-Time password sent from mobile app against the stored GoogleOTPState object
  * The class is using external library called googelauth from https://github.com/wstrange/GoogleAuth
  *
  * @author Ishai Borovoy
@@ -28,8 +38,6 @@ public class GoogleOTPSecurityCheck extends CredentialsValidationSecurityCheck {
     private final static String CHALLENGE = "challenge";
     private final static String GOOGLE_CODE = "googleCode";
     private final static String CODE_KEY = "code";
-
-    private final static String GOOGLE_AUTHENTICATOR_KEY = "googleAuthenticator";
 
     /**
      * Validate the google one time password
@@ -48,7 +56,7 @@ public class GoogleOTPSecurityCheck extends CredentialsValidationSecurityCheck {
                         .setWindowSize(5);
 
         GoogleAuthenticator ga = new GoogleAuthenticator(googleAuthenticatorConfigBuilder.build());
-        GoogleOTPState googleOTPState = registrationContext.getRegisteredProtectedAttributes().get(GOOGLE_AUTHENTICATOR_KEY, GoogleOTPState.class);
+        GoogleOTPState googleOTPState = registrationContext.getRegisteredProtectedAttributes().get(GoogleOTPResource.GOOGLE_OTP_STATE_KEY, GoogleOTPState.class);
 
         return ga.authorize(googleOTPState.getSecret(), googleCode);
     }
