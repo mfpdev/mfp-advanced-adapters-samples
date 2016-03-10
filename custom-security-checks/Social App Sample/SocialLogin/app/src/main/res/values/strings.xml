@@ -4,7 +4,9 @@
 
     <string name="google_signin">Sign In With Google</string>
 
-    <string name="facebook_app_id">987374518025077</string>
+
     <string name="facebook_signin">Sign In With Facebook</string>
-    <string name="googleServerIdToken">743011862875-5ghcg7hdv21gbgt0dhaiiacsmmlijbpr.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">FACEBOOK APP ID</string>
+    <string name="google_server_client_id">GOOGLE SERVER CLIENT ID</string>
 </resources>

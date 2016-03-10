@@ -3,7 +3,6 @@ package social.sample.ibm.com.sociallogin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -12,7 +11,7 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.appevents.AppEventsLogger;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
@@ -30,13 +29,12 @@ import com.worklight.wlclient.api.WLLoginResponseListener;
 import com.worklight.wlclient.api.WLResourceRequest;
 import com.worklight.wlclient.api.WLResponse;
 import com.worklight.wlclient.api.WLResponseListener;
-import com.facebook.FacebookSdk;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
-import java.util.Arrays;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
@@ -44,21 +42,22 @@ public class MainActivity extends AppCompatActivity implements
 
     public static final String FACEBOOK_PERMISSION_PUBLIC_PROFILE = "public_profile";
 
-    private static final String TAG = "SocialLogin";
-    private static final int RC_GET_TOKEN = 9002;
+    private static final String SOCIAL_LOGIN_TAG = "SocialLogin";
+    private static final int GOOGLE_GET_TOKEN_INTENT = 9002;
 
     //Flag to know from where we signInWithGoogle
     protected boolean isSignInFromChallenge = false;
 
+    //Vendor enum
     protected enum Vendor {
         GOOGLE("google"),
         Facebook("facebook");
         private final String value;
 
         /**
-         * @param value
+         * @param value the vendor string value
          */
-        private Vendor(final String value) {
+        Vendor(final String value) {
             this.value = value;
         }
 
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements
 
         Logger.updateConfigFromServer();
 
-        wlLogger = Logger.getInstance(TAG);
+        wlLogger = Logger.getInstance(SOCIAL_LOGIN_TAG);
 
         wlLogger.debug("Social Login init");
     }
@@ -126,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements
     private void initGoogleSDK() {
         if (googleSignInOptions == null) {
             googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken(getString(R.string.googleServerIdToken)).requestEmail()
+                    .requestIdToken(getString(R.string.google_server_client_id)).requestEmail()
                     .build();
 
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -139,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_GET_TOKEN) {
+        if (requestCode == GOOGLE_GET_TOKEN_INTENT) {
             // Google
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleGoogleSignInResult(result);
@@ -149,6 +148,10 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * Handle Google Sign In
+     * @param result result that return from onActivityResult
+     */
     private void handleGoogleSignInResult(GoogleSignInResult result) {
         wlLogger.debug("handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
@@ -164,6 +167,11 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * Login to MFP server with the token which returned from the vendor (Google/Facebook)
+     * @param vendor - vendor user has logged in with
+     * @param token -  the returned token from the vendor (Google/Facebook)
+     */
     private void loginToMFPWithSocialVendor(final String vendor, String token) {
         JSONObject credentials = getCredentials(vendor, token);
         if (credentials == null) return;
@@ -185,7 +193,12 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
-    @Nullable
+    /**
+     * Create JSON credentials in the as the Social Login Security Check expected on the Social Login Adapter
+     * @param vendor the social vendor
+     * @param token the returned token from the social vendor
+     * @return JSONObject containing the credentials
+     */
     private JSONObject getCredentials(String vendor, String token) {
         JSONObject credentials = new JSONObject();
         try {
@@ -193,17 +206,14 @@ public class MainActivity extends AppCompatActivity implements
             credentials.put("vendor", vendor);
         } catch (JSONException e) {
             wlLogger.debug(e.getMessage());
-            return null;
         }
         return credentials;
     }
 
     /**
      * Call adapter which protected with scope "socialLogin"
-     *
-     * @param v
      */
-    private void callProtectedAdapter(View v) {
+    private void callProtectedAdapter() {
         WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/HelloSocialUser/hello"), "GET", "socialLogin");
         wlResourceRequest.send(new WLResponseListener() {
             @Override
@@ -222,17 +232,24 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
-    private void updateStatus(final String msg) {
+    /**
+     * Update the status text view
+     * @param status the status
+     */
+    private void updateStatus(final String status) {
         runOnUiThread(
                 new Runnable() {
                     @Override
                     public void run() {
-                        statusView.setText(msg);
+                        statusView.setText(status);
                     }
                 }
         );
     }
 
+    /**
+     * Sign in to Facebook.  On success call to login into socialLogin scope
+     */
     protected void signInWithFacebook() {
         facebookCallbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(facebookCallbackManager, new FacebookCallback<LoginResult>() {
@@ -256,13 +273,16 @@ public class MainActivity extends AppCompatActivity implements
         if (token != null && !token.isExpired()) {
             MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
         } else {
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
+            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
         }
     }
 
+    /**
+     * Sign in to Google.  On success call to login into socialLogin scope
+     */
     protected void signInWithGoogle() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_GET_TOKEN);
+        startActivityForResult(signInIntent, GOOGLE_GET_TOKEN_INTENT);
     }
 
     @Override
@@ -271,6 +291,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
+    /**
+     * Listent o buttons clicks
+     * @param v the clicked view
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -287,22 +311,8 @@ public class MainActivity extends AppCompatActivity implements
                 break;
 
             case R.id.call_adapter:
-                this.callProtectedAdapter(v);
+                this.callProtectedAdapter();
                 break;
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Logs 'install' and 'app activate' App Events.
-        AppEventsLogger.activateApp(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Logs 'app deactivate' App Event.
-        AppEventsLogger.deactivateApp(this);
     }
 }
