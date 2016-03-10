@@ -75,6 +75,7 @@ public class GoogleSupport implements LoginVendor {
         for (GoogleIdTokenVerifier verifier : verifiers) {
             try {
                 idToken = verifier.verify(idTokenStr);
+                if (idToken != null) break;
             } catch (Exception e) {
                 errorMsg = e.toString() + "\n";
             }
