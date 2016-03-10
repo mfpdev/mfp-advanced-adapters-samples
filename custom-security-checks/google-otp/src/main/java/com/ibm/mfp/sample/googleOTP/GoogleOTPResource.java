@@ -53,8 +53,8 @@ import java.util.Map;
                 )
         )
 )
-@Api(value = "Register Google OTP data",
-        description = "An API which let register the Google OTP state such as passcode and qrcode")
+@Api(value = "Register a Google OTP data",
+        description = "An API which lets register the Google OTP state such as passcode and qrcode")
 @Path("/")
 public class GoogleOTPResource {
 
@@ -86,8 +86,8 @@ public class GoogleOTPResource {
     @Path("/setupGoogleOTP")
     @POST
     @Produces("application/json")
-    @ApiOperation(value = "Register Google OTP State object",
-            notes = "Create new Google OTP state which contains qrcode and password, and register it in registration service.",
+    @ApiOperation(value = "Register a Google OTP State object",
+            notes = "This API creates a new Google OTP state which contains qrcode and password, and registers it in the registration service.",
             httpMethod = "POST",
             response = String.class
     )
@@ -105,7 +105,7 @@ public class GoogleOTPResource {
         //Getting client data from the security context
         ClientData clientData = securityContext.getClientRegistrationData();
         if (clientData == null) {
-            throw new InternalServerErrorException("Register Google OTP state currently allowed only from a device.");
+            throw new InternalServerErrorException("Registering a Google OTP state is allowed only from a device.");
         }
         PersistentAttributes protectedAttributes = clientData.getProtectedAttributes();
 
@@ -120,8 +120,8 @@ public class GoogleOTPResource {
     @GET
     @OAuthSecurity(enabled = false)
     @Path("/qrCode/{appId}/{appVersion}")
-    @ApiOperation(value = "Get the Google Authenticator QR Code via REST",
-            notes = "Redirect to the QR code URL if exist in the user registration, The QR code should be scanned by the Google Authenticator App when 'Set up account'",
+    @ApiOperation(value = "Get the Google Authenticator QR Code URL",
+            notes = "Redirect to the QR code URL, if exist in the user registration.  The QR code should be scanned by the Google Authenticator App",
             httpMethod = "GET",
             response = String.class
     )
@@ -145,7 +145,7 @@ public class GoogleOTPResource {
             return;
         }
 
-        // Get the username after pass the basic authentication
+        // Get the username after passing the basic authentication
         String user = (String) usernamePassword.get(UserLoginSecurityCheck.USER_KEY);
 
         // Build search criteria to locate the relevant client data by application, version and user
@@ -204,7 +204,7 @@ public class GoogleOTPResource {
     /**
      * Create GoogleOTPState object
      *
-     * @return the new created state of GoogleOTPState
+     * @return the newly created state of GoogleOTPState
      */
     private GoogleOTPState createGoogleOTPState() {
         GoogleAuthenticator googleAuthenticator = new GoogleAuthenticator();
