@@ -25,6 +25,9 @@ import java.util.Properties;
  */
 public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckConfig {
 
+    public static final String KEEP_ORIGINAL_TOKEN = "keepOriginalToken";
+
+    private boolean keepOriginalToken;
     private Map<String, LoginVendor> vendors;
 
     /**
@@ -35,8 +38,9 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
     public SocialLoginConfiguration(Properties properties) {
         super(properties);
         blockedStateExpirationSec = 1;
-        createVendors();
+        keepOriginalToken = Boolean.parseBoolean(getStringProperty(KEEP_ORIGINAL_TOKEN, properties, "false"));
 
+        createVendors();
         for (LoginVendor vendor : vendors.values()) {
             Properties vendorConfig = new Properties();
             for (String property : vendor.getConfigurationPropertyNames()) {
@@ -60,6 +64,10 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
                 res.put(entry.getKey(), entry.getValue());
         }
         return res;
+    }
+
+    public boolean isKeepOriginalToken() {
+        return keepOriginalToken;
     }
 
     private void createVendors() {

@@ -10,9 +10,17 @@
              xmlns:http="http://www.ibm.com/mfp/integration/http">
 
 	<displayName>Social Login adapter</displayName>
-	<description>Contains integration with different login vendors.</description>
+	<description>
+        Provides integration with Google and Facebook sign-in.
+        The client performs sign-in, obtains the vendor token, and sends it 'socialLogin' security check as a credentials parameter.
+        The security check verifies the token with its vendor, and creates an MFP Authenticated user.
+    </description>
 
     <securityCheckDefinition name="socialLogin" class="com.ibm.mfp.sample.socialogin.SocialLoginSecurityCheck">
+        <property name="keepOriginalToken" type="boolean" defaultValue="false"
+                  displayName="keep original token"
+                  description="If true, the token submitted by the client will be stored in the user identity as an attribute with name 'originalToken'"
+        />
         <property name="google.clientId"
                   defaultValue="-- enter your client Id here --"
                   displayName="google client Id"
