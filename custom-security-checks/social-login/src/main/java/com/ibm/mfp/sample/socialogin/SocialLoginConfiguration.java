@@ -1,11 +1,17 @@
-/*
- * IBM Confidential OCO Source Materials
- *
- * 5725-I43 Copyright IBM Corp. 2006, 2016
- *
- * The source code for this program is not published or otherwise
- * divested of its trade secrets, irrespective of what has
- * been deposited with the U.S. Copyright Office.
+/**
+ * Copyright 2016 IBM Corp.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.ibm.mfp.sample.socialogin;
@@ -25,6 +31,9 @@ import java.util.Properties;
  */
 public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckConfig {
 
+    public static final String KEEP_ORIGINAL_TOKEN = "keepOriginalToken";
+
+    private boolean keepOriginalToken;
     private Map<String, LoginVendor> vendors;
 
     /**
@@ -35,8 +44,9 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
     public SocialLoginConfiguration(Properties properties) {
         super(properties);
         blockedStateExpirationSec = 1;
-        createVendors();
+        keepOriginalToken = Boolean.parseBoolean(getStringProperty(KEEP_ORIGINAL_TOKEN, properties, "false"));
 
+        createVendors();
         for (LoginVendor vendor : vendors.values()) {
             Properties vendorConfig = new Properties();
             for (String property : vendor.getConfigurationPropertyNames()) {
@@ -60,6 +70,10 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
                 res.put(entry.getKey(), entry.getValue());
         }
         return res;
+    }
+
+    public boolean isKeepOriginalToken() {
+        return keepOriginalToken;
     }
 
     private void createVendors() {

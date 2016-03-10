@@ -20,6 +20,7 @@ Vendor implementations instances are kept in **SocialLoginConfiguration** class,
 * Deploy the built adapter into your MobileFirst server by running `mvn adapter:deploy` (assure that your MobileFirst
   server connection parameters are updated in the **pom.xml** file)
 * Log into the MobileFirst console and update the Adapter configuration parameters
+    * **keepOriginalToken** - true if you want the token submitted by the client to be stored as an attribute of the authenticated user
     * **google.clientId** - OAuth 2.0 client ID for MFP server.
                             * This client ID should be obtained from the [Google Developers Console](https://console.developers.google.com/apis/credentials)
 * You are done
