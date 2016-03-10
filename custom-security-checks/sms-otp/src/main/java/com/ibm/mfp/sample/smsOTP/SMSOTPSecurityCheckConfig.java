@@ -71,7 +71,7 @@ public class SMSOTPSecurityCheckConfig extends CredentialsValidationSecurityChec
         } catch (Throwable throwable) {
             String warningMessage = String.format("Twilio client failed to initialize with the provided parameters SID = [%s] Token = [%s] Number = [%s]",
                     twilioAccountSid, twilioAuthToken, twilioFromPhoneNumber);
-            addMessage(getWarnings(),"twilioAccountSid", warningMessage);
+            addMessage(getErrors(),"twilioAccountSid", warningMessage);
             logger.severe(warningMessage);
         }
         logger.info("Twilio initialized!");

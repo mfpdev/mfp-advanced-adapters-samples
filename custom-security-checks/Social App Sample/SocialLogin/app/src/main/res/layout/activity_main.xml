@@ -9,12 +9,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="social.sample.ibm.com.sociallogin.MainActivity">
 
-    <com.google.android.gms.common.SignInButton
+    <Button
         android:id="@+id/sign_in_google"
+        android:text="@string/google_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#ea4335"
+        android:textColor="#ffffff"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,17 +41,21 @@
         android:nestedScrollingEnabled="false"
         android:layout_alignEnd="@+id/sign_in_google"
         android:layout_alignParentStart="true"
-        android:background="@android:color/background_light" />
+        android:background="#3b5998"
+        android:textColor="#ffffff" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/call_adapter"
         android:id="@+id/call_adapter"
+        android:layout_below="@+id/sign_in_facebook"
+        android:layout_marginTop="49dp"
         android:nestedScrollingEnabled="true"
-        android:background="@android:color/background_light"
+        android:background="#4795fc"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

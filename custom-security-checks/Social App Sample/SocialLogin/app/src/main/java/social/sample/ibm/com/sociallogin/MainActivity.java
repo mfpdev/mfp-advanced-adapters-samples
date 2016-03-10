@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -39,21 +40,19 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
-        View.OnClickListener{
+        View.OnClickListener {
+
+    public static final String FACEBOOK_PERMISSION_PUBLIC_PROFILE = "public_profile";
 
     private static final String TAG = "SocialLogin";
     private static final int RC_GET_TOKEN = 9002;
-    public static final String FACEBOOK_PERMISSION_PUBLIC_PROFILE = "public_profile";
 
     //Flag to know from where we signInWithGoogle
     protected boolean isSignInFromChallenge = false;
 
-    CallbackManager callbackManager;
-
-    enum Vendor {
+    protected enum Vendor {
         GOOGLE("google"),
         Facebook("facebook");
-
         private final String value;
 
         /**
@@ -69,11 +68,14 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private CallbackManager facebookCallbackManager;
+    protected Vendor currentVendor = Vendor.GOOGLE;
+
     //Google SignIn
     private GoogleApiClient mGoogleApiClient;
     private GoogleSignInOptions googleSignInOptions;
 
-    private GoogleChallengeHandler challengeHandler;
+    private SocialLoginChallengeHandler challengeHandler;
     private TextView statusView;
 
     //Logger
@@ -88,17 +90,18 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_google).setOnClickListener(this);
         findViewById(R.id.sign_in_facebook).setOnClickListener(this);
         findViewById(R.id.call_adapter).setOnClickListener(this);
-
-        statusView = (TextView)findViewById(R.id.statusTextView);
+        statusView = (TextView) findViewById(R.id.statusTextView);
 
         //Init worklight
         WLClient.createInstance(this);
 
-        challengeHandler = new GoogleChallengeHandler("socialLogin", this);
+        challengeHandler = new SocialLoginChallengeHandler("socialLogin", this);
         WLClient.getInstance().registerChallengeHandler(challengeHandler);
 
-        //Init Facebook SDK
-        FacebookSdk.sdkInitialize(getApplicationContext());
+
+
+        initGoogleSDK();
+        initFacebookSDK();
 
         //Init Analytics && Logger
         WLAnalytics.init(this.getApplication());
@@ -110,12 +113,27 @@ public class MainActivity extends AppCompatActivity implements
 
         wlLogger = Logger.getInstance(TAG);
 
-        sendLog("Social Login init");
+        wlLogger.debug("Social Login init");
     }
 
-    private void sendLog(String log) {
-        wlLogger.debug(log);
-        Logger.send();
+    private void initFacebookSDK() {
+        if (facebookCallbackManager == null) {
+            FacebookSdk.sdkInitialize(getApplicationContext());
+            facebookCallbackManager = CallbackManager.Factory.create();
+        }
+    }
+
+    private void initGoogleSDK() {
+        if (googleSignInOptions == null) {
+            googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.googleServerIdToken)).requestEmail()
+                    .build();
+
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
+                    .build();
+        }
     }
 
     @Override
@@ -124,10 +142,10 @@ public class MainActivity extends AppCompatActivity implements
         if (requestCode == RC_GET_TOKEN) {
             // Google
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleGoogleSignInResult (result);
+            handleGoogleSignInResult(result);
         } else {
             // Facebook
-            callbackManager.onActivityResult(requestCode, resultCode, data);
+            facebookCallbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -142,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements
                 loginToMFPWithSocialVendor(Vendor.GOOGLE.value, account.getIdToken());
             }
         } else {
-            sendLog("Signed in failed:" + result.getStatus());
+            wlLogger.debug("Signed in failed:" + result.getStatus());
         }
     }
 
@@ -153,15 +171,15 @@ public class MainActivity extends AppCompatActivity implements
         WLAuthorizationManager.getInstance().login("socialLogin", credentials, new WLLoginResponseListener() {
             @Override
             public void onSuccess() {
-                final String msg = String.format("Signed in successfully with scope socialLogin (%s)", vendor);
-                sendLog(msg);
+                final String msg = String.format("Logged In successfully with %s", vendor);
+                wlLogger.debug(msg);
                 updateStatus(msg);
             }
 
             @Override
             public void onFailure(WLFailResponse wlFailResponse) {
-                String msg = String.format("Signed in failed with scope socialLogin (%s)", vendor);
-                sendLog(msg);
+                String msg = String.format("Logged In failed with %s", vendor);
+                wlLogger.debug(msg);
                 updateStatus(msg);
             }
         });
@@ -174,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements
             credentials.put("token", token);
             credentials.put("vendor", vendor);
         } catch (JSONException e) {
-            sendLog(e.getMessage());
+            wlLogger.debug(e.getMessage());
             return null;
         }
         return credentials;
@@ -182,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * Call adapter which protected with scope "socialLogin"
+     *
      * @param v
      */
     private void callProtectedAdapter(View v) {
@@ -191,14 +210,14 @@ public class MainActivity extends AppCompatActivity implements
             public void onSuccess(WLResponse wlResponse) {
                 final String responseText = wlResponse.getResponseText();
                 updateStatus(responseText);
-                sendLog(responseText);
+                wlLogger.debug(responseText);
             }
 
             @Override
             public void onFailure(WLFailResponse wlFailResponse) {
                 final String responseText = wlFailResponse.getResponseText();
                 updateStatus(responseText);
-                sendLog(responseText);
+                wlLogger.debug(responseText);
             }
         });
     }
@@ -214,45 +233,36 @@ public class MainActivity extends AppCompatActivity implements
         );
     }
 
-    private void signInWithFacebook () {
-        callbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+    protected void signInWithFacebook() {
+        facebookCallbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(facebookCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                MainActivity.this.loginToMFPWithSocialVendor (Vendor.Facebook.value, loginResult.getAccessToken().getToken());
+                MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, loginResult.getAccessToken().getToken());
             }
 
             @Override
             public void onCancel() {
-                sendLog("Cancel Facebook Login");
+                wlLogger.debug("Cancel Facebook Login");
             }
 
             @Override
             public void onError(FacebookException error) {
-                sendLog("Facebook Login error: " + error.getMessage());
+                wlLogger.debug("Facebook Login error: " + error.getMessage());
             }
         });
 
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        if (token != null && !token.isExpired()) {
+            MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
+        } else {
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
+        }
     }
 
     protected void signInWithGoogle() {
-        if (googleSignInOptions == null) {
-            initGoogleSignInAPI();
-        }
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_GET_TOKEN);
-    }
-
-    private void initGoogleSignInAPI() {
-        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.googleServerIdToken)).requestEmail()
-                .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
-                .build();
     }
 
     @Override
@@ -266,16 +276,18 @@ public class MainActivity extends AppCompatActivity implements
         switch (v.getId()) {
             case R.id.sign_in_google:
                 this.isSignInFromChallenge = false;
+                currentVendor = Vendor.GOOGLE;
                 signInWithGoogle();
                 break;
 
             case R.id.sign_in_facebook:
                 this.isSignInFromChallenge = false;
+                currentVendor = Vendor.Facebook;
                 signInWithFacebook();
                 break;
 
             case R.id.call_adapter:
-                this.callProtectedAdapter (v);
+                this.callProtectedAdapter(v);
                 break;
         }
     }

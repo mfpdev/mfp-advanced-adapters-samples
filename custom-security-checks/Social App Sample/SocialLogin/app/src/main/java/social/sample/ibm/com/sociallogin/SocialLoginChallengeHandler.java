@@ -9,24 +9,28 @@ import org.json.JSONObject;
 /**
  * Created by ishaib on 09/03/16.
  */
-public class GoogleChallengeHandler extends WLChallengeHandler {
+public class SocialLoginChallengeHandler extends WLChallengeHandler {
 
     private MainActivity mainActivity;
 
-    public GoogleChallengeHandler(String securityCheck, MainActivity activity) {
+    public SocialLoginChallengeHandler(String securityCheck, MainActivity activity) {
         super(securityCheck);
         this.mainActivity = activity;
     }
 
     @Override
     public void handleChallenge(JSONObject jsonObject) {
-        Log.d("GoogleChallengeHandler", "handleChallenge");
 
         mainActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 mainActivity.isSignInFromChallenge = true;
-                mainActivity.signInWithGoogle();
+                if (mainActivity.currentVendor == MainActivity.Vendor.GOOGLE) {
+                    mainActivity.signInWithGoogle();
+                } else {
+                    mainActivity.signInWithFacebook();
+                }
+
             }
         });
     }
