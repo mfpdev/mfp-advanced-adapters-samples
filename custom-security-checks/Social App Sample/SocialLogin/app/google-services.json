@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_id": "sociallogin-1245",
+    "project_number": "743011862875",
+    "name": "SocialLogin"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743011862875:android:c80671e46fa5590c",
+        "client_id": "android:social.sample.ibm.com.sociallogin",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "social.sample.ibm.com.sociallogin",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743011862875-1imavbfu46ifi58dcfe8opufq7cot0b3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "social.sample.ibm.com.sociallogin",
+            "certificate_hash": "14C675E9450C6FF280C8413B75A6ABE2291315C4"
+          }
+        },
+        {
+          "client_id": "743011862875-5ghcg7hdv21gbgt0dhaiiacsmmlijbpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
