@@ -56,14 +56,13 @@ import java.util.logging.Logger;
  * 4. Usage of Redis
  *
  * The sample uses the Jedis package to call into the Redis server. While we are not specifically recommending Jedis
- * or Redis, the usage pattern holds.
+ * or Redis, the usage pattern holds with other types of resources.
  */
 public class RedisAdapterResource {
     /*
      * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
 	 */
 
-    //Define logger (Standard java.util.Logger)
     static Logger logger = Logger.getLogger(RedisAdapterResource.class.getName());
 
     @Context
