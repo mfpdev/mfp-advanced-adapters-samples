@@ -20,7 +20,8 @@ import java.net.URI;
 import java.util.logging.Logger;
 
 /**
- * Initializes the Adapter API and hosts global objects that get used thro the various requests
+ * Initializes the Adapter API by opening a connection to the Redis server and than makes the Redis connection pool
+ * available to the resource implementation.
  */
 public class RedisAdapterApplication extends MFPJAXRSApplication {
 
@@ -51,11 +52,16 @@ public class RedisAdapterApplication extends MFPJAXRSApplication {
     }
 
     /**
-     * Initializes the adapter application by allocatng a Redis connection pool.
-     * <p/>
+     * Initializes the adapter application by allocating a Redis connection pool.
+     * <p>
      * Init is called by the MobileFirst Server whenever an Adapter application is deployed or reconfigured. The method
-     * than get the redis URL from the configuration parameters and try to open a connection to the Redis server
-     *
+     * than get the redis URL from the configuration parameters and try to open a connection to the Redis server.
+     * </p>
+     * <p>
+     * If the Redis server URL has a valid the Adapter will accept it as a "correct" parameter and will than try to
+     * validate that the server is up by connecting to the server and writing/reading some data. If the server cannot
+     * be reached, a warning message will be logged.
+     * </p>
      * @throws Exception if the Redis URL is invalid
      */
     protected void init() throws Exception {
@@ -110,8 +116,8 @@ public class RedisAdapterApplication extends MFPJAXRSApplication {
 
     /**
      * Deinitilize the adapter application.
-     * <p/>
-     * Called by the MobileFirst server when the adapter is uninstalled and delete the connection pool to the redis server.
+     *
+     * Called by the MobileFirst server when the adapter is uninstalled and delete the Redis connection pool.
      *
      * @throws Exception in case of an error
      */

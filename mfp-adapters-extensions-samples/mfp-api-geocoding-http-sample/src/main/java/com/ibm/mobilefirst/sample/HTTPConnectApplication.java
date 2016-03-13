@@ -58,12 +58,17 @@ public class HTTPConnectApplication extends MFPJAXRSApplication {
 
     /**
      * Initializes the adapter application by allocating and Configuring an OKHTTP client.
-     * <p/>
+     * <p>
      * Init is called by the MobileFirst Server whenever an Adapter application is deployed or reconfigured. The method
-     * than get the API key and the client configuration information redis URL from the adapter configuration parameters
+     * than get the API key and the client configuration information from the adapter configuration parameters
      * validate them and allocate an OKHTTP Client
+     * </p>
+     * <p>
+     * Note that the initialization logic here allows for a certain level of configuration errors in order to let the
+     * adapter load. Once loaded, the administrator can edit the configuration parameters and finalize the installation
+     * </p>
      *
-     * @throws Exception if the Redis URL is invalid or the key is empty
+     * @throws Exception if the provided parameters such as the URL or API Key are missing
      */
     protected void init() throws Exception {
 
