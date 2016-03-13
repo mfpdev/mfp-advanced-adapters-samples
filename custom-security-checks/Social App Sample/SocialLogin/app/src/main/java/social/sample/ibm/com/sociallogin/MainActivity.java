@@ -1,3 +1,19 @@
+/**
+ * Copyright 2016 IBM Corp.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package social.sample.ibm.com.sociallogin;
 
 
@@ -68,13 +84,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private CallbackManager facebookCallbackManager;
-    protected Vendor currentVendor = Vendor.GOOGLE;
+    protected Vendor currentVendor = Vendor.Facebook;
 
     //Google SignIn
     private GoogleApiClient mGoogleApiClient;
     private GoogleSignInOptions googleSignInOptions;
 
-    private SocialLoginChallengeHandler challengeHandler;
+    private SocialLoginChallengeHandler socialLoginChallengeHandler;
     private TextView statusView;
 
     //Logger
@@ -94,8 +110,8 @@ public class MainActivity extends AppCompatActivity implements
         //Init worklight
         WLClient.createInstance(this);
 
-        challengeHandler = new SocialLoginChallengeHandler("socialLogin", this);
-        WLClient.getInstance().registerChallengeHandler(challengeHandler);
+        socialLoginChallengeHandler = new SocialLoginChallengeHandler("socialLogin", this);
+        WLClient.getInstance().registerChallengeHandler(socialLoginChallengeHandler);
 
 
 
@@ -158,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount account = result.getSignInAccount();
             if (isSignInFromChallenge) {
-                challengeHandler.submitChallengeAnswer(getCredentials(Vendor.GOOGLE.value, account.getIdToken()));
+                socialLoginChallengeHandler.submitChallengeAnswer(getCredentials(Vendor.GOOGLE.value, account.getIdToken()));
             } else {
                 loginToMFPWithSocialVendor(Vendor.GOOGLE.value, account.getIdToken());
             }
@@ -260,11 +276,17 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onCancel() {
+                if (isSignInFromChallenge) {
+                    //socialLoginChallengeHandler.submitFailure(null);
+                }
                 wlLogger.debug("Cancel Facebook Login");
             }
 
             @Override
             public void onError(FacebookException error) {
+                if (isSignInFromChallenge) {
+                    //socialLoginChallengeHandler.submitFailure(null);
+                }
                 wlLogger.debug("Facebook Login error: " + error.getMessage());
             }
         });
