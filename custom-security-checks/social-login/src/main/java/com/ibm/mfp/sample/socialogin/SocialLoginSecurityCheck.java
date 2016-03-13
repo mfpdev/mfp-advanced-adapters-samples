@@ -42,6 +42,7 @@ public class SocialLoginSecurityCheck extends UserAuthenticationSecurityCheck {
 
     public static final String VENDOR_KEY = "vendor";
     public static final String TOKEN_KEY = "token";
+    public static final String VENDOR_ATTRIBUTE = "socialLoginVendor";
     public static final String ORIGINAL_TOKEN_ATTRIBUTE = "originalToken";
 
     private transient String vendorName;
@@ -78,7 +79,10 @@ public class SocialLoginSecurityCheck extends UserAuthenticationSecurityCheck {
             if (vendor != null) {
                 user = vendor.validateTokenAndCreateUser(token, getName());
                 if (user != null) {
-                    if (getConfig().isKeepOriginalToken()) user.getAttributes().put(ORIGINAL_TOKEN_ATTRIBUTE, token);
+                    Map<String, Object> attributes = user.getAttributes();
+                    attributes.put(VENDOR_ATTRIBUTE, vendorName);
+                    if (getConfig().isKeepOriginalToken())
+                        attributes.put(ORIGINAL_TOKEN_ATTRIBUTE, token);
                     return true;
                 }
             }
