@@ -18,9 +18,11 @@ package social.sample.ibm.com.sociallogin;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
@@ -50,17 +52,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
+import java.net.URL;
 import java.util.Collections;
 
 /**
- * MainActivity - activity which demonstrate the following:
+ * SocialMainActivity - activity which demonstrate the following:
  * 1. Logged in into 'socialLogin' (with Google or with Facebook) security check.
  * 2. Invoke protected resource adapter "/hello" which protected with 'socialLogin' security check.
  *
  * @author Ishai Borovoy
  * @since 14/03/2016
  */
-public class MainActivity extends AppCompatActivity implements
+public class SocialMainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private SocialLoginChallengeHandler socialLoginChallengeHandler;
     private TextView statusView;
+    private ImageView userPictureView;
 
     //Logger
     private Logger wlLogger;
@@ -126,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * Click listener
+     *
      * @param v the clicked view
      */
     @Override
@@ -147,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements
                 this.callProtectedAdapter();
                 break;
         }
+        //Call to reset the user picture
+        resetUserPic();
     }
 
     @Override
@@ -159,11 +166,13 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_facebook).setOnClickListener(this);
         findViewById(R.id.call_adapter).setOnClickListener(this);
         statusView = (TextView) findViewById(R.id.statusTextView);
+        userPictureView = (ImageView) findViewById(R.id.imageView);
 
         //Init WLClient
         WLClient.createInstance(this);
 
         socialLoginChallengeHandler = new SocialLoginChallengeHandler("socialLogin", this);
+
         WLClient.getInstance().registerChallengeHandler(socialLoginChallengeHandler);
 
         initGoogleSDK();
@@ -204,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onCancel() {
                 if (isSignInFromChallenge) {
+                    // Cancel the challenge handler
                     socialLoginChallengeHandler.submitFailure(null);
                 }
                 wlLogger.debug("Cancel Facebook Login");
@@ -212,21 +222,50 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onError(FacebookException error) {
                 if (isSignInFromChallenge) {
+                    // Cancel the challenge handler
                     socialLoginChallengeHandler.submitFailure(null);
                 }
-                wlLogger.debug("Facebook Login error: " + error.getMessage());
+                wlLogger.error("Facebook Login failed ", error);
             }
         });
 
         //Try to get cached Facebook token first
         AccessToken token = AccessToken.getCurrentAccessToken();
         if (token != null && !token.isExpired()) {
-            MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
+            SocialMainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
         } else {
             LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
         }
     }
 
+    /**
+     * Login to MFP server with the token which returned from the vendor (Google/Facebook)
+     *
+     * @param vendor - vendor user has logged in with
+     * @param token  -  the returned token from the vendor (Google/Facebook)
+     */
+    private void loginToMFPWithSocialVendor(final String vendor, String token) {
+        JSONObject credentials = createJSONCredentials(vendor, token);
+        if (credentials == null) return;
+
+        WLAuthorizationManager.getInstance().login("socialLogin", credentials, new WLLoginResponseListener() {
+            @Override
+            public void onSuccess() {
+                final String msg = String.format("Login successful with vendor %s", vendor);
+                updateStatus(msg);
+            }
+
+            @Override
+            public void onFailure(WLFailResponse wlFailResponse) {
+                String msg = String.format("Login failed with vendor %s", vendor);
+                updateStatus(msg);
+            }
+        });
+    }
+
+    /**
+     * Init the Facebook SDK
+     */
     private void initFacebookSDK() {
         if (facebookCallbackManager == null) {
             FacebookSdk.sdkInitialize(getApplicationContext());
@@ -234,6 +273,9 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * Init the Google SDK
+     */
     private void initGoogleSDK() {
         if (googleSignInOptions == null) {
             googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -241,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements
                     .build();
 
             mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                    .enableAutoManage(this /*Activity*/, this /* OnConnectionFailedListener */)
                     .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
                     .build();
         }
@@ -249,6 +291,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /**
      * Handle Google Sign In
+     *
      * @param result result that return from onActivityResult
      */
     private void handleGoogleSignInResult(GoogleSignInResult result) {
@@ -258,43 +301,18 @@ public class MainActivity extends AppCompatActivity implements
             GoogleSignInAccount account = result.getSignInAccount();
             loginToSocialVendor(Vendor.GOOGLE, account.getIdToken());
         } else {
-            wlLogger.debug("Google SignIn failed:" + result.getStatus());
+            wlLogger.error("Google SignIn failed" + result.getStatus());
         }
     }
 
     /**
-     * Login to MFP server with the token which returned from the vendor (Google/Facebook)
-     * @param vendor - vendor user has logged in with
-     * @param token -  the returned token from the vendor (Google/Facebook)
-     */
-    private void loginToMFPWithSocialVendor(final String vendor, String token) {
-        JSONObject credentials = getCredentials(vendor, token);
-        if (credentials == null) return;
-
-        WLAuthorizationManager.getInstance().login("socialLogin", credentials, new WLLoginResponseListener() {
-            @Override
-            public void onSuccess() {
-                final String msg = String.format("Logged In successfully with %s", vendor);
-                wlLogger.debug(msg);
-                updateStatus(msg);
-            }
-
-            @Override
-            public void onFailure(WLFailResponse wlFailResponse) {
-                String msg = String.format("Logged In failed with %s", vendor);
-                wlLogger.debug(msg);
-                updateStatus(msg);
-            }
-        });
-    }
-
-    /**
      * Create JSON credentials in the as the Social Login Security Check expected on the Social Login Adapter
+     *
      * @param vendor the social vendor
-     * @param token the returned token from the social vendor
+     * @param token  the returned token from the social vendor
      * @return JSONObject containing the credentials
      */
-    private JSONObject getCredentials(String vendor, String token) {
+    private JSONObject createJSONCredentials(String vendor, String token) {
         JSONObject credentials = new JSONObject();
         try {
             credentials.put("token", token);
@@ -313,22 +331,29 @@ public class MainActivity extends AppCompatActivity implements
         wlResourceRequest.send(new WLResponseListener() {
             @Override
             public void onSuccess(WLResponse wlResponse) {
-                final String responseText = wlResponse.getResponseText();
-                updateStatus(responseText);
-                wlLogger.debug(responseText);
+                final JSONObject responseJSON = wlResponse.getResponseJSON();
+                try {
+                    String userDisplayName = (String) responseJSON.get("displayName");
+                    updateStatus("Hello " + userDisplayName);
+
+                    String picture = (String) responseJSON.get("picture");
+                    updateImage(picture);
+                } catch (Exception e) {
+                    wlLogger.error("Parsing JSON failed", e);
+                }
             }
 
             @Override
             public void onFailure(WLFailResponse wlFailResponse) {
                 final String responseText = wlFailResponse.getResponseText();
                 updateStatus(responseText);
-                wlLogger.debug(responseText);
             }
         });
     }
 
     /**
      * Update the status text view
+     *
      * @param status the status
      */
     private void updateStatus(final String status) {
@@ -337,22 +362,61 @@ public class MainActivity extends AppCompatActivity implements
                     @Override
                     public void run() {
                         statusView.setText(status);
+                        wlLogger.debug(status);
                     }
                 }
         );
     }
 
     /**
+     * Update user picture if exist on user attributes
+     * @param picture the user profile picture
+     * @throws Exception
+     */
+    private void updateImage (final String picture) throws Exception {
+        URL userPictureURL = new URL(picture);
+        final Drawable userPicture = Drawable.createFromStream(userPictureURL.openStream(), "src");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    userPictureView.setImageDrawable(userPicture);
+                } catch (Exception e) {
+                    wlLogger.error("Failed to set image", e);
+                }
+            }
+        });
+    }
+
+    /**
+     * Reset the user profile picture
+     */
+    private void resetUserPic() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    userPictureView.setImageResource(0);
+                }
+                catch (Exception e) {
+                    wlLogger.error("Failed to clear picture", e);
+                }
+            }
+        });
+    }
+
+    /**
      * Login by call to preemptive login or by sending challenge answer
+     *
      * @param vendor - the social vendor
-     * @param token - the token
+     * @param token  - the token
      */
     private void loginToSocialVendor(Vendor vendor, String token) {
-        JSONObject credentials = getCredentials(vendor.value, token);
+        JSONObject credentials = createJSONCredentials(vendor.value, token);
         if (isSignInFromChallenge) {
             socialLoginChallengeHandler.submitChallengeAnswer(credentials);
         } else {
-            MainActivity.this.loginToMFPWithSocialVendor(vendor.value, token);
+            SocialMainActivity.this.loginToMFPWithSocialVendor(vendor.value, token);
         }
     }
 }

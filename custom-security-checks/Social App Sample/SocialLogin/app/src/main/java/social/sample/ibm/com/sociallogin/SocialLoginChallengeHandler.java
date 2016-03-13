@@ -15,8 +15,6 @@
  */
 package social.sample.ibm.com.sociallogin;
 
-import android.util.Log;
-
 import com.worklight.wlclient.api.WLResponse;
 import com.worklight.wlclient.api.challengehandler.WLChallengeHandler;
 
@@ -32,9 +30,9 @@ import org.json.JSONObject;
  */
 public class SocialLoginChallengeHandler extends WLChallengeHandler {
 
-    private MainActivity mainActivity;
+    private SocialMainActivity mainActivity;
 
-    public SocialLoginChallengeHandler(String securityCheck, MainActivity activity) {
+    public SocialLoginChallengeHandler(String securityCheck, SocialMainActivity activity) {
         super(securityCheck);
         this.mainActivity = activity;
     }
@@ -46,7 +44,7 @@ public class SocialLoginChallengeHandler extends WLChallengeHandler {
             @Override
             public void run() {
                 mainActivity.isSignInFromChallenge = true;
-                if (mainActivity.currentVendor == MainActivity.Vendor.GOOGLE) {
+                if (mainActivity.currentVendor == SocialMainActivity.Vendor.GOOGLE) {
                     mainActivity.signInWithGoogle();
                 } else {
                     mainActivity.signInWithFacebook();

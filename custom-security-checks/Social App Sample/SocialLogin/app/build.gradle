@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 
 repositories{
     maven {
@@ -59,4 +58,5 @@ dependencies {
             version: '8.0.Beta1-SNAPSHOT',
             ext: 'aar',
             transitive: true
+    compile 'com.google.android.gms:play-services-appindexing:8.3.0'
 }
