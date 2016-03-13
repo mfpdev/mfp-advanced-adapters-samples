@@ -41,8 +41,9 @@ public interface LoginVendor {
     String[] getConfigurationPropertyNames();
 
     /**
-     * Invoked on anewly created instance upon adapter deployment or configuration change
-     *  @param properties the configuration properties defined by the {@link #getConfigurationPropertyNames()} method, not null.
+     * Invoked on a newly created instance upon adapter deployment or configuration change
+     *
+     * @param properties       the configuration properties defined by the {@link #getConfigurationPropertyNames()} method, not null.
      * @param sslSocketFactory socket factory produced by the {@link SocialLoginConfiguration} class
      */
     void setConfiguration(Properties properties, SSLSocketFactory sslSocketFactory);

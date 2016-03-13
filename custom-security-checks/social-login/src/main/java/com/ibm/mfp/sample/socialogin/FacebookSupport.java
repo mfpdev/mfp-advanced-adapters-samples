@@ -33,10 +33,6 @@ import java.util.logging.Logger;
 /**
  * Validate Facebook access token via graph API, and get the user ID and display name.
  * Requires no configuration, always enabled.
- * <p/>
- * It migh be necessary to add DigiCert root certificate to Liberty's key store.
- * To do that download the certificate via Firefox browser, and add it using the following command:
- * keytool -import -trustcacerts -file ~/Downloads/DigiCertHighAssuranceEVRootCA.pem -alias DigiCert -keystore liberty/wlp/usr/servers/mfp/resources/security/key.jks
  *
  * @author artem on 3/3/16.
  */
