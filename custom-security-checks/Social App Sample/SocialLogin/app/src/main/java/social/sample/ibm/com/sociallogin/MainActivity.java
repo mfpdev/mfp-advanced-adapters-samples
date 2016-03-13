@@ -52,6 +52,14 @@ import org.json.JSONObject;
 import java.net.URI;
 import java.util.Collections;
 
+/**
+ * MainActivity - activity which demonstrate the following:
+ * 1. Logged in into 'socialLogin' (with Google or with Facebook) security check.
+ * 2. Invoke protected resource adapter "/hello" which protected with 'socialLogin' security check.
+ *
+ * @author Ishai Borovoy
+ * @since 14/03/2016
+ */
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {

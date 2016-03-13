@@ -22,8 +22,13 @@ import com.worklight.wlclient.api.challengehandler.WLChallengeHandler;
 
 import org.json.JSONObject;
 
+
 /**
- * Created by ishaib on 09/03/16.
+ * SocialLoginChallengeHandler - The challenge handler class to answer the social Login challenge.
+ * The answer is JSON which contains the provider (facebook or google) and the token which received from the sign in process.
+ *
+ * @author Ishai Borovoy
+ * @since 14/03/2016
  */
 public class SocialLoginChallengeHandler extends WLChallengeHandler {
 
