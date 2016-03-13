@@ -17,9 +17,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 repositories{
-    //jcenter()
     maven {
-        url "http://visustar.francelab.fr.ibm.com:8081/nexus/content/repositories/mobile-s/"
+        //url "http://visustar.francelab.fr.ibm.com:8081/nexus/content/repositories/mobile-s/",
+        url "http://dundermifflin.austin.ibm.com:8081/nexus/content/repositories/mobile-s"
     }
 }
 

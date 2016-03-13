@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private CallbackManager facebookCallbackManager;
-    protected Vendor currentVendor = Vendor.Facebook;
+    protected Vendor currentVendor = Vendor.GOOGLE;
 
     //Google SignIn
     private GoogleApiClient mGoogleApiClient;
@@ -177,17 +177,13 @@ public class MainActivity extends AppCompatActivity implements
      * @param result result that return from onActivityResult
      */
     private void handleGoogleSignInResult(GoogleSignInResult result) {
-        wlLogger.debug("handleSignInResult:" + result.isSuccess());
+        wlLogger.debug("handleSignInResult (Google):" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount account = result.getSignInAccount();
-            if (isSignInFromChallenge) {
-                socialLoginChallengeHandler.submitChallengeAnswer(getCredentials(Vendor.GOOGLE.value, account.getIdToken()));
-            } else {
-                loginToMFPWithSocialVendor(Vendor.GOOGLE.value, account.getIdToken());
-            }
+            loginToSocialVendor(Vendor.GOOGLE, account.getIdToken());
         } else {
-            wlLogger.debug("Signed in failed:" + result.getStatus());
+            wlLogger.debug("Google SignIn failed:" + result.getStatus());
         }
     }
 
@@ -272,38 +268,16 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Sign in to Facebook.  On success call to login into socialLogin scope
+     * Login by call to premptive login or by sending challenge answer
+     * @param vendor - the social vendor
+     * @param token - the token
      */
-    protected void signInWithFacebook() {
-        facebookCallbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().registerCallback(facebookCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, loginResult.getAccessToken().getToken());
-            }
-
-            @Override
-            public void onCancel() {
-                if (isSignInFromChallenge) {
-                    //socialLoginChallengeHandler.submitFailure(null);
-                }
-                wlLogger.debug("Cancel Facebook Login");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                if (isSignInFromChallenge) {
-                    //socialLoginChallengeHandler.submitFailure(null);
-                }
-                wlLogger.debug("Facebook Login error: " + error.getMessage());
-            }
-        });
-
-        AccessToken token = AccessToken.getCurrentAccessToken();
-        if (token != null && !token.isExpired()) {
-            MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
+    private void loginToSocialVendor(Vendor vendor, String token) {
+        JSONObject credentials = getCredentials(vendor.value, token);
+        if (isSignInFromChallenge) {
+            socialLoginChallengeHandler.submitChallengeAnswer(credentials);
         } else {
-            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
+            MainActivity.this.loginToMFPWithSocialVendor(vendor.value, token);
         }
     }
 
@@ -313,6 +287,43 @@ public class MainActivity extends AppCompatActivity implements
     protected void signInWithGoogle() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, GOOGLE_GET_TOKEN_INTENT);
+    }
+
+    /**
+     * Sign in to Facebook.  On success call to login into socialLogin scope
+     */
+    protected void signInWithFacebook() {
+        facebookCallbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(facebookCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                loginToSocialVendor(Vendor.Facebook, loginResult.getAccessToken().getToken());
+            }
+
+            @Override
+            public void onCancel() {
+                if (isSignInFromChallenge) {
+                    socialLoginChallengeHandler.submitFailure(null);
+                }
+                wlLogger.debug("Cancel Facebook Login");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                if (isSignInFromChallenge) {
+                    socialLoginChallengeHandler.submitFailure(null);
+                }
+                wlLogger.debug("Facebook Login error: " + error.getMessage());
+            }
+        });
+
+        //Try to get cached Facebook token first
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        if (token != null && !token.isExpired()) {
+            MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
+        } else {
+            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
+        }
     }
 
     @Override
