@@ -18,6 +18,7 @@ package com.ibm.mfp.sample.socialogin;
 
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 
+import javax.net.ssl.SSLSocketFactory;
 import java.util.Properties;
 
 /**
@@ -33,7 +34,7 @@ public interface LoginVendor {
 
     /**
      * Get the names of configuration properties.
-     * Only the properties with these names will be passed to {@link #setConfiguration(Properties)} method
+     * Only the properties with these names will be passed to {@link #setConfiguration(Properties, SSLSocketFactory)} method
      *
      * @return the array of property names, not null
      */
@@ -41,10 +42,10 @@ public interface LoginVendor {
 
     /**
      * Invoked on anewly created instance upon adapter deployment or configuration change
-     *
-     * @param properties the configuration properties defined by the {@link #setConfiguration(Properties)} method, not null.
+     *  @param properties the configuration properties defined by the {@link #getConfigurationPropertyNames()} method, not null.
+     * @param sslSocketFactory socket factory produced by the {@link SocialLoginConfiguration} class
      */
-    void setConfiguration(Properties properties);
+    void setConfiguration(Properties properties, SSLSocketFactory sslSocketFactory);
 
     /**
      * Returns true if the vendor is properly configured and is ready to validate tokens

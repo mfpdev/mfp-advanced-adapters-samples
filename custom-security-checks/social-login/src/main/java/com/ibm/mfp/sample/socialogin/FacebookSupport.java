@@ -19,11 +19,12 @@ package com.ibm.mfp.sample.socialogin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
@@ -44,12 +45,15 @@ public class FacebookSupport implements LoginVendor {
     private static final Logger logger = Logger.getLogger(FacebookSupport.class.getName());
 
     private ObjectMapper mapper = new ObjectMapper();
+    private SSLSocketFactory sslSocketFactory;
 
     public String[] getConfigurationPropertyNames() {
         return new String[0];
     }
 
-    public void setConfiguration(Properties properties) {
+    @Override
+    public void setConfiguration(Properties properties, SSLSocketFactory sslSocketFactory) {
+        this.sslSocketFactory = sslSocketFactory;
     }
 
     public boolean isEnabled() {
@@ -57,11 +61,12 @@ public class FacebookSupport implements LoginVendor {
     }
 
     public AuthenticatedUser validateTokenAndCreateUser(String tokenStr, String checkName) {
-        HttpURLConnection connection = null;
+        HttpsURLConnection connection = null;
         String error;
         try {
             String req = "https://graph.facebook.com/me?fields=id,name&access_token=" + tokenStr;
-            connection = (HttpURLConnection) new URL(req).openConnection();
+            connection = (HttpsURLConnection) new URL(req).openConnection();
+            connection.setSSLSocketFactory(sslSocketFactory);
             connection.setRequestMethod("GET");
             connection.connect();
 
