@@ -11,10 +11,10 @@ For using the sample you have to get from Facebook and Google the following and 
 * Google server client id (Web client id)
 * google-services.json file to put under app folder
 
-To be able get all the above please follow the bellow guides:
+To be able get all the above please follow the bellow links:
 
 * Facebook -> https://developers.facebook.com/docs/android/getting-started
-* Google -> https://developers.google.com/identity/sign-in/android/start-integrating#prerequisites
+* Google -> https://developers.google.com/identity/sign-in/android/start-integrating
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
