@@ -91,8 +91,9 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private CallbackManager facebookCallbackManager;
     protected Vendor currentVendor = Vendor.GOOGLE;
+
+    private CallbackManager facebookCallbackManager;
 
     //Google SignIn
     private GoogleApiClient mGoogleApiClient;
@@ -105,6 +106,50 @@ public class MainActivity extends AppCompatActivity implements
     private Logger wlLogger;
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GOOGLE_GET_TOKEN_INTENT) {
+            // Google
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleGoogleSignInResult(result);
+        } else {
+            // Facebook
+            facebookCallbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        wlLogger.debug("onConnectionFailed:" + connectionResult);
+    }
+
+
+    /**
+     * Click listener
+     * @param v the clicked view
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sign_in_google:
+                this.isSignInFromChallenge = false;
+                currentVendor = Vendor.GOOGLE;
+                signInWithGoogle();
+                break;
+
+            case R.id.sign_in_facebook:
+                this.isSignInFromChallenge = false;
+                currentVendor = Vendor.Facebook;
+                signInWithFacebook();
+                break;
+
+            case R.id.call_adapter:
+                this.callProtectedAdapter();
+                break;
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -115,13 +160,11 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.call_adapter).setOnClickListener(this);
         statusView = (TextView) findViewById(R.id.statusTextView);
 
-        //Init worklight
+        //Init WLClient
         WLClient.createInstance(this);
 
         socialLoginChallengeHandler = new SocialLoginChallengeHandler("socialLogin", this);
         WLClient.getInstance().registerChallengeHandler(socialLoginChallengeHandler);
-
-
 
         initGoogleSDK();
         initFacebookSDK();
@@ -137,6 +180,51 @@ public class MainActivity extends AppCompatActivity implements
         wlLogger = Logger.getInstance(SOCIAL_LOGIN_TAG);
 
         wlLogger.debug("Social Login init");
+    }
+
+    /**
+     * Sign in to Google.  On success call to login into socialLogin scope
+     */
+    protected void signInWithGoogle() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, GOOGLE_GET_TOKEN_INTENT);
+    }
+
+    /**
+     * Sign in to Facebook.  On success call to login into socialLogin scope
+     */
+    protected void signInWithFacebook() {
+        facebookCallbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(facebookCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                loginToSocialVendor(Vendor.Facebook, loginResult.getAccessToken().getToken());
+            }
+
+            @Override
+            public void onCancel() {
+                if (isSignInFromChallenge) {
+                    socialLoginChallengeHandler.submitFailure(null);
+                }
+                wlLogger.debug("Cancel Facebook Login");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                if (isSignInFromChallenge) {
+                    socialLoginChallengeHandler.submitFailure(null);
+                }
+                wlLogger.debug("Facebook Login error: " + error.getMessage());
+            }
+        });
+
+        //Try to get cached Facebook token first
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        if (token != null && !token.isExpired()) {
+            MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
+        } else {
+            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
+        }
     }
 
     private void initFacebookSDK() {
@@ -156,19 +244,6 @@ public class MainActivity extends AppCompatActivity implements
                     .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                     .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
                     .build();
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GOOGLE_GET_TOKEN_INTENT) {
-            // Google
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleGoogleSignInResult(result);
-        } else {
-            // Facebook
-            facebookCallbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -268,7 +343,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Login by call to premptive login or by sending challenge answer
+     * Login by call to preemptive login or by sending challenge answer
      * @param vendor - the social vendor
      * @param token - the token
      */
@@ -278,82 +353,6 @@ public class MainActivity extends AppCompatActivity implements
             socialLoginChallengeHandler.submitChallengeAnswer(credentials);
         } else {
             MainActivity.this.loginToMFPWithSocialVendor(vendor.value, token);
-        }
-    }
-
-    /**
-     * Sign in to Google.  On success call to login into socialLogin scope
-     */
-    protected void signInWithGoogle() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, GOOGLE_GET_TOKEN_INTENT);
-    }
-
-    /**
-     * Sign in to Facebook.  On success call to login into socialLogin scope
-     */
-    protected void signInWithFacebook() {
-        facebookCallbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().registerCallback(facebookCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                loginToSocialVendor(Vendor.Facebook, loginResult.getAccessToken().getToken());
-            }
-
-            @Override
-            public void onCancel() {
-                if (isSignInFromChallenge) {
-                    socialLoginChallengeHandler.submitFailure(null);
-                }
-                wlLogger.debug("Cancel Facebook Login");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                if (isSignInFromChallenge) {
-                    socialLoginChallengeHandler.submitFailure(null);
-                }
-                wlLogger.debug("Facebook Login error: " + error.getMessage());
-            }
-        });
-
-        //Try to get cached Facebook token first
-        AccessToken token = AccessToken.getCurrentAccessToken();
-        if (token != null && !token.isExpired()) {
-            MainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
-        } else {
-            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        wlLogger.debug("onConnectionFailed:" + connectionResult);
-    }
-
-
-    /**
-     * Listent o buttons clicks
-     * @param v the clicked view
-     */
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.sign_in_google:
-                this.isSignInFromChallenge = false;
-                currentVendor = Vendor.GOOGLE;
-                signInWithGoogle();
-                break;
-
-            case R.id.sign_in_facebook:
-                this.isSignInFromChallenge = false;
-                currentVendor = Vendor.Facebook;
-                signInWithFacebook();
-                break;
-
-            case R.id.call_adapter:
-                this.callProtectedAdapter();
-                break;
         }
     }
 }
