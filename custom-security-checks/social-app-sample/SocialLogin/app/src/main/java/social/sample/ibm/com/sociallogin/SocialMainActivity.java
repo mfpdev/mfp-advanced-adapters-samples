@@ -69,7 +69,7 @@ public class SocialMainActivity extends AppCompatActivity implements
 
     public static final String FACEBOOK_PERMISSION_PUBLIC_PROFILE = "public_profile";
 
-    private static final String SOCIAL_LOGIN_TAG = "SocialLogin";
+    private static final String SOCIAL_LOGIN_TAG = SocialMainActivity.class.getPackage().getName();
     private static final int GOOGLE_GET_TOKEN_INTENT = 9002;
 
     //Flag to know from where we signInWithGoogle
@@ -357,6 +357,8 @@ public class SocialMainActivity extends AppCompatActivity implements
         Logger.setContext(this);
         Logger.setCapture(true);
         Logger.updateConfigFromServer();
+        //Explicitly set level
+        //Logger.setLevel(Logger.LEVEL.DEBUG);
     }
 
     /**
