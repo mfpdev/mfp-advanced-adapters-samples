@@ -146,8 +146,9 @@ public class SocialMainActivity extends AppCompatActivity implements
                 this.callProtectedAdapter();
                 break;
         }
-        //Call to reset the user picture
+        //Clean status and profile picture
         resetUserProfilePic();
+        resetStatus();
     }
 
     @Override
@@ -386,11 +387,7 @@ public class SocialMainActivity extends AppCompatActivity implements
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    userPictureView.setImageDrawable(userPicture);
-                } catch (Exception e) {
-                    wlLogger.error("Failed to set image", e);
-                }
+                userPictureView.setImageDrawable(userPicture);
             }
         });
     }
@@ -402,12 +399,19 @@ public class SocialMainActivity extends AppCompatActivity implements
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    userPictureView.setImageResource(0);
-                }
-                catch (Exception e) {
-                    wlLogger.error("Failed to clear picture", e);
-                }
+                userPictureView.setImageResource(0);
+            }
+        });
+    }
+
+    /**
+     * Reset the user profile picture
+     */
+    private void resetStatus() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                statusView.setText("");
             }
         });
     }
