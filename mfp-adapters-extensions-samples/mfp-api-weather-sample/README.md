@@ -1,7 +1,7 @@
 IBM MobileFirst Platform Foundation
 ===
 
-## WebServices (WS-* and REST)
+## Implementing a Weather API using WebServices (WS-* and REST)
 
 ## Implementation
 

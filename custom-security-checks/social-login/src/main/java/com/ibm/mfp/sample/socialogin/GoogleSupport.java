@@ -23,6 +23,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 
+import javax.net.ssl.SSLSocketFactory;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
@@ -43,8 +44,8 @@ public class GoogleSupport implements LoginVendor {
 
     private static final String CLIENT_ID_CONFIG_PROPERTY = "google.clientId";
 
-    private NetHttpTransport transport = new NetHttpTransport();
-    private JsonFactory jsonFactory = new JacksonFactory();
+    private NetHttpTransport transport;
+    private JsonFactory jsonFactory;
 
     private GoogleIdTokenVerifier[] verifiers;
 
@@ -52,7 +53,11 @@ public class GoogleSupport implements LoginVendor {
         return new String[]{CLIENT_ID_CONFIG_PROPERTY};
     }
 
-    public void setConfiguration(Properties properties) {
+    @Override
+    public void setConfiguration(Properties properties, SSLSocketFactory sslSocketFactory) {
+        transport = new NetHttpTransport.Builder().setSslSocketFactory(sslSocketFactory).build();
+        jsonFactory = new JacksonFactory();
+
         String clientId = properties.getProperty(CLIENT_ID_CONFIG_PROPERTY);
         if (clientId != null && !clientId.isEmpty() && clientId.endsWith("apps.googleusercontent.com")) {
             verifiers = new GoogleIdTokenVerifier[]{

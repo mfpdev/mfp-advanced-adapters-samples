@@ -18,6 +18,10 @@ package com.ibm.mfp.sample.socialogin;
 
 import com.ibm.mfp.security.checks.base.UserAuthenticationSecurityCheckConfig;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManagerFactory;
+import java.security.KeyStore;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -35,6 +39,7 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
 
     private boolean keepOriginalToken;
     private Map<String, LoginVendor> vendors;
+    private SSLSocketFactory sslSocketFactory;
 
     /**
      * Create the vendors each with its relevant properties
@@ -46,6 +51,17 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
         blockedStateExpirationSec = 1;
         keepOriginalToken = Boolean.parseBoolean(getStringProperty(KEEP_ORIGINAL_TOKEN, properties, "false"));
 
+        try {
+            TrustManagerFactory factory = TrustManagerFactory.getInstance("PKIX");
+            factory.init((KeyStore) null);
+            SSLContext ctx = SSLContext.getInstance("TLS");
+            ctx.init(null, factory.getTrustManagers(), null);
+            sslSocketFactory = ctx.getSocketFactory();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
         createVendors();
         for (LoginVendor vendor : vendors.values()) {
             Properties vendorConfig = new Properties();
@@ -53,9 +69,8 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
                 String value = getStringProperty(property, properties, null);
                 vendorConfig.setProperty(property, value);
             }
-            vendor.setConfiguration(vendorConfig);
+            vendor.setConfiguration(vendorConfig, sslSocketFactory);
         }
-
     }
 
     /**
@@ -81,4 +96,5 @@ public class SocialLoginConfiguration extends UserAuthenticationSecurityCheckCon
         vendors.put("google", new GoogleSupport());
         vendors.put("facebook", new FacebookSupport());
     }
+
 }
