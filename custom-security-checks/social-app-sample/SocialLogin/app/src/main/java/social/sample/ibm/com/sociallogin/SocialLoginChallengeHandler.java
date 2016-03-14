@@ -39,17 +39,15 @@ public class SocialLoginChallengeHandler extends WLChallengeHandler {
 
     @Override
     public void handleChallenge(JSONObject jsonObject) {
-
         mainActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mainActivity.isSignInFromChallenge = true;
-                if (mainActivity.currentVendor == SocialMainActivity.Vendor.GOOGLE) {
-                    mainActivity.signInWithGoogle();
-                } else {
-                    mainActivity.signInWithFacebook();
-                }
-
+            mainActivity.isSignInFromChallenge = true;
+            if (mainActivity.currentVendor == SocialMainActivity.Vendor.GOOGLE) {
+                mainActivity.signInWithGoogle();
+            } else {
+                mainActivity.signInWithFacebook();
+            }
             }
         });
     }
@@ -57,10 +55,5 @@ public class SocialLoginChallengeHandler extends WLChallengeHandler {
     @Override
     protected void submitFailure(WLResponse wlResponse) {
         super.submitFailure(wlResponse);
-    }
-
-    @Override
-    public void submitChallengeAnswer(JSONObject answer) {
-        super.submitChallengeAnswer(answer);
     }
 }

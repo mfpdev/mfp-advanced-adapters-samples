@@ -8,7 +8,7 @@ This is sample adapter to demonstrate the social login security check.  The adap
 The implementation consists of two components:
 
 ### HelloSocialUserResource
-JAX-RS class which has one API /hello that return hello + the logged in social user.
+JAX-RS class which has one API /hello that return the authenticated user attributes.
 
 ### HelloSocialUserResource
 Then JAX-RS application class 
