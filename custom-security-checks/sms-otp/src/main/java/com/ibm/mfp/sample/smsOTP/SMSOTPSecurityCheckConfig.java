@@ -69,10 +69,10 @@ public class SMSOTPSecurityCheckConfig extends CredentialsValidationSecurityChec
             //getDateCreated() used for validation because it is failed if one of the account property is invalid
             client.getAccount().getDateCreated();
         } catch (Throwable throwable) {
-            String warningMessage = String.format("Twilio client failed to initialize with the provided parameters SID = [%s] Token = [%s] Number = [%s]",
+            String errorMessage = String.format("Twilio client failed to initialize with the provided parameters SID = [%s] Token = [%s] Number = [%s]",
                     twilioAccountSid, twilioAuthToken, twilioFromPhoneNumber);
-            addMessage(getWarnings(),"twilioAccountSid", warningMessage);
-            logger.severe(warningMessage);
+            addMessage(getErrors(),"twilioAccountSid", errorMessage);
+            logger.severe(errorMessage);
         }
         logger.info("Twilio initialized!");
 

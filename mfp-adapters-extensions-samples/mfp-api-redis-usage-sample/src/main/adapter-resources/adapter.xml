@@ -10,18 +10,18 @@
              xmlns:mfp="http://www.ibm.com/mfp/integration"
              xmlns:http="http://www.ibm.com/mfp/integration/http">
 
-    <displayName>RedisAdapter</displayName>
+    <displayName>Redis Backend Adapter</displayName>
     <description>
-        An adapter API that demonstrates how an Adapter application can initialize the connection and that use
+        An adapter API that demonstrates how an Adapter application can initialize the connection and than use
         a Redis cache.
     </description>
 
     <JAXRSApplicationClass>com.ibm.mfp.sample.RedisAdapterApplication</JAXRSApplicationClass>
 
     <property name="redisURL"
-              displayName="Redis URL"
+              displayName="A URL pointing to the Redis Server"
               defaultValue="redis://localhost:6379"
               type="string"
-              description="Redis URL"/>
+              description="Enter a URL That points to the Redis server used. Traditionally redis://<host name>:6379"/>
 
 </mfp:adapter>

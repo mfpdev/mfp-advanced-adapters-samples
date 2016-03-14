@@ -13,6 +13,9 @@ import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 import javax.ws.rs.core.Context;
 import java.util.logging.Logger;
 
+/**
+ * Validates the provided configuration parameter
+ */
 public class WeatherAPIApplication extends MFPJAXRSApplication {
 
     static Logger logger = Logger.getLogger(WeatherAPIApplication.class.getName());
@@ -20,6 +23,11 @@ public class WeatherAPIApplication extends MFPJAXRSApplication {
     @Context
     ConfigurationAPI configApi;
 
+    /**
+     * Initializes the Adapter by validating the single configuration parameter
+     *
+     * @throws Exception if the API Key is completely missing
+     */
     protected void init() throws Exception {
         logger.info("Initializing a Geolocation Adapter application");
 
