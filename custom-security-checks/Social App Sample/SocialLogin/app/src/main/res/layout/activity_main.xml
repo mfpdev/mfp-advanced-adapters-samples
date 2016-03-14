@@ -40,7 +40,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/statusTextView"
         android:width="300dp"
-        android:height="50dp"
+        android:height="80dp"
         android:textSize="14dp"
         android:layout_below="@+id/call_adapter"
         android:layout_centerHorizontal="true"
@@ -52,7 +52,7 @@
         android:text="@string/facebook_signin"
         android:id="@+id/sign_in_facebook"
         android:layout_below="@+id/sign_in_google"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="30dp"
         android:nestedScrollingEnabled="false"
         android:layout_alignEnd="@+id/sign_in_google"
         android:layout_alignParentStart="true"
@@ -65,7 +65,7 @@
         android:text="@string/call_adapter"
         android:id="@+id/call_adapter"
         android:layout_below="@+id/sign_in_facebook"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="30dp"
         android:nestedScrollingEnabled="true"
         android:background="#4795fc"
         android:layout_centerVertical="true"
@@ -73,11 +73,14 @@
         android:layout_alignParentStart="true"
         android:textColor="#ffffff" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imageView"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:id="@+id/imageView"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#ffffff"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

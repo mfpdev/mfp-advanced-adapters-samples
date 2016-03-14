@@ -74,6 +74,16 @@ public class SocialMainActivity extends AppCompatActivity implements
 
     //Flag to know from where we signInWithGoogle
     protected boolean isSignInFromChallenge = false;
+    protected Vendor currentVendor = Vendor.GOOGLE;
+    private CallbackManager facebookCallbackManager;
+    //Google SignIn
+    private GoogleApiClient mGoogleApiClient;
+    private GoogleSignInOptions googleSignInOptions;
+    private SocialLoginChallengeHandler socialLoginChallengeHandler;
+    private TextView statusView;
+    private ImageView userPictureView;
+    //Logger
+    private Logger wlLogger;
 
     //Vendor enum
     protected enum Vendor {
@@ -94,21 +104,6 @@ public class SocialMainActivity extends AppCompatActivity implements
         }
     }
 
-    protected Vendor currentVendor = Vendor.GOOGLE;
-
-    private CallbackManager facebookCallbackManager;
-
-    //Google SignIn
-    private GoogleApiClient mGoogleApiClient;
-    private GoogleSignInOptions googleSignInOptions;
-
-    private SocialLoginChallengeHandler socialLoginChallengeHandler;
-    private TextView statusView;
-    private ImageView userPictureView;
-
-    //Logger
-    private Logger wlLogger;
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -126,7 +121,6 @@ public class SocialMainActivity extends AppCompatActivity implements
     public void onConnectionFailed(ConnectionResult connectionResult) {
         wlLogger.debug("onConnectionFailed:" + connectionResult);
     }
-
 
     /**
      * Click listener
@@ -153,14 +147,14 @@ public class SocialMainActivity extends AppCompatActivity implements
                 break;
         }
         //Call to reset the user picture
-        resetUserPic();
+        resetUserProfilePic();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Init UI
+        //Init Activity GUI
         setContentView(R.layout.activity_main);
         findViewById(R.id.sign_in_google).setOnClickListener(this);
         findViewById(R.id.sign_in_facebook).setOnClickListener(this);
@@ -170,25 +164,20 @@ public class SocialMainActivity extends AppCompatActivity implements
 
         //Init WLClient
         WLClient.createInstance(this);
-
         socialLoginChallengeHandler = new SocialLoginChallengeHandler("socialLogin", this);
 
+        //Register the SocialLoginChallengeHandler
         WLClient.getInstance().registerChallengeHandler(socialLoginChallengeHandler);
 
+        //Init social platforms SDKs
         initGoogleSDK();
         initFacebookSDK();
 
         //Init Analytics && Logger
-        WLAnalytics.init(this.getApplication());
-        WLAnalytics.enable();
-        Logger.setContext(this);
-        Logger.setCapture(true);
-
-        Logger.updateConfigFromServer();
+        initAnalytics();
 
         wlLogger = Logger.getInstance(SOCIAL_LOGIN_TAG);
-
-        wlLogger.debug("Social Login init");
+        wlLogger.debug(getClass().getName() + " init");
     }
 
     /**
@@ -216,7 +205,7 @@ public class SocialMainActivity extends AppCompatActivity implements
                     // Cancel the challenge handler
                     socialLoginChallengeHandler.submitFailure(null);
                 }
-                wlLogger.debug("Cancel Facebook Login");
+                wlLogger.debug("Facebook Login canceled");
             }
 
             @Override
@@ -251,13 +240,13 @@ public class SocialMainActivity extends AppCompatActivity implements
         WLAuthorizationManager.getInstance().login("socialLogin", credentials, new WLLoginResponseListener() {
             @Override
             public void onSuccess() {
-                final String msg = String.format("Login successful with vendor %s", vendor);
+                final String msg = String.format("Logged in successfully with %s", vendor);
                 updateStatus(msg);
             }
 
             @Override
             public void onFailure(WLFailResponse wlFailResponse) {
-                String msg = String.format("Login failed with vendor %s", vendor);
+                String msg = String.format("Logged in failed with %s", vendor);
                 updateStatus(msg);
             }
         });
@@ -306,7 +295,8 @@ public class SocialMainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Create JSON credentials in the as the Social Login Security Check expected on the Social Login Adapter
+     * Create JSON credentials to send as challenge answer.
+     * This is the format that the security check on server is exacted.
      *
      * @param vendor the social vendor
      * @param token  the returned token from the social vendor
@@ -325,16 +315,22 @@ public class SocialMainActivity extends AppCompatActivity implements
 
     /**
      * Call adapter which protected with scope "socialLogin"
+     * The adapter returns display name and user attributes in JSON format
      */
     private void callProtectedAdapter() {
-        WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/HelloSocialUser/hello"), "GET", "socialLogin");
+        WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/HelloSocialUser/hello"), WLResourceRequest.GET, socialLoginChallengeHandler.getSecurityCheck());
         wlResourceRequest.send(new WLResponseListener() {
             @Override
             public void onSuccess(WLResponse wlResponse) {
                 final JSONObject responseJSON = wlResponse.getResponseJSON();
                 try {
-                    String userDisplayName = (String) responseJSON.get("displayName");
-                    updateStatus("Hello " + userDisplayName);
+                    String userDisplayName = responseJSON.getString("displayName");
+
+                    String status = "Hello " + userDisplayName;
+                    if (!responseJSON.isNull("email")) {
+                        status += "\n\n" + responseJSON.getString("email");
+                    }
+                    updateStatus(status);
 
                     String picture = (String) responseJSON.get("picture");
                     updateImage(picture);
@@ -349,6 +345,17 @@ public class SocialMainActivity extends AppCompatActivity implements
                 updateStatus(responseText);
             }
         });
+    }
+
+    /**
+     * Init analytics
+     */
+    private void initAnalytics() {
+        WLAnalytics.init(this.getApplication());
+        WLAnalytics.enable();
+        Logger.setContext(this);
+        Logger.setCapture(true);
+        Logger.updateConfigFromServer();
     }
 
     /**
@@ -391,7 +398,7 @@ public class SocialMainActivity extends AppCompatActivity implements
     /**
      * Reset the user profile picture
      */
-    private void resetUserPic() {
+    private void resetUserProfilePic() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -406,7 +413,8 @@ public class SocialMainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Login by call to preemptive login or by sending challenge answer
+     * Login by call to preemptive login in case user initiated the login.
+     * Or by sending challenge answer, if the request came with a challenge.
      *
      * @param vendor - the social vendor
      * @param token  - the token
