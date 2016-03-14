@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Copyright 2015 IBM Corp.
+	Copyright 2015 IBM Corp.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -13,15 +14,12 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<resources>
-    <string name="app_name">Social Login</string>
-    <string name="call_adapter">Call Protected Adapter</string>
+<mfp:adapter name="HelloSocialUser"
+             xmlns:mfp="http://www.ibm.com/mfp/integration"
+             xmlns:http="http://www.ibm.com/mfp/integration/http">
 
-    <string name="google_signin">Sign In With Google</string>
+    <displayName>Hello Social User</displayName>
+    <description>A sample adapter which protected with socialLogin scope</description>
 
-
-    <string name="facebook_signin">Sign In With Facebook</string>
-
-    <string name="facebook_app_id">FACEBOOK APP ID</string>
-    <string name="google_server_client_id">GOOGLE SERVER CLIENT ID</string>
-</resources>
+    <JAXRSApplicationClass>com.ibm.mfp.sample.helloSocialUser.HelloSocialUserApplication</JAXRSApplicationClass>
+</mfp:adapter>
