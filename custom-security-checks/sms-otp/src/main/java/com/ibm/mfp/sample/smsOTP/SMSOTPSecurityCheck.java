@@ -111,7 +111,7 @@ public class SMSOTPSecurityCheck extends CredentialsValidationSecurityCheck {
      * @return random int with 4 digits as SMS password
      */
     private int sendSMSCode(String phoneNumber) {
-        SMSOTPSecurityCheckConfig config = (SMSOTPSecurityCheckConfig) getConfig();
+        SMSOTPSecurityCheckConfig config = (SMSOTPSecurityCheckConfig) getConfiguration();
         TwilioRestClient client = new TwilioRestClient(config.getTwilioAccountSid(), config.getTwilioAuthToken());
 
         List<NameValuePair> params = new ArrayList<>();

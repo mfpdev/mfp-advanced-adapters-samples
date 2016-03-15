@@ -66,7 +66,7 @@ public class SocialLoginSecurityCheck extends UserAuthenticationSecurityCheck {
     @Override
     protected Map<String, Object> createChallenge() {
         Map<String, Object> res = new HashMap<>();
-        res.put("vendorList", getConfig().getEnabledVendors().keySet().toArray());
+        res.put("vendorList", getConfiguration().getEnabledVendors().keySet().toArray());
         return res;
     }
 
@@ -75,13 +75,13 @@ public class SocialLoginSecurityCheck extends UserAuthenticationSecurityCheck {
         vendorName = (String) credentials.get(VENDOR_KEY);
         String token = (String) credentials.get(TOKEN_KEY);
         if (vendorName != null && token != null) {
-            LoginVendor vendor = getConfig().getEnabledVendors().get(vendorName);
+            LoginVendor vendor = getConfiguration().getEnabledVendors().get(vendorName);
             if (vendor != null) {
                 user = vendor.validateTokenAndCreateUser(token, getName());
                 if (user != null) {
                     Map<String, Object> attributes = user.getAttributes();
                     attributes.put(VENDOR_ATTRIBUTE, vendorName);
-                    if (getConfig().isKeepOriginalToken())
+                    if (getConfiguration().isKeepOriginalToken())
                         attributes.put(ORIGINAL_TOKEN_ATTRIBUTE, token);
                     return true;
                 }
@@ -96,7 +96,7 @@ public class SocialLoginSecurityCheck extends UserAuthenticationSecurityCheck {
     }
 
     @Override
-    protected SocialLoginConfiguration getConfig() {
-        return (SocialLoginConfiguration) super.getConfig();
+    protected SocialLoginConfiguration getConfiguration() {
+        return (SocialLoginConfiguration) super.getConfiguration();
     }
 }

@@ -25,6 +25,7 @@ import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 
 import javax.net.ssl.SSLSocketFactory;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -99,8 +100,7 @@ public class GoogleSupport implements LoginVendor {
         GoogleIdToken.Payload payload = idToken.getPayload();
         String userId = payload.getSubject();
         String name = (String) payload.get("name");
-        AuthenticatedUser user = new AuthenticatedUser(userId, name, checkName);
-        Map<String, Object> attributes = user.getAttributes();
+        Map<String, Object> attributes = new HashMap<>();
 
         String email = payload.getEmail();
         if (email != null) {
@@ -112,6 +112,8 @@ public class GoogleSupport implements LoginVendor {
         copyProperty("family_name", payload, attributes);
         copyProperty("given_name", payload, attributes);
         copyProperty("locale", payload, attributes);
+
+        AuthenticatedUser user = new AuthenticatedUser(userId, name, checkName, attributes);
 
         return user;
     }
