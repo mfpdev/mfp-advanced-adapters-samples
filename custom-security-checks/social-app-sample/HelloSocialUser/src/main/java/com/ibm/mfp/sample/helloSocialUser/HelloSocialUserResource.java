@@ -30,6 +30,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -63,8 +64,9 @@ public class HelloSocialUserResource {
 	@OAuthSecurity(scope = "socialLogin")
 	public Map<String,Object> hello() {
 		AuthenticatedUser user = securityContext.getAuthenticatedUser();
-		Map<String, Object> userAttributes = user.getAttributes();
+		Map<String, Object> userAttributes = new HashMap<String, Object>();
 		userAttributes.put("displayName", user.getDisplayName());
+		userAttributes.putAll(user.getAttributes());
 		return userAttributes;
 	}
 }
