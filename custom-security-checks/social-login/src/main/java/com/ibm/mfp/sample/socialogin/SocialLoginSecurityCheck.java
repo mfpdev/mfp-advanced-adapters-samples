@@ -77,12 +77,13 @@ public class SocialLoginSecurityCheck extends UserAuthenticationSecurityCheck {
         if (vendorName != null && token != null) {
             LoginVendor vendor = getConfiguration().getEnabledVendors().get(vendorName);
             if (vendor != null) {
-                user = vendor.validateTokenAndCreateUser(token, getName());
+                AuthenticatedUser user = vendor.validateTokenAndCreateUser(token, getName());
                 if (user != null) {
-                    Map<String, Object> attributes = user.getAttributes();
+                    Map<String, Object> attributes = new HashMap<>(user.getAttributes());
                     attributes.put(VENDOR_ATTRIBUTE, vendorName);
                     if (getConfiguration().isKeepOriginalToken())
                         attributes.put(ORIGINAL_TOKEN_ATTRIBUTE, token);
+                    this.user = new AuthenticatedUser(user.getId(), user.getDisplayName(), getName(), attributes);
                     return true;
                 }
             }
