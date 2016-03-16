@@ -38,6 +38,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.jayway.jsonpath.JsonPath;
 import com.worklight.common.Logger;
 import com.worklight.common.WLAnalytics;
 import com.worklight.wlclient.api.WLAuthorizationManager;
@@ -334,9 +335,8 @@ public class SocialMainActivity extends AppCompatActivity implements
                     updateStatus(status);
 
                     String vendor = (String)responseJSON.get("socialLoginVendor");
-                    String picture = getPictureURLFromResponse(responseJSON, vendor);
-
-                    updateProfilePicture(picture);
+                    String userPictureURL = getPictureURLFromResponse(responseJSON, vendor);
+                    updateProfilePicture(userPictureURL);
                 } catch (Exception e) {
                     wlLogger.error("Parsing JSON failed", e);
                 }
@@ -351,13 +351,8 @@ public class SocialMainActivity extends AppCompatActivity implements
     }
 
     private String getPictureURLFromResponse(JSONObject responseJSON, String vendor) throws JSONException {
-        String picture = null;
-        if (Vendor.GOOGLE.value.equals(vendor)) {
-            picture = (String) responseJSON.get("picture");
-        } else {
-            picture = responseJSON.getJSONObject("picture").getJSONObject("data").getString("url");
-        }
-        return picture;
+        String pictureKey =  Vendor.GOOGLE.value.equals(vendor) ? "picture" : "$.picture.data.url";
+        return JsonPath.read(responseJSON.toString(), pictureKey);
     }
 
     /**
