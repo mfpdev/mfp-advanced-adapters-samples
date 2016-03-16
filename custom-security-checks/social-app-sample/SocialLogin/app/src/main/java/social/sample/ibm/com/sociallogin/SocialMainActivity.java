@@ -333,8 +333,10 @@ public class SocialMainActivity extends AppCompatActivity implements
                     }
                     updateStatus(status);
 
-                    String picture = (String) responseJSON.get("picture");
-                    updateImage(picture);
+                    String vendor = (String)responseJSON.get("socialLoginVendor");
+                    String picture = getPictureURLFromResponse(responseJSON, vendor);
+
+                    updateProfilePicture(picture);
                 } catch (Exception e) {
                     wlLogger.error("Parsing JSON failed", e);
                 }
@@ -346,6 +348,16 @@ public class SocialMainActivity extends AppCompatActivity implements
                 updateStatus(responseText);
             }
         });
+    }
+
+    private String getPictureURLFromResponse(JSONObject responseJSON, String vendor) throws JSONException {
+        String picture = null;
+        if (Vendor.GOOGLE.value.equals(vendor)) {
+            picture = (String) responseJSON.get("picture");
+        } else {
+            picture = responseJSON.getJSONObject("picture").getJSONObject("data").getString("url");
+        }
+        return picture;
     }
 
     /**
@@ -379,11 +391,11 @@ public class SocialMainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Update user picture if exist on user attributes
+     * Update user profile picture if exist on user attributes
      * @param picture the user profile picture
      * @throws Exception
      */
-    private void updateImage (final String picture) throws Exception {
+    private void updateProfilePicture(final String picture) throws Exception {
         URL userPictureURL = new URL(picture);
         final Drawable userPicture = Drawable.createFromStream(userPictureURL.openStream(), "src");
         runOnUiThread(new Runnable() {

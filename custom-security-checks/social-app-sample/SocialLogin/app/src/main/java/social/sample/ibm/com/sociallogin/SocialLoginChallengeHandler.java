@@ -51,9 +51,4 @@ public class SocialLoginChallengeHandler extends WLChallengeHandler {
             }
         });
     }
-
-    @Override
-    protected void submitFailure(WLResponse wlResponse) {
-        super.submitFailure(wlResponse);
-    }
 }

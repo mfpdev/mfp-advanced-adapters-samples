@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -60,7 +61,7 @@ public class FacebookSupport implements LoginVendor {
         HttpsURLConnection connection = null;
         String error;
         try {
-            String req = "https://graph.facebook.com/me?fields=id,name&access_token=" + tokenStr;
+            String req = "https://graph.facebook.com/me?fields=id,name,picture&access_token=" + tokenStr;
             connection = (HttpsURLConnection) new URL(req).openConnection();
             connection.setSSLSocketFactory(sslSocketFactory);
             connection.setRequestMethod("GET");
@@ -71,7 +72,11 @@ public class FacebookSupport implements LoginVendor {
 
             if (responseCode == 200) {
                 Map data = mapper.readValue(content, Map.class);
-                return new AuthenticatedUser((String) data.get("id"), (String) data.get("name"), checkName);
+                HashMap<String,Object> userAttributes = new HashMap<>();
+                for (Object key : data.keySet()) {
+                    userAttributes.put((String)key, data.get(key));
+                }
+                return new AuthenticatedUser((String) data.get("id"), (String) data.get("name"), checkName, userAttributes);
             } else {
                 error = content;
             }
