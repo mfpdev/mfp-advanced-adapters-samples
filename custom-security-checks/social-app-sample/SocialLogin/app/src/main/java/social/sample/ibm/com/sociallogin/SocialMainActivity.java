@@ -68,7 +68,7 @@ public class SocialMainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
-    public static final String FACEBOOK_PERMISSION_PUBLIC_PROFILE = "public_profile";
+    public static final String FACEBOOK_PERMISSIONS = "public_profile,email";
 
     private static final String SOCIAL_LOGIN_TAG = SocialMainActivity.class.getPackage().getName();
     private static final int GOOGLE_GET_TOKEN_INTENT = 9002;
@@ -225,7 +225,7 @@ public class SocialMainActivity extends AppCompatActivity implements
         if (token != null && !token.isExpired()) {
             SocialMainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
         } else {
-            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSION_PUBLIC_PROFILE));
+            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSIONS));
         }
     }
 
