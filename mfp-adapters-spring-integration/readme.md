@@ -49,7 +49,7 @@ rm src/main/java/com/sample/MySpringXmlAdapterApplication.java
 ```
 
 Edit the **pom.xml** file and add the following dependency:
-```
+```xml
 <dependency>
   <groupId>com.ibm.mfp</groupId>
   <artifactId>mfp-adapters-spring-integration</artifactId>
@@ -58,7 +58,7 @@ Edit the **pom.xml** file and add the following dependency:
 ```
 
 Edit the **adapter.xml** file ( **src/main/adapter-resources/adapter.xml** ), set the JAXRSApplicationClass element to be:
-```
+```xml
 <JAXRSApplicationClass>com.ibm.mfp.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
 ```
 
@@ -66,7 +66,7 @@ Create the folder **src/main/resources**
 
 Create the file **src/main/resources/applicationContext.xml** with the following content:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -113,7 +113,7 @@ And here is where spring comes into the picture.
 
 Let's define our simple "hello" service as a Java interface in our adapter:
 Create a file named: **HelloService.java** in folder: **src/main/java/com/sample**
-```
+```java
 package com.sample;
 
 public interface HelloService {
@@ -124,7 +124,7 @@ public interface HelloService {
 Now, let's create the implementation:
 Create the folder: **src/main/java/com/sample/impl**
 Create a file named: **HelloServiceImpl.java** in folder: **src/main/java/com/sample/impl**
-```
+```java
 package com.sample.impl;
 
 import com.sample.HelloService;
@@ -138,7 +138,7 @@ public class HelloServiceImpl implements HelloService{
 ```
 
 Add the hello service implementation to the **applicationContext.xml** file:
-```
+```xml
 ...
     <!-- Define your beans -->
 
@@ -148,7 +148,7 @@ Add the hello service implementation to the **applicationContext.xml** file:
 
 In order to use the new service in the adapter, we can go to our resource file: **MySpringXmlAdapterResource.java** and add the following code:
 
-```
+```xml
 @Autowired
 HelloService helloService;
 
@@ -184,7 +184,7 @@ with Spring's properties mechanism
 In the following example we will show how to make the hello service configurable by externalising the message it returns.
 
 First, define the new property in the **adapter.xml** file:
-```
+```xml
 ...
 <JAXRSApplicationClass>com.ibm.mfp.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
 
