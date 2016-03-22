@@ -1,2 +1,11 @@
-# mfp-adapters-extensions
-Extensions to MFP adapter framework which will enhance the adapter development experience as well as give the customers a good starting point
+# MobileFirst 8.0.0 advanced samples and extension modules
+
+This repository contains advanced sample materials and integration modules
+that can be used with MobileFirst foundation platform
+
+##List of content
+
+### Integration modules:
+
+*  [Spring integration in MobileFirst adapters](mfp-adapters-spring-integration/README.md)
+
