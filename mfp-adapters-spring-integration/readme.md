@@ -148,7 +148,7 @@ Add the hello service implementation to the **applicationContext.xml** file:
 
 In order to use the new service in the adapter, we can go to our resource file: **MySpringXmlAdapterResource.java** and add the following code:
 
-```xml
+```java
 @Autowired
 HelloService helloService;
 
