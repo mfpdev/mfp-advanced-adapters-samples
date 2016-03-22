@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:mfp="http://www.ibm.com/mfp/integration"
+             xmlns:http="http://www.ibm.com/mfp/integration/http"
+             name="mfpApiWeatherSample">
+
+    <displayName>Temperature Lookup API</displayName>
+    <description>
+        An API that lookup the current Temperature for a specified address. Combines the google goecoding service
+        and a WSDL/SOAP based Weather Service for the implementation
+    </description>
+
+    <JAXRSApplicationClass>com.ibm.sample.api.WeatherAPIApplication</JAXRSApplicationClass>
+
+    <property name="apiKey"
+              displayName="Google Geolocation API Key"
+              defaultValue="AIzaSyDk97qAdzCombgZNt4maajNfVrgGd9NBig"
+              type="string"
+              description="Enter the API Key used to access the service (obtain from Google Developer Console)"/>
+
+</mfp:adapter>
