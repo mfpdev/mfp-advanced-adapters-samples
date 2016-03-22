@@ -7,5 +7,5 @@ that can be used with MobileFirst foundation platform
 
 ### Integration modules:
 
-*  [Spring integration in MobileFirst adapters](mfp-adapters-spring-integration/readme.md)
+*  [Spring integration in MobileFirst adapters](mfp-adapters-spring-integration)
 
