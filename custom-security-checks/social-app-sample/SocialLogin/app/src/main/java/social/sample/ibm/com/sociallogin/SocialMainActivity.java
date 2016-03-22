@@ -180,6 +180,7 @@ public class SocialMainActivity extends AppCompatActivity implements
 
         wlLogger = Logger.getInstance(SOCIAL_LOGIN_TAG);
         wlLogger.debug(getClass().getName() + " init");
+        Logger.send();
     }
 
     /**
@@ -223,7 +224,7 @@ public class SocialMainActivity extends AppCompatActivity implements
         //Try to get cached Facebook token first
         AccessToken token = AccessToken.getCurrentAccessToken();
         if (token != null && !token.isExpired()) {
-            SocialMainActivity.this.loginToMFPWithSocialVendor(Vendor.Facebook.value, AccessToken.getCurrentAccessToken().getToken());
+            loginToSocialVendor(Vendor.Facebook, token.getToken());
         } else {
             LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSIONS));
         }
@@ -365,7 +366,7 @@ public class SocialMainActivity extends AppCompatActivity implements
         Logger.setCapture(true);
         Logger.updateConfigFromServer();
         //Explicitly set level
-        //Logger.setLevel(Logger.LEVEL.DEBUG);
+        Logger.setLevel(Logger.LEVEL.DEBUG);
     }
 
     /**
@@ -380,6 +381,7 @@ public class SocialMainActivity extends AppCompatActivity implements
                     public void run() {
                         statusView.setText(status);
                         wlLogger.debug(status);
+                        Logger.send();
                     }
                 }
         );
