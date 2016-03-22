@@ -251,3 +251,5 @@ The result should be:
 ```
 xxx
 ```
+
+Complete sample for this tutorial can be found here: [Sample code for this tutorial](../samples/my-spring-xml-adapter)
