@@ -47,11 +47,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20160212</version>
+			<groupId>org.apache.wink</groupId>
+			<artifactId>wink-json4j</artifactId>
+			<version>1.4</version>
 		</dependency>
-
 	</dependencies>
 
 	<properties>

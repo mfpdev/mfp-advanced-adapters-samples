@@ -11,7 +11,8 @@ import com.ibm.mfp.adapter.api.AdaptersAPI;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
 import io.swagger.annotations.*;
-import org.json.JSONException;
+import org.apache.wink.json4j.JSONException;
+import org.apache.wink.json4j.JSONObject;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisException;
 
@@ -93,7 +94,8 @@ public class RedisAdapterResource {
         try {
             redisClient = redisApp.getConnection();
 
-            org.json.JSONObject json = new org.json.JSONObject();
+
+            JSONObject json = new JSONObject();
             json.put("id", userData.id);
             json.put("name", userData.name);
             json.put("age", userData.age);
@@ -142,7 +144,7 @@ public class RedisAdapterResource {
             final String jsonEnc = redisClient.get(id);
 
             if (null != jsonEnc) {
-                org.json.JSONObject json = new org.json.JSONObject(jsonEnc);
+                JSONObject json = new JSONObject(jsonEnc);
 
                 rc.id = json.getString("id");
                 rc.name = json.getString("name");
