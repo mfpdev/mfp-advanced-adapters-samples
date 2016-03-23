@@ -59,7 +59,7 @@ Implements the security check validating one-time password on top of the [wstran
 IBM MobileFirst Platform Foundation 8.0
 
 ## License
-Copyright 2015 IBM Corp.
+Copyright 2016 IBM Corp.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
