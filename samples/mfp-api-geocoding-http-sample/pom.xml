@@ -71,7 +71,6 @@
         <mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
         <mfpfUser>admin</mfpfUser>
         <mfpfPassword>admin</mfpfPassword>
-        <mfpfConfigFile>./target/comIbmGalAdapterTest.json</mfpfConfigFile>
     </properties>
 
     <build>
