@@ -63,11 +63,6 @@ public class WeatherAPIResource {
     @Context
     ConfigurationAPI configApi;
 
-    /*
-     * Path for method:
-     * "<server address>/mfp/api/adapters/WeatherAPI/users/{username}"
-     */
-
     @ApiOperation(value = "Lookup the weather at a specified address",
             notes = "Calls the google geocoding service and a Weather WS-* Service to return the temperature at a specific address .")
     @ApiResponses(value = {
