@@ -65,7 +65,7 @@
     </dependencies>
 
     <properties>
-        <!-- parameters for deploy mfpf adapter -->
+        <!-- parameters to deploy the adapter into the mfpf server -->
         <mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
         <mfpfUser>admin</mfpfUser>
         <mfpfPassword>admin</mfpfPassword>
