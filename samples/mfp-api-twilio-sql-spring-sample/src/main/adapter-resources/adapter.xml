@@ -17,12 +17,12 @@
 
 -->
 <mfp:adapter name="mfpApiTwilioSqlSpringSample"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:mfp="http://www.ibm.com/mfp/integration"
-	xmlns:http="http://www.ibm.com/mfp/integration/http">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mfp="http://www.ibm.com/mfp/integration"
+    xmlns:http="http://www.ibm.com/mfp/integration/http">
 
-	<displayName>User-Phone Number Binder</displayName>
-	<description>
+    <displayName>User-Phone Number Binder</displayName>
+    <description>
         An API that relate users and phone numbers by registering users and validating their phone numbers
         using SMS and validation codes.
     </description>
