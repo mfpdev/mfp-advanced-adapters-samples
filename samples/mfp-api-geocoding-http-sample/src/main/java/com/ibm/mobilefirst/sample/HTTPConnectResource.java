@@ -36,15 +36,12 @@ import java.util.logging.Logger;
                 title = "Sample Adapter that uses OKHTTP to access a backend geolocation REST Service",
                 termsOfService = "IBM Terms and Conditions apply",
                 contact = @Contact(
-                        name = "Gal Shachor" /*,
-                        email = "Gal@Shachor",
-                        url = "http://www.ibm.com" */
+                        name = "MFP Team"
                 ),
                 license = @License(
                         name = "IBM Samples License"
                 )
-        ) /*,
-        externalDocs = @ExternalDocs(value = "MobileFirst Developer Center", url = "https://developer.ibm.com/mobilefirstplatform/") */
+        )
 )
 
 @Path("/geolocation")
@@ -65,9 +62,9 @@ import java.util.logging.Logger;
  */
 public class HTTPConnectResource {
 
-	/*
+    /*
      * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
-	 */
+     */
 
     //Define logger (Standard java.util.Logger)
     static Logger logger = Logger.getLogger(HTTPConnectResource.class.getName());
@@ -81,7 +78,7 @@ public class HTTPConnectResource {
     @Path("/lnglat")
     @Produces(MediaType.APPLICATION_JSON)
     @OAuthSecurity(enabled = false)
-    @ApiOperation(value = "Finf the lng/lat information on a given address",
+    @ApiOperation(value = "Find the lng/lat information on a given address",
             notes = "Shows how one can call into a backend service with HTTP and than process the response data " +
                     "and return a reduced payload",
             httpMethod = "GET",

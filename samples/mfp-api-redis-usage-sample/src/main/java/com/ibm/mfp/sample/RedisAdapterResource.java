@@ -70,7 +70,7 @@ import java.util.logging.Logger;
 public class RedisAdapterResource {
     /*
      * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
-	 */
+     */
 
     static Logger logger = Logger.getLogger(RedisAdapterResource.class.getName());
 
