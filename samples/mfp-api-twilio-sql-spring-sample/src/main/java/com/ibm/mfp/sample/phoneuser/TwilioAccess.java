@@ -27,12 +27,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TwilioAccess {
-	/*
-	 * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
-	 */
-		
-	//Define logger (Standard java.util.Logger)
-	static Logger logger = Logger.getLogger(TwilioAccess.class.getName());
+
+    //Define logger (Standard java.util.Logger)
+    static Logger logger = Logger.getLogger(TwilioAccess.class.getName());
 
     /*
      * Twilio specific configuration parameters
@@ -70,7 +67,7 @@ public class TwilioAccess {
         }
 
         logger.info("Twilio initialized!");
-	}
+    }
 
     public boolean send(final String to, final String body) {
         // Build a filter for the MessageList

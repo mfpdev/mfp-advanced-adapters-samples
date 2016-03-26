@@ -35,9 +35,7 @@ import java.util.logging.Logger;
                 title = "User-Phone Binder",
                 termsOfService = "IBM Terms and Conditions apply",
                 contact = @Contact(
-                        name = "Gal Shachor" /*,
-                        email = "Gal@Shachor",
-                        url = "http://www.ibm.com" */
+                        name = "MFP Team"
                 ),
                 license = @License(
                         name = "IBM Samples License"
@@ -50,8 +48,8 @@ import java.util.logging.Logger;
                 "numbers, validate the numbers and than send SMS messages to the users")
 public class PhoneRecordAPIResource {
     /*
-	 * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
-	 */
+     * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
+     */
 
     //Define logger (Standard java.util.Logger)
     static Logger logger = Logger.getLogger(PhoneRecordAPIResource.class.getName());
