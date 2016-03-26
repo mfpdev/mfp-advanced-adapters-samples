@@ -53,8 +53,8 @@ import java.util.logging.Logger;
 public class WeatherAPIResource {
     /*
      * For more info on JAX-RS see
-	 * https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
-	 */
+     * https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
+     */
 
     // Define logger (Standard java.util.Logger)
     static Logger logger = Logger.getLogger(WeatherAPIResource.class.getName());
@@ -63,10 +63,10 @@ public class WeatherAPIResource {
     @Context
     ConfigurationAPI configApi;
 
-	/*
-	 * Path for method:
-	 * "<server address>/mfp/api/adapters/WeatherAPI/users/{username}"
-	 */
+    /*
+     * Path for method:
+     * "<server address>/mfp/api/adapters/WeatherAPI/users/{username}"
+     */
 
     @ApiOperation(value = "Lookup the weather at a specified address",
             notes = "Calls the google geocoding service and a Weather WS-* Service to return the temperature at a specific address .")

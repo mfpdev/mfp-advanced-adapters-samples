@@ -71,6 +71,7 @@
         <mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
         <mfpfUser>admin</mfpfUser>
         <mfpfPassword>admin</mfpfPassword>
+        <mfpfRuntime>mfp</mfpfRuntime>
     </properties>
 
     <build>
