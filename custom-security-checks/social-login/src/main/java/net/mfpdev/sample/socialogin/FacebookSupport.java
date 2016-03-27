@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.ibm.mfp.sample.socialogin;
+package net.mfpdev.sample.socialogin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
