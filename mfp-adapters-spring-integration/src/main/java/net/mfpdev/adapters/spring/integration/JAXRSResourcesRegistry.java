@@ -13,23 +13,11 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.ibm.mfp.adapters.spring.integration.internal;
-
-import org.springframework.beans.factory.config.CustomScopeConfigurer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.request.RequestScope;
+package net.mfpdev.adapters.spring.integration;
 
 /**
  * Created by yotamm on 17/02/16.
  */
-@Configuration
-public class RequestScopeConfig {
-
-    @Bean
-    public CustomScopeConfigurer customScopeConfigurer(){
-        CustomScopeConfigurer customScopeConfigurer = new CustomScopeConfigurer();
-        customScopeConfigurer.addScope("request", new RequestScope());
-        return customScopeConfigurer;
-    }
+public interface JAXRSResourcesRegistry {
+    public Object[] getResources();
 }

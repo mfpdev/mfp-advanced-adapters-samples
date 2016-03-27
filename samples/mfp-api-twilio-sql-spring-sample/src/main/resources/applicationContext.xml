@@ -64,7 +64,7 @@
 
     <!-- This is specific to the MFPF-Spring integration. Tell us
          where is your resource                                     -->
-    <bean class="com.ibm.mfp.adapters.spring.integration.JAXRSResourcesRegistryImpl">
+    <bean class="net.mfpdev.adapters.spring.integration.JAXRSResourcesRegistryImpl">
         <property name="resources">
             <list>
                 <ref bean="apiBean"/>

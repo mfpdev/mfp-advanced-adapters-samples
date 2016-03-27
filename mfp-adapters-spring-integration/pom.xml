@@ -21,15 +21,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ibm.mfp</groupId>
-
+    <groupId>net.mfpdev</groupId>
     <artifactId>mfp-adapters-spring-integration</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <properties>
-        <project.inceptionYear>2016</project.inceptionYear>
-        <project.organization.name>IBM</project.organization.name>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>com.ibm.mfp</groupId>

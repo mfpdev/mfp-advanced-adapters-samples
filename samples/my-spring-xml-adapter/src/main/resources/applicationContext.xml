@@ -16,7 +16,7 @@
     </bean>
 
     <!-- Define the list of JAX-RS resources to use: -->
-    <bean class="com.ibm.mfp.adapters.spring.integration.JAXRSResourcesRegistryImpl">
+    <bean class="net.mfpdev.adapters.spring.integration.JAXRSResourcesRegistryImpl">
         <property name="resources">
             <list>
                 <bean class="com.sample.MySpringXmlAdapterResource"/>

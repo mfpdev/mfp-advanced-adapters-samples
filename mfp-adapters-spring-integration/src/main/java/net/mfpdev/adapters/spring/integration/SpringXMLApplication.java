@@ -13,11 +13,14 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.ibm.mfp.adapters.spring.integration;
+package net.mfpdev.adapters.spring.integration;
 
-/**
- * Created by yotamm on 17/02/16.
- */
-public interface JAXRSResourcesRegistry {
-    public Object[] getResources();
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+
+@Configuration
+@ImportResource(value = "applicationContext.xml")
+public class SpringXMLApplication extends SpringBaseApplication {
+
+
 }

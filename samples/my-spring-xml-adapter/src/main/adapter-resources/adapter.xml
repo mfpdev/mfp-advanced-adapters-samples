@@ -24,7 +24,7 @@
 	<displayName>mySpringXmlAdapter</displayName>
 	<description>mySpringXmlAdapter</description>
 
-	<JAXRSApplicationClass>com.ibm.mfp.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
+	<JAXRSApplicationClass>net.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
 
 	<property name="helloServiceMessage"
 			  displayName="Hello message"

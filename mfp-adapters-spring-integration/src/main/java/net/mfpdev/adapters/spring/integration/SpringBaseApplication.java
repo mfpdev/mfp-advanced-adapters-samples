@@ -13,13 +13,13 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.ibm.mfp.adapters.spring.integration;
+package net.mfpdev.adapters.spring.integration;
 
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
-import com.ibm.mfp.adapters.spring.integration.internal.PropertiesConfig;
-import com.ibm.mfp.adapters.spring.integration.internal.RequestScopeConfig;
-import com.ibm.mfp.adapters.spring.integration.internal.SpringRequestFinishListener;
-import com.ibm.mfp.adapters.spring.integration.internal.SpringRequestStartListener;
+import net.mfpdev.adapters.spring.integration.internal.PropertiesConfig;
+import net.mfpdev.adapters.spring.integration.internal.RequestScopeConfig;
+import net.mfpdev.adapters.spring.integration.internal.SpringRequestFinishListener;
+import net.mfpdev.adapters.spring.integration.internal.SpringRequestStartListener;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
