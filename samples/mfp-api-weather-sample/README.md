@@ -80,7 +80,7 @@ pom.xml fragment shows how the plugin can be used from within a MAVEN build.
         </execution>
     </executions>
     <configuration>
-        <packageName>com.ibm.sample.api.ws</packageName>
+        <packageName>net.mfpdev.weather.sample.api.ws</packageName>
         <vmArgs>
             <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
         </vmArgs>

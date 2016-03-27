@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.ibm.sample.api;
+package net.mfpdev.weather.sample.api;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
@@ -21,9 +21,9 @@ import com.google.maps.model.AddressComponent;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
-import com.ibm.sample.api.ws.Weather;
-import com.ibm.sample.api.ws.WeatherReturn;
 import io.swagger.annotations.*;
+import net.mfpdev.weather.sample.api.ws.Weather;
+import net.mfpdev.weather.sample.api.ws.WeatherReturn;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
