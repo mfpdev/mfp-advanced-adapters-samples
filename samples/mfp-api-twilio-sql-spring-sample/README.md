@@ -32,7 +32,7 @@ The MFPF-Spring integration library contributes the following capabilities:
 The MFPF-Spring integration library is added into the project using the following maven dependency:
 ```XML
 <dependency>
-    <groupId>com.ibm.mfp</groupId>
+    <groupId>net.mfpdev</groupId>
     <artifactId>mfp-adapters-spring-integration</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>

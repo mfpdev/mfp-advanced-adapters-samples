@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.ibm.mfp.sample.phoneuser;
+package net.mfpdev.twilio.sample.phoneuser;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;

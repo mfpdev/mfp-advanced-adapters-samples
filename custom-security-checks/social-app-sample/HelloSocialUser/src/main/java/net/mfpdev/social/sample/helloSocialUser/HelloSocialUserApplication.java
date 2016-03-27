@@ -13,10 +13,9 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.ibm.mfp.sample.helloSocialUser;
+package net.mfpdev.social.sample.helloSocialUser;
 
 import java.util.logging.Logger;
-import java.util.*;
 
 import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 
