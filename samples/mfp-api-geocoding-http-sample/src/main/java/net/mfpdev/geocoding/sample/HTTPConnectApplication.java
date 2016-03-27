@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.ibm.mobilefirst.sample;
+package net.mfpdev.geocoding.sample;
 
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
