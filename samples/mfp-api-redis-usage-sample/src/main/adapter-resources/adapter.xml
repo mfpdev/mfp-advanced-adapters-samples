@@ -27,7 +27,7 @@
         a Redis cache.
     </description>
 
-    <JAXRSApplicationClass>com.ibm.mfp.sample.RedisAdapterApplication</JAXRSApplicationClass>
+    <JAXRSApplicationClass>net.mfpdev.redis.sample.RedisAdapterApplication</JAXRSApplicationClass>
 
     <property name="redisURL"
               displayName="A URL pointing to the Redis Server"
