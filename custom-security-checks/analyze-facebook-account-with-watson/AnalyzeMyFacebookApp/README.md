@@ -7,10 +7,6 @@ Have you ever want to know what's your Facebook feed is telling about your perso
 
 This sample can do those by using [IBM MobileFirst Foundation 8.0](https://developer.ibm.com/mobilefirstplatform/) and [Watson services](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html).
  
-Here is short demo of the app:
-
-[![Analyze My Facebook App](http://img.youtube.com/vi/-cz12GzX1ho/0.jpg)](http://www.youtube.com/watch?v=-cz12GzX1ho)
- 
 ## Build and Setup
  * Adapters
     You need to deploy 2 adapters from custom-security-checks folder (see instructions for each adapter in README):
@@ -20,10 +16,14 @@ Here is short demo of the app:
  
  * Android Native App
     1. You need to get an appId from facebook by adding new Android app in [Facebook Developer Console](https://developers.facebook.com/)
-    2. Add the above appId to facebook_app_id in the string.xml file
-    3. Set your MFP server URL in mfp.properties
+    2. Add the above appId to `facebook_app_id` in the `string.xml` file
+    3. Set your MFP server URL in `mfp.properties`
     
-  * You can run the app now
+  * You can run the app now.
+  
+  See short demo of the app below:
+  
+  [![Analyze My Facebook App](http://img.youtube.com/vi/-cz12GzX1ho/0.jpg)](http://www.youtube.com/watch?v=-cz12GzX1ho)
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
