@@ -30,7 +30,7 @@ This adapter demonstrate:
     * [personalityInsightUser](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html)
     * [personalityInsightPassword](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html)
 * You are done
-* To test it you can use the exiting Android sample AnalyzeMyFacebookApp 
+* To test it you can use the exiting Android sample [AnalyzeMyFacebookApp](../AnalyzeMyFacebookApp/README.md) 
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
