@@ -1,27 +1,24 @@
 IBM MobileFirst Platform Foundation
 ===
-SMS One-Time Password is a commonly used security pattern.  This sample adapter shows how to integrate such a pattern to your IBM MobileFirst Foundation server.
+SMS One-Time Password is a commonly used security pattern.  This sample adapter shows how to integrate such a pattern to your IBM MobileFirst Foundation server. Using the [Twilio](https://www.twilio.com) service.
 
 ## SMSOTPResource
-A JAX-RS class that implements the REST API for provisioning the phone number. The REST call to register the phone number is protected with default scope.
+A JAX-RS class that implements the REST API for provisioning the phone number. The REST call to register the phone number is protected with MobileFirst default scope.
 
 ## SMSOTPSecurityCheck
-A security check class that let validates SMS code as One-Time Password.  
+A security check class that validates SMS code as One-Time Password.  
 
 ## Implementation
 The API is composed of:
 
-1. A **JAX-RS** resource class that implement the REST access points into the server
+1. A **JAX-RS** resource class that implements a REST access points into the server
 2. A **Twilio** Access Object that handles all access to the [Twilio](https://www.twilio.com) backend using the [Twilio](https://www.twilio.com) Java SDK (that wraps the
    Twilio REST APIs)
 
-The API uses the **Spring framework** to setup the DataBase & [Twilio](https://www.twilio.com) access components and inject them into the JAX-RS
-resource. Once the initialization is over, Spring is not playing much of a role (we are not using AOP for example) other
-than use of utility classes.
+The [Twilio](https://www.twilio.com) access components is added with maven dependency.
 
 ### JAX-RS and Swagger Annotations
-The resource class is annotated with both JAX-RS and Swagger annotations (and than also some Spring annotations and
-potentially also MobileFirst security annotations).
+The resource class is annotated with both JAX-RS and Swagger annotations.
 
 **JAX-RS** annotations are used to mark the REST interfaces and marshal objects in and out of the REST interfaces. The
 MobileFirst server uses those annotations to provide a custom Swagger test UI and meta data. The use of JAX-RS is
@@ -44,8 +41,8 @@ but not mandatory.
 * Deploy the built adapter into your MobileFirst server by running `mvn adapter:deploy` (assure that your MobileFirst
   server connection parameters are updated in the **pom.xml** file)
 * Log into the MobileFirst console and update the Adapter configuration parameters
-    * [Twilio](https://www.twilio.com) SID, Access Token and Phone number that can be used to send SMS messages (obtained from the [Twilio](https://www.twilio.com) console)
-    * successStateExpirationSec, expiration of the token created from smsOTP security check in seconds.
+    * `twilioAccountSid`, `twilioAuthToken` and `twilioFromPhoneNumber` that can be used to send SMS messages (obtained from the [Twilio](https://www.twilio.com) console)
+    * `successStateExpirationSec`, expiration of the token created from smsOTP security check in seconds.
 * You are done
 
 ### Supported Levels
