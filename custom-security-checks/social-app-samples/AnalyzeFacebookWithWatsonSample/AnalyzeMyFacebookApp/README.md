@@ -17,7 +17,7 @@ This sample can do those by using [IBM MobileFirst Foundation 8.0](https://devel
  * Android Native App
     1. You need to get an appId from facebook by adding new Android app in [Facebook Developer Console](https://developers.facebook.com/)
     2. Add the above appId to `facebook_app_id` in the `string.xml` file
-    3. Set your MFP server URL in `mfp.properties`
+    3. Set your MFP server URL in `mfpclient.properties`
     
   * You can run the app now.
   
