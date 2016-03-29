@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package social.sample.ibm.com.sociallogin;
+package net.mfpdev.sample.sociallogin;
 
 import com.worklight.wlclient.api.WLResponse;
 import com.worklight.wlclient.api.challengehandler.WLChallengeHandler;
