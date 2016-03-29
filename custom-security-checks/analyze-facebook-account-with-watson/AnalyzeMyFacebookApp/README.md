@@ -5,7 +5,10 @@ IBM MobileFirst Platform Foundation
 Have you ever want to know what's your profile picture in telling about your age or gender?
 Have you ever want to know what's your Facebook feed is telling about your personality? Or about your tone?
 
-This sample can do those by using [IBM MobileFirst Foundation 8.0](https://developer.ibm.com/mobilefirstplatform/) and Watson services.
+This sample can do those by using [IBM MobileFirst Foundation 8.0](https://developer.ibm.com/mobilefirstplatform/) and [Watson services](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html).
+ 
+Here is short demo of the app:
+[![Analyze My Facebook App](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=cz12GzX1ho)
  
 ## Build and Setup
  * Adapters
