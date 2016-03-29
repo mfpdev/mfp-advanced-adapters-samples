@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 
        © Copyright 2016 IBM Corp.
@@ -16,14 +17,7 @@
 
 -->
 <resources>
-    <string name="app_name">Social Login</string>
-    <string name="call_adapter">Call Protected Adapter</string>
-
-    <string name="google_signin">Sign In With Google</string>
-
-
-    <string name="facebook_signin">Sign In With Facebook</string>
-
-    <string name="facebook_app_id">987374518025077</string>
-    <string name="google_server_client_id">743011862875-5ghcg7hdv21gbgt0dhaiiacsmmlijbpr.apps.googleusercontent.com</string>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

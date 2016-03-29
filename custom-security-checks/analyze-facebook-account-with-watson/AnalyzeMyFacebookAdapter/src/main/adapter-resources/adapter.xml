@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       © Copyright 2016 IBM Corp.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<mfp:adapter name="analyzeMyFacebookAdapter"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>Analyze My Facebook Adapter</displayName>
+	<description>This adapter use the logged in Facebook and analyze the profile picture and feeds with Watson services</description>
+
+	<JAXRSApplicationClass>net.mfpdev.adapters.sample.socialWatson.AnalyzeMyFacebookApplication</JAXRSApplicationClass>
+
+	<!-- To get your alchemyAPI key from http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language.html -->
+	<property name="alchemyAPIKey" defaultValue="AlchemyAPI Key" description="See http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language.html"/>
+
+	<!-- To get your toneAnalyzer user & password see http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer.html -->
+	<property name="toneAnalyzerUser" defaultValue="ToneAnalyzer User" description="See http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer.html"/>
+	<property name="toneAnalyzerPassword" defaultValue="ToneAnalyzer Password" description="See http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer.html"/>
+
+	<!-- To get your personalityInsight user & password see http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html -->
+	<property name="personalityInsightUser" defaultValue="Personality Insight User" description="See http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html"/>
+	<property name="personalityInsightPassword" defaultValue="Personality Insight Password" description="See http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html"/>
+
+</mfp:adapter>
