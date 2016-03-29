@@ -9,7 +9,7 @@ This sample can do those by using [IBM MobileFirst Foundation 8.0](https://devel
  
 Here is short demo of the app:
 
-[![Analyze My Facebook App](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=-cz12GzX1ho)
+[![Analyze My Facebook App](http://img.youtube.com/vi/-cz12GzX1ho/0.jpg)](http://www.youtube.com/watch?v=-cz12GzX1ho)
  
 ## Build and Setup
  * Adapters
