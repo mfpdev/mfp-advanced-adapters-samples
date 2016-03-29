@@ -16,10 +16,7 @@
 apply plugin: 'com.android.application'
 
 repositories{
-    maven {
-        //url "http://visustar.francelab.fr.ibm.com:8081/nexus/content/repositories/mobile-s/",
-        url "http://dundermifflin.austin.ibm.com:8081/nexus/content/repositories/mobile-s"
-    }
+    jcenter()
 }
 
 android {
@@ -54,12 +51,14 @@ dependencies {
     }
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.google.android.gms:play-services-auth:8.3.0'
+
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile group: 'com.ibm.mobile.foundation',
             name: 'ibmmobilefirstplatformfoundation',
-            version: '8.0.Beta1-SNAPSHOT',
+            version: '8.0.+',
             ext: 'aar',
             transitive: true
+
     compile 'com.google.android.gms:play-services-appindexing:8.3.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'
 }
