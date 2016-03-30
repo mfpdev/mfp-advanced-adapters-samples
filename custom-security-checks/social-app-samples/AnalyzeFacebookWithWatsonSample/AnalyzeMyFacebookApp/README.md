@@ -7,11 +7,11 @@ Have you ever want to know what's your Facebook feed is telling about your perso
 
 This sample can do those by using [IBM MobileFirst Foundation 8.0](https://developer.ibm.com/mobilefirstplatform/) and [Watson services](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html).
  
-## Build and Setup
- * Adapters
-    You need to deploy 2 adapters from custom-security-checks folder (see instructions for each adapter in README):
-    1. `AnalyzeMyFacebookAdapter` - this is the resource adapter which has protected REST API /analyze.  The /analyze API fetch some Facebook data like picture and user feed and send them to Watson.
-    2. `social-login` - this is the security check adapter which can validate social platform users (Facebook or Google).  
+## Running the application
+ * Build and deploy adapters
+    You need to build and deploy 2 adapters from custom-security-checks folder (see instructions for each adapter in README):
+    1. [AnalyzeMyFacebookAdapter](../AnalyzeMyFacebookAdapter/README.md) - this is the resource adapter which has protected REST API /analyze.  The /analyze API fetch some Facebook data like picture and user feed and send them to Watson.
+    2. [social-login](../../../social-login/README.md) - this is the security check adapter which can validate social platform users (Facebook or Google).  
     Configure the property `keepOriginalToken` to be true, this property tell the adapter to save the real Facebook token, so it can call [Facebook graph API](https://developers.facebook.com/docs/graph-api). 
  
  * Android Native App

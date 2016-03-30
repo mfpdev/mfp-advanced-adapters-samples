@@ -2,7 +2,8 @@ IBM MobileFirst Platform Foundation
 ===
 
 ## Using HelloSocialUser Adapter 
-This is sample adapter to demonstrate the social login security check.  The adapter has one REST API /hello which protected with scope named socialLogin.  
+This is sample adapter to demonstrate the social login security check.  The adapter has one REST API /hello which protected with scope named socialLogin.
+This adapter can be tested with the following native Android app [SocialLoginApp](../SocialLoginApp/README.md).
 
 ## Implementation
 The implementation consists of two components:
@@ -12,8 +13,6 @@ JAX-RS class which has one API /hello that return the authenticated user attribu
 
 ### HelloSocialUserResource
 Then JAX-RS application class 
-
-## Build and Setup
 
 ### Prerequisites
 * A local installation of maven (JDK 1.7 or 1.8)

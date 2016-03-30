@@ -53,7 +53,7 @@ XXX Add more data
 We use a relational database with a single table XXX Add more data
 
 ### Unit Tests
-The unit tests follows the maven tests directory structure and are written using junit. These rae not exustive tests but
+The unit tests follows the maven tests directory structure and are written using junit. These are not exhaustive tests but
 they show how the various classes in the adapter can be tested outside of the MobileFirst server. SOme things to note:
 
 * Since we use a dependency injection framework, the tested object are not dependent on the specifics of the MobileFirst

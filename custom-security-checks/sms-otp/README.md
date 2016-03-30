@@ -28,6 +28,18 @@ mandatory.
 and type information. In general, the use of Swagger annotations to augment the swagger metadata is highly recommended,
 but not mandatory.
 
+## Maven
+* Because the adapter is now a maven project, it become very easy to add dependencies:  
+e.g.: to add [Twilio Java SDK](https://www.twilio.com) all needed is adding those lines to dependencies node in [pom.xml](pom.xml):
+```
+<dependency>
+	        <groupId>com.twilio.sdk</groupId>
+	        <artifactId>twilio-java-sdk</artifactId>
+            <version>6.3.0</version>
+</dependency>
+```
+
+
 ## Build and Setup
 
 ### Prerequisites
