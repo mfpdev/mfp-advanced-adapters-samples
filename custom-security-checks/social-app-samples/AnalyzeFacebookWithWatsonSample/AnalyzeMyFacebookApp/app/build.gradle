@@ -58,11 +58,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:8.3.0'
     compile 'com.android.support:appcompat-v7:23.2.0'
 
-    compile group: 'com.ibm.mobile.foundation',
-            name: 'ibmmobilefirstplatformfoundation',
-            version: '8.0.+',
-            ext: 'aar',
-            transitive: true
+    compile 'com.ibm.mobile.foundation:ibmmobilefirstplatformfoundation:8.0.+'
     compile 'com.google.android.gms:play-services-appindexing:8.3.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
