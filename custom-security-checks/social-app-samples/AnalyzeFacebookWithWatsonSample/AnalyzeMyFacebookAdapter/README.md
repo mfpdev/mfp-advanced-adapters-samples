@@ -35,13 +35,18 @@ e.g.: to add [Watson Java SDK](https://github.com/watson-developer-cloud/java-sd
   server connection parameters are updated in the **pom.xml** file)
 * Log into the MobileFirst console and update the Adapter configuration parameters
     * `alchemyAPIKey` - You can obtain it from a bounded [AlchemyAPI service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).
-    ![AlchemyAPI Key](../assets/images/alchemy.png "AlchemyAPI Key")
-    * `personalityInsightUser` & `personalityInsightPassword` - You can get it from the a bounded [Personality Insights Watson service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).
-    ![Personality Insights Credentials](../assets/images/personality.png "Personality Insights Credentials")    
+    * `personalityInsightUser` & `personalityInsightPassword` - You can get it from the a bounded [Personality Insights Watson service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).     
     * `toneAnalyzerUser` & `toneAnalyzerPassword` - You can get it from the a bounded [TokenAnalyzer Watson service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).
-    ![Tone Analyzer Credentials](../assets/images/tones.png "Tone Analyzer Credentials")    
+    
 * You are done.
 * To test it you can use this Android sample [AnalyzeMyFacebookApp](../AnalyzeMyFacebookApp/README.md) 
+
+**Where can I find the services credentials in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/)?
+You can find the service credentials in your [BlueMix](http://www.ibm.com/cloud-computing/bluemix/) runtime application, under each service box:
+
+| ------------- |:-------------:| -----:|
+| ![AlchemyAPI Key](../assets/images/alchemy.png "AlchemyAPI Key")   | ![Personality Insights Credentials](../assets/images/personality.png "Personality Insights Credentials") | ![Tone Analyzer Credentials](../assets/images/tones.png "Tone Analyzer Credentials")  |
+   
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
