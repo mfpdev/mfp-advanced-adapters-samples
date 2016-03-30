@@ -35,8 +35,8 @@ e.g.: to add [Watson Java SDK](https://github.com/watson-developer-cloud/java-sd
   server connection parameters are updated in the **pom.xml** file)
 * Log into the MobileFirst console and update the Adapter configuration parameters
     * `alchemyAPIKey` - You can obtain it from a bounded [AlchemyAPI service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).
-    * `personalityInsightUser` & `personalityInsightPassword` - You can get it from the a bounded [Personality Insights Watson service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).     
-    * `toneAnalyzerUser` & `toneAnalyzerPassword` - You can get it from the a bounded [TokenAnalyzer Watson service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).
+    * `personalityInsightUser` & `personalityInsightPassword` - You can obtain it from the a bounded [Personality Insights Watson service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).     
+    * `toneAnalyzerUser` & `toneAnalyzerPassword` - You can obtain it from the a bounded [TokenAnalyzer Watson service](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/tone-analyzer.html) in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/).
     
 * You are done.
 * To test it you can use this Android sample [AnalyzeMyFacebookApp](../AnalyzeMyFacebookApp/README.md) 
