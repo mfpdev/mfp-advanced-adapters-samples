@@ -4,6 +4,8 @@ IBM MobileFirst Platform Foundation
 ## Analyze My Facebook 
 Have you ever want to know what's your profile picture in telling about your age or gender?
 Have you ever want to know what's your Facebook feed is telling about your personality? Or about your tone?
+If we take this sample and try to think about real world we can think of ads platform that customize the ads based on your personality, age or gender.
+
 
 This sample can do those by using [IBM MobileFirst Foundation 8.0](https://developer.ibm.com/mobilefirstplatform/) and [Watson services](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html).
  
