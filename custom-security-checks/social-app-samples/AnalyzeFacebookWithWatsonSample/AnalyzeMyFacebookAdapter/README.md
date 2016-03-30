@@ -44,7 +44,7 @@ e.g.: to add [Watson Java SDK](https://github.com/watson-developer-cloud/java-sd
 **Where can I find the services credentials in [BlueMix](http://www.ibm.com/cloud-computing/bluemix/)?
 You can find the service credentials in your [BlueMix](http://www.ibm.com/cloud-computing/bluemix/) runtime application, under each service box:
 
-| ![AlchemyAPI Key](../assets/images/alchemy.png "AlchemyAPI Key")   | ![Personality Insights Credentials](../assets/images/personality.png "Personality Insights Credentials") | ![Tone Analyzer Credentials](../assets/images/tones.png "Tone Analyzer Credentials")  |
+![AlchemyAPI Key](../assets/images/alchemy.png "AlchemyAPI Key") ![Personality Insights Credentials](../assets/images/personality.png "Personality Insights Credentials") ![Tone Analyzer Credentials](../assets/images/tones.png "Tone Analyzer Credentials")  |
    
 
 ### Supported Levels
