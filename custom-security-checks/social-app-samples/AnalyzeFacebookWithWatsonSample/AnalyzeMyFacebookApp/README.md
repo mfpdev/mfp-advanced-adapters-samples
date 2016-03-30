@@ -17,7 +17,7 @@ This sample can do that by using [IBM MobileFirst Foundation 8.0](https://develo
     You must set the property `keepOriginalToken` to `true`. This property allows the adapter to store the original Facebook token to be used when calling [Facebook graph API](https://developers.facebook.com/docs/graph-api). 
  
  * Android Native App
-    1. You need to get an `appId` from Facebook by adding a new Android app in [Facebook Developer Console](https://developers.facebook.com/).
+    1. You need to obtain an `appId` from Facebook by adding a new Android app in [Facebook Developer Console](https://developers.facebook.com/).
     2. Add the `appId` to `facebook_app_id` in the `string.xml` file.
     3. Set your MFP server URL in `mfpclient.properties`.
     
