@@ -2,28 +2,28 @@ IBM MobileFirst Platform Foundation
 ===================================
 
 ## Analyze My Facebook 
-Have you ever want to know what's your profile picture in telling about your age or gender?
-Have you ever want to know what's your Facebook feed is telling about your personality? Or about your tone?
-If we take this sample and try to think about real world we can think of ads platform that customize the ads based on your personality, age or gender.
+Have you ever wanted to know what's your profile picture is telling about your age or gender?
+Have you ever wanted to know what's your Facebook feed is telling about your personality? Or about your tone?
+You can take this sample and try to think about real world use case such as ads platform that customize the ads based on user personality, age or gender.
 
 
-This sample can do those by using [IBM MobileFirst Foundation 8.0](https://developer.ibm.com/mobilefirstplatform/) and [Watson services](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html).
+This sample can do that by using [IBM MobileFirst Foundation 8.0](https://developer.ibm.com/mobilefirstplatform/) and [Watson services](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/services-catalog.html).
  
 ## Running the application
  * Build and deploy adapters
-    You need to build and deploy 2 adapters from custom-security-checks folder (see instructions for each adapter in README):
-    1. [AnalyzeMyFacebookAdapter](../AnalyzeMyFacebookAdapter/README.md) - this is the resource adapter which has protected REST API /analyze.  The /analyze API fetch some Facebook data like picture and user feed and send them to Watson.
+    You need to build and deploy two adapters:
+    1. [AnalyzeMyFacebookAdapter](../AnalyzeMyFacebookAdapter/README.md) - this is the resource adapter which has protected REST API /analyze.  The /analyze API fetch user profile information and feed from Facebook and sends them to Watson to obtain insights.
     2. [social-login](../../../social-login/README.md) - this is the security check adapter which can validate social platform users (Facebook or Google).  
-    Configure the property `keepOriginalToken` to be true, this property tell the adapter to save the real Facebook token, so it can call [Facebook graph API](https://developers.facebook.com/docs/graph-api). 
+    You must set the property `keepOriginalToken` to `true`. This property allows the adapter to store the original Facebook token to be used when calling [Facebook graph API](https://developers.facebook.com/docs/graph-api). 
  
  * Android Native App
-    1. You need to get an appId from facebook by adding new Android app in [Facebook Developer Console](https://developers.facebook.com/)
-    2. Add the above appId to `facebook_app_id` in the `string.xml` file
-    3. Set your MFP server URL in `mfpclient.properties`
+    1. You need to get an `appId` from Facebook by adding a new Android app in [Facebook Developer Console](https://developers.facebook.com/).
+    2. Add the `appId` to `facebook_app_id` in the `string.xml` file.
+    3. Set your MFP server URL in `mfpclient.properties`.
     
   * You can run the app now.
   
-  See short demo of the app below:
+  Here is a short demo:
   
   [![Analyze My Facebook App](http://img.youtube.com/vi/-cz12GzX1ho/0.jpg)](http://www.youtube.com/watch?v=-cz12GzX1ho)
 

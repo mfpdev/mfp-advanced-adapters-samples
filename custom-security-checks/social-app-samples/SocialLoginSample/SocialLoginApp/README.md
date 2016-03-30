@@ -2,19 +2,16 @@ IBM MobileFirst Platform Foundation
 ===
 
 ## Using SocialLogin sample
-This sample is demonstrating how to logged in with 'socialLogin' scope (PreEmptive Login) and call to an adapter which protected with 'socialLogin' scope.  
-This sample is working together with the scoial-login security check and with the HelloSocialUser adapters.
+This application is demonstrating how to perform PreEmptive log-in with 'socialLogin' scope, and then call an adapter which is protected with this scope.  
+This application is using the [social-login](../../../social-login/README.md) security check adapter and the [HelloSocialUserAdapter](../HelloSocialUserAdapter/README.md) adapter.
 
-For using the sample you have to get from Facebook and Google the following and update them is strings.xml:
+### Prerequisites
 
-* Facebook app id
-* Google server client id (Web client id)
-* google-services.json file to put under app folder
-
-To be able get all the above please follow the bellow links:
-
-* Facebook -> https://developers.facebook.com/docs/android/getting-started
-* Google -> https://developers.google.com/identity/sign-in/android/start-integrating
+* Obtain from [Facebook](https://developers.facebook.com/docs/android/getting-started) and [Google](https://developers.google.com/identity/sign-in/android/start-integrating) the following information and update [strings.xml](app/src/main/res/values/strings.xml):
+   1. Facebook app id
+   2. Google server client id (Web client id)
+   3. google-services.json file to put under app folder
+* You are done.
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
