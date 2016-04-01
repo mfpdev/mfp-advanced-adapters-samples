@@ -59,7 +59,8 @@ public class TwilioAccess {
 
         // Check if we can access twilio using our configured parameters
         try {
-            getTwilioRestClient().getAccount();
+            // getDateCreated() used for validation because it is failed if one of the account property is invalid
+            getTwilioRestClient().getAccount().getDateCreated();
         } catch(final Throwable t) {
             logger.log(Level.SEVERE, String.format("Twilio client failed to initialize with the provided parameters SID = [%s] Token = [%s] Number = [%s]",
                     twilioSID, twilioToken, twilioFrom),
