@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="userLoginAndPincode"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>User Login and Pincode security checks</displayName>
+
+	<securityCheckDefinition name="UserLogin" class="com.ibm.mfp.sample.stepup.UserLoginSecurityCheck">
+        <property name="successStateExpirationSec" defaultValue="120" type="integer"
+                  displayName="Login duration"
+                  description="Duration of successful login in seconds"/>
+        <property name="maxAttempts" defaultValue="3" type="integer"
+                  displayName="Max attempts"
+                  description="Max number of attempts"/>
+        <property name="blockedStateExpirationSec" defaultValue="240" type="integer"
+                  displayName="Blocking duration"
+                  description="Duration of the blocking interval in seconds"/>
+    </securityCheckDefinition>
+
+    <securityCheckDefinition name="PinCode" class="com.ibm.mfp.sample.stepup.PinCodeSecurityCheck">
+        <property name="successStateExpirationSec" defaultValue="1800" type="integer"
+                  displayName="Login duration"
+                  description="Duration of successful login in seconds"/>
+        <property name="maxAttempts" defaultValue="2" type="integer"
+                  displayName="Max attempts"
+                  description="Max number of attempts"/>
+        <property name="blockedStateExpirationSec" defaultValue="120" type="integer"
+                  displayName="Blocking duration"
+                  description="Duration of the blocking interval in seconds"/>
+    </securityCheckDefinition>
+</mfp:adapter>
