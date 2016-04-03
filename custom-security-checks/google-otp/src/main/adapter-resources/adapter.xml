@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-    Copyright 2015 IBM Corp.
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+       © Copyright 2016 IBM Corp.
 
-    http://www.apache.org/licenses/LICENSE-2.0
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+           http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
 -->
-
 <!-- Adapter Configuration -->
 
 <wl:adapter name="googleOtp" xmlns:wl="http://www.ibm.com/mfp/integration">
@@ -23,18 +23,18 @@
     <displayName>Google OTP Adapter</displayName>
     <description>This adapter is a Google Authenticator One-Time Password security check sample which let validate a client Google Authenticator passcode against registered user's passcode.  The samples akso contains the API to provision a QR code via REST API /qrCode/{appId}/{appVersion} after it creates such entry in the registration service via a mobile app request to a REST API /setupGoogleOTP</description>
 
-   <JAXRSApplicationClass>com.ibm.mfp.sample.googleOTP.GoogleOTPApplication</JAXRSApplicationClass>
+   <JAXRSApplicationClass>net.mfpdev.sample.googleOTP.GoogleOTPApplication</JAXRSApplicationClass>
 
     <!-- QR Code attributes -->
     <property name="qrCodeOrgName" defaultValue="MFP"/>
     <property name="qrCodeEmail" defaultValue="user@mfp.com"/>
 
     <!-- The google OTP security check -->
-    <securityCheckDefinition name="googleOTP" class="com.ibm.mfp.sample.googleOTP.GoogleOTPSecurityCheck">
+    <securityCheckDefinition name="googleOTP" class="net.mfpdev.sample.googleOTP.GoogleOTPSecurityCheck">
         <property name="successStateExpirationSec" displayName="Success Expiration In Seconds" defaultValue="20"/>
     </securityCheckDefinition>
 
     <!-- The user login security check-->
-    <securityCheckDefinition name="userLogin" class="com.ibm.mfp.sample.googleOTP.UserLoginSecurityCheck"/>
+    <securityCheckDefinition name="userLogin" class="net.mfpdev.sample.googleOTP.UserLoginSecurityCheck"/>
 
 </wl:adapter>

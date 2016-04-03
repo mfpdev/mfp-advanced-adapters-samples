@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       © Copyright 2016 IBM Corp.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<mfp:adapter name="mfpApiGeocodingHttpSample"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:mfp="http://www.ibm.com/mfp/integration"
+             xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+    <displayName>Geocoding over HTTP</displayName>
+    <description>
+        A sample Adapter that provide simple facade on top of Google's geocoding APIs and demo the use of configuration
+        and lifecycle events in an application.
+    </description>
+
+    <!--
+        The Adapter's application class. Initializes the Adapter
+    -->
+    <JAXRSApplicationClass>net.mfpdev.geocoding.sample.HTTPConnectApplication</JAXRSApplicationClass>
+
+    <!--
+        The Adapter's configuration parameters. Once deployed the MobileFirst administrator can modify the parameters
+        values and have the adapter reconfigured instantly.
+    -->
+    <property name="backendLogLevel"
+              displayName="Backend Access Log Level"
+              defaultValue="BASIC"
+              type="['BASIC', 'HEADERS', 'BODY', 'NONE']"
+              description="How much to log out of the HTTP traffic to the backend service"/>
+
+    <property name="requestTimeout"
+              displayName="Backend Request Timeout"
+              defaultValue="32"
+              type="integer"
+              description="Timeout (in seconds) when calling to the backend service"/>
+
+    <property name="backendURL"
+              displayName="Backend URL"
+              defaultValue="https://maps.googleapis.com/maps/api/geocode"
+              type="string"
+              description="URL of the Geolocation API"/>
+
+    <property name="apiKey"
+              displayName="Google Geolocation API Key"
+              defaultValue="AIzaSyDk97qAdzCombgZNt4maajNfVrgGd9NBig"
+              type="string"
+              description="Enter the API Key used to access the service (obtain from Google Developer Console)"/>
+
+</mfp:adapter>

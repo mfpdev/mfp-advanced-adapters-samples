@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       © Copyright 2016 IBM Corp.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<mfp:adapter name="mfpApiTwilioSqlSpringSample"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mfp="http://www.ibm.com/mfp/integration"
+    xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+    <displayName>User-Phone Number Binder</displayName>
+    <description>
+        An API that relate users and phone numbers by registering users and validating their phone numbers
+        using SMS and validation codes.
+    </description>
+
+    <JAXRSApplicationClass>net.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
+
+    <property name="sid"
+              displayName="The Twilio API SID to be used"
+              defaultValue="Enter a SID"
+              type="string"
+              description="Enter the Twilio API SID to be used (obtained from the Twilio console)"/>
+    <property name="token"
+              displayName="The Twilio API Token to be used"
+              defaultValue="Enter a valid token"
+              type="string"
+              description="Enter the Twilio API token to be used (obtained from the Twilio console)"/>
+    <property name="fromNumber"
+              displayName="Number used to send SMS notifications"
+              defaultValue="Enter a valid From number"
+              type="string"
+              description="Enter the Twilio 'from' Phone number to be used (obtained from the Twilio console)"/>
+
+    <property name="databaseLocation"
+              displayName="JNDI location for the registration database"
+              defaultValue="jdbc/pglocal"
+              type="string"
+              description="Enter the JNDI URL to the DataSource that was configured in the application server"/>
+
+</mfp:adapter>
