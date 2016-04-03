@@ -11,6 +11,7 @@
 package com.ibm.mfp.sample.stepup;
 
 import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
+import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 import com.ibm.mfp.server.security.external.checks.AuthorizationResponse;
 import com.ibm.mfp.server.security.external.checks.SecurityCheckReference;
 
@@ -36,6 +37,7 @@ public class PinCodeSecurityCheck extends CredentialsValidationSecurityCheck {
     private transient UserLoginSecurityCheck userLogin;
 
     private transient String registeredPinCode;
+    private transient AuthenticatedUser registeredUser;
 
     @Override
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
@@ -44,15 +46,26 @@ public class PinCodeSecurityCheck extends CredentialsValidationSecurityCheck {
         if (registeredPinCode == null)
             // if the pin code is not registered - try to register it
             registerPinCode(scope, credentials, request, response);
-        else
-            // if the pin code is registered - continue as usual
-            super.authorize(scope, credentials, request, response);
+        else {
+            // if pin code is registered - first check whether the user is logged in
+            if (userLogin.isAuthenticated())
+                // if the user is logged in - don't check the pin code and report success
+                response.addSuccess(scope, userLogin.getExpiresAt(), getName());
+            else {
+                // continue to validate credentials, and if success - set active user
+                super.authorize(scope, credentials, request, response);
+                if (registeredUser != null) {
+                    authorizationContext.setActiveUser(userLogin.getRegisteredUser());
+                    response.addSuccess(scope, getExpiresAt(), getName(), "user", registeredUser);
+                }
+            }
+        }
     }
 
     protected boolean validateCredentials(Map<String, Object> credentials) {
         boolean ok = registeredPinCode.equals(credentials.get(ACTION_GET_PIN_CODE));
         if (ok)
-            authorizationContext.setActiveUser(userLogin.getRegisteredUser());
+            registeredUser = userLogin.getRegisteredUser();
         return ok;
     }
 
