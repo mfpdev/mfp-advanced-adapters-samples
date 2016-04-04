@@ -14,7 +14,7 @@ The API is composed of:
    Twilio REST APIs)
 3. A **DataBase** Access Object that put a Java layer on top of the registration database
 
-The API uses the **Spring framework** to setup the DataBase & Twilio access components and inject them into the JAX-RS
+The API uses the **Spring framework** to setup the DataBase as well as the Twilio access components and than inject them into the JAX-RS
 resource. Once the intialization is over, Spring is not playing much of a role (we are not using AOP for example) other
 than use of utility classes.
 
@@ -43,14 +43,67 @@ Spring is used in this project for Dependency injection and initialization:
 * Injecting objects into each other
 
 While most of the injection is performed through the spring xml file, we also show the use of @Autowired for some
-injections we are using
-XXX Add more data
+of the injections (both styles are acceptable, but as a personal preference I find it valueable to see a listing of the
+instantiated objects inside the spring xml file).
+
+Another use of Spring is in the injection of the Adapter configuration parameters into the Spring instantiated objects.
+The Adapter exposes several configuration parameters via the file adapter.xml as seen below:
+
+```XML
+    <property name="sid"
+              displayName="The Twilio API SID to be used"
+              defaultValue="Enter a SID"
+              type="string"
+              description="Enter the Twilio API SID to be used (obtained from the Twilio console)"/>
+    <property name="token"
+              displayName="The Twilio API Token to be used"
+              defaultValue="Enter a valid token"
+              type="string"
+              description="Enter the Twilio API token to be used (obtained from the Twilio console)"/>
+    <property name="fromNumber"
+              displayName="Number used to send SMS notifications"
+              defaultValue="Enter a valid From number"
+              type="string"
+              description="Enter the Twilio 'from' Phone number to be used (obtained from the Twilio console)"/>
+
+    <property name="databaseLocation"
+              displayName="JNDI location for the registration database"
+              defaultValue="jdbc/pglocal"
+              type="string"
+              description="Enter the JNDI URL to the DataSource that was configured in the application server"/>
+```
+
+We are using Spring to inject the configuration into the running Adapter code and Spring created objects, specifically,
+the below Spring XML fragment inject the **databaseLocation** variable into a JNDI lookup.
+
+```XML
+    <jee:jndi-lookup id="dataSource"
+                     jndi-name="${databaseLocation}"
+                     expected-type="javax.sql.DataSource" />
+```
+
+and the below xml fragment inject the Twilio configuration into the Twilio access object using constructor injection:
+
+```XML
+    <bean id="twilioAccessBean"
+          class="net.mfpdev.twilio.sample.phoneuser.TwilioAccess"
+          c:sid="${sid}"
+          c:token="${token}"
+          c:from="${fromNumber}"/>
+```
 
 ### Twilio
-XXX Add more data
+
+The Adapter uses [Twilio](https://www.twilio.com) to send SMS messages. To ease the use of the Twilio service we are
+using the Twilio Java SDK that wrapper the Twilio REST interfaces.
 
 ### SQL Database
-We use a relational database with a single table XXX Add more data
+We use a relational database with a single table to record registrations. In general, there are two possible ways to use
+the database:
+* Configure the database connection via Spring or some other home grown application level configuration
+* Configure the database via the underlying application server and get the connection via a JNDI reverence
+
+We picked the second option since it allows for improved administration and troubleshooting of the database connection.
 
 ### Unit Tests
 The unit tests follows the maven tests directory structure and are written using junit. These are not exhaustive tests but

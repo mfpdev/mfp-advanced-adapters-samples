@@ -21,6 +21,7 @@ import com.google.maps.model.AddressComponent;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
+import com.ibm.mfp.adapter.api.OAuthSecurity;
 import io.swagger.annotations.*;
 import net.mfpdev.weather.sample.api.ws.Weather;
 import net.mfpdev.weather.sample.api.ws.WeatherReturn;
@@ -73,6 +74,7 @@ public class WeatherAPIResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/weather-lookup")
+    @OAuthSecurity(scope = "weather", enabled = true)
     public Map<String, String> lookupTemperature(@ApiParam(value = "Address where we lookup the weather", required = true) @QueryParam("address") String address) {
 
         // We need an address to work with... lets see that we got something meaningful
