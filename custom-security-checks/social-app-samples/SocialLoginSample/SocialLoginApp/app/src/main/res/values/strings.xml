@@ -24,6 +24,6 @@
 
     <string name="facebook_signin">Sign In With Facebook</string>
 
-    <string name="facebook_app_id">Put your Facebook app id</string>
-    <string name="google_server_client_id">Put your Google app id</string>
+    <string name="facebook_app_id">Put your Facebook app id here</string>
+    <string name="google_server_client_id">Put your Google web client id here</string>
 </resources>
