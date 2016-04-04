@@ -52,9 +52,9 @@
 
     <properties>
         <!-- parameters for deploy mfpf adapter -->
-        <mfpfUrl>http://mobilefoundation-x8-server.mybluemix.net/mfpadmin</mfpfUrl>
+        <mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
         <mfpfUser>admin</mfpfUser>
-        <mfpfPassword>spence1</mfpfPassword>
+        <mfpfPassword>admin</mfpfPassword>
         <mfpfRuntime>mfp</mfpfRuntime>
     </properties>
 
