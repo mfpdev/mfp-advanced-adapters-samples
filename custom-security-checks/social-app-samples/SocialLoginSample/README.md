@@ -1,3 +1,10 @@
+## Prerequisites
+* [Installed Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+* [Registered Facebook Android App](https://developers.facebook.com/docs/android/getting-started)
+* [Registered Google Sign-In App for Android](https://developers.google.com/identity/sign-in/android/start-integrating#get-config)
+* [Installed Android Studio](Registered Facebook OAuth 2.0 Android App)
+* [Installed MobileFirst development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/mobilefirst-development-environment/)
+
 ## Running the sample
 * Start by cloning the Git repository - [MobileFirst 8.0.0 advanced samples and extension modules](https://github.com/mfpdev/mfp-advanced-adapters-samples)
 
@@ -41,7 +48,7 @@
   * Insure you have installed [MobileFirst CLI](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/using-the-mfpf-sdk/using-mobilefirst-cli-to-manage-mobilefirst-artifacts/)
   * Open your command line in the root of the Android project
   * Register the app by typing `mfpdev app register`
-  
+
 
 #### Deploying the adapters
   * IBM MobileFirst Platform gives you several options for deploying an [adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/).
