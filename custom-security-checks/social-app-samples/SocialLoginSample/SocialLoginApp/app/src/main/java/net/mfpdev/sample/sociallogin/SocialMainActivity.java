@@ -219,14 +219,7 @@ public class SocialMainActivity extends AppCompatActivity implements
                 wlLogger.error("Facebook Login failed ", error);
             }
         });
-
-        //Try to get cached Facebook token first
-        AccessToken token = AccessToken.getCurrentAccessToken();
-        if (token != null && !token.isExpired()) {
-            loginToSocialVendor(Vendor.Facebook, token.getToken());
-        } else {
-            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSIONS));
-        }
+        LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList(FACEBOOK_PERMISSIONS));
     }
 
     /**
