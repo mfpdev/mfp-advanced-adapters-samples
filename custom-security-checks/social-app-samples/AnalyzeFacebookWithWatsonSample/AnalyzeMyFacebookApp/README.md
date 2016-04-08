@@ -16,8 +16,8 @@ This sample can do that by using [IBM MobileFirst Platform Foundation 8.0](https
     2. [MobileFirst CLI](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/using-the-mfpf-sdk/using-mobilefirst-cli-to-manage-mobilefirst-artifacts/)  
 
  * Build and deploy adapters  
-    You need to build and deploy two adapters.
-    From the terminal go to the root of each adapter and run the following line in command line:
+    You need to build and deploy two adapters.  
+    From the terminal go to the root of each adapter and run the following lines in the command line:
     ```
     mfpdev adapter build
   mfpdev adapter deploy
