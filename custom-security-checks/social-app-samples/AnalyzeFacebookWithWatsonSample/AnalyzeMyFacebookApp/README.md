@@ -41,11 +41,7 @@ This sample can do that by using [IBM MobileFirst Platform Foundation 8.0](https
 
   Here is a short demo:
 
-  <div class="sizer">
-    <div class="embed-responsive embed-responsive-16by9">
-      <iframe src="https://www.youtube.com/embed/XVceqBIXZnU"></iframe>
-    </div>
-  </div>
+  [![Analyze My Facebook App](http://img.youtube.com/vi/XVceqBIXZnU/0.jpg)](http://www.youtube.com/watch?v=XVceqBIXZnU)
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
