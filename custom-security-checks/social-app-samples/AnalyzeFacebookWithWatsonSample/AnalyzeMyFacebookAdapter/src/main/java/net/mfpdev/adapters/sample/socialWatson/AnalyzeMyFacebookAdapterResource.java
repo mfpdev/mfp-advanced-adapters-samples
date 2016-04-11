@@ -192,7 +192,7 @@ public class AnalyzeMyFacebookAdapterResource {
      * Get authenticated facebook user feed
      *
      * @param facebookAccessToken - the facebook access token for the logged in user
-     * @return
+     * @return JSONObject response from Faceook
      */
     private JSONObject getFacebookFeeds(String facebookAccessToken) {
         HttpGet httpGetRequest = new HttpGet(FACEBOOK_GRAPH_API + "feed?&access_token=" + facebookAccessToken);
@@ -203,10 +203,10 @@ public class AnalyzeMyFacebookAdapterResource {
      * Get the facebook user picture analyze from watson
      *
      * @param imageURL - the facebook image url to analyze
-     * @return
+     * @return JSONObject contain the image analyse
      */
     private JSONObject getImageTaggingFromWatson(String imageURL) {
-        HttpGet httpget = null;
+        HttpGet httpget;
         try {
             httpget = new HttpGet("http://gateway-a.watsonplatform.net/calls/url/URLGetRankedImageFaceTags?url=" +
                     URLEncoder.encode(imageURL, "UTF-8")
@@ -223,7 +223,7 @@ public class AnalyzeMyFacebookAdapterResource {
      * Return JSON object from facebook graph API
      *
      * @param request - the request
-     * @return
+     * @return JSONObJSONObjectject response
      */
     private JSONObject getJSONObjectFromRequest(HttpUriRequest request) {
         JSONObject jsonObject = null;

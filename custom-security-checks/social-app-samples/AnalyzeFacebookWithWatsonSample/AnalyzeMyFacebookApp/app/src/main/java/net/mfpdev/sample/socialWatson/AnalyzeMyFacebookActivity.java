@@ -43,8 +43,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.jayway.jsonpath.JsonPath;
 import com.worklight.common.Logger;
 import com.worklight.common.WLAnalytics;
@@ -68,7 +66,6 @@ import java.util.Collections;
  * @since 14/03/2016
  */
 public class AnalyzeMyFacebookActivity extends AppCompatActivity implements
-        GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
     public static final String FACEBOOK_PERMISSIONS = "public_profile,email,user_posts";
@@ -104,25 +101,22 @@ public class AnalyzeMyFacebookActivity extends AppCompatActivity implements
         facebookCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        String error = "onConnectionFailed:" + connectionResult.getErrorMessage();
-        updateStatus(error);
-    }
-
     /**
      * Click listener
      *
-     * @param v the clicked view
+     * @param view the clicked view
      */
     @Override
-    public void onClick(View v) {
-        this.analyzeMe();
-        //Clean status and profile picture
-        toneBarChart.clear();
-        personalityPieChart.clear();
-        resetUserProfilePic();
-        resetStatus();
+    public void onClick(View view) {
+        if (view.getId() == R.id.analyze_me) {
+            this.analyzeMe();
+            //Clean status and profile picture
+            toneBarChart.clear();
+            personalityPieChart.clear();
+            resetUserProfilePic();
+            resetStatus();
+        }
+
     }
 
     @Override
@@ -205,7 +199,7 @@ public class AnalyzeMyFacebookActivity extends AppCompatActivity implements
         final ProgressDialog progressDialog;
         progressDialog = ProgressDialog.show(this, "Please Wait...", "Analyzing Facebook..", false, true);
 
-        WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/AnalyzeMyFacebookAdapter/analyze"), WLResourceRequest.GET, socialLoginChallengeHandler.getSecurityCheck());
+        WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/analyzeMyFacebookAdapter/analyze"), WLResourceRequest.GET, socialLoginChallengeHandler.getSecurityCheck());
         wlResourceRequest.send(new WLResponseListener() {
             @Override
             public void onSuccess(WLResponse wlResponse) {
