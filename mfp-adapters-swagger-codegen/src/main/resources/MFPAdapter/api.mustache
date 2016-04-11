@@ -1,0 +1,71 @@
+package {{package}};
+
+import {{modelPackage}}.*;
+import {{package}}.{{classname}}Service;
+{{#serviceFactoryClassname}}import {{package}}.{{classname}}ServiceFactoryFinder;{{/serviceFactoryClassname}}
+
+import io.swagger.annotations.ApiParam;
+
+{{#imports}}import {{import}};
+{{/imports}}
+
+import {{package}}.NotFoundException;
+
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.*;
+
+import com.ibm.mfp.adapter.api.OAuthSecurity;
+
+{{#autowiredSpringService}}
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+{{/autowiredSpringService}}
+
+@Path("/{{baseName}}")
+{{#hasConsumes}}@Consumes({ {{#consumes}}"{{mediaType}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}
+{{#hasProduces}}@Produces({ {{#produces}}"{{mediaType}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
+@io.swagger.annotations.Api(description = "the {{baseName}} API")
+{{>generatedAnnotation}}
+{{#operations}}
+{{#autowiredSpringService}}@Component{{/autowiredSpringService}}
+public class {{classname}}  {
+   {{#autowiredSpringService}}@Autowired{{/autowiredSpringService}}
+   private {{classname}}Service delegate = null;
+   
+   private {{classname}}Service get{{classname}}Service() {{#serviceFactoryClassname}}throws ServiceFactoryFinderException{{/serviceFactoryClassname}} {
+   {{#serviceFactoryClassname}}
+   		if ( delegate == null ) {
+   			delegate = {{classname}}ServiceFactoryFinder.findFactoryImpl().get{{classname}}Service();
+   		} {{/serviceFactoryClassname}}
+   		return delegate;
+   }
+   
+{{#operation}}
+    @{{httpMethod}}
+    {{#subresourceOperation}}@Path("{{path}}"){{/subresourceOperation}}
+    {{#hasConsumes}}@Consumes({ {{#consumes}}"{{mediaType}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}
+    {{#hasProduces}}@Produces({ {{#produces}}"{{mediaType}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
+    @io.swagger.annotations.ApiOperation(
+    	value = "{{{summary}}}", 
+		notes = "{{{notes}}}", 
+		response = {{{returnType}}}.class{{#returnContainer}}, 
+		responseContainer = "{{{returnContainer}}}"{{/returnContainer}}{{#hasAuthMethods}}, 
+		authorizations = {
+        	{{#authMethods}}@io.swagger.annotations.Authorization(value = "{{name}}"{{#isOAuth}}, scopes = {
+            {{#scopes}}@io.swagger.annotations.AuthorizationScope(scope = "{{scope}}", description = "{{description}}"){{#hasMore}},
+            {{/hasMore}}{{/scopes}}}{{/isOAuth}}){{#hasMore}},
+        	{{/hasMore}}{{/authMethods}}
+    		}{{/hasAuthMethods}}, tags={ {{#vendorExtensions.x-tags}}"{{tag}}"{{#hasMore}}, {{/hasMore}}{{/vendorExtensions.x-tags}} })
+    @io.swagger.annotations.ApiResponses(value = { {{#responses}}
+        @io.swagger.annotations.ApiResponse(code = {{{code}}}, message = "{{{message}}}", response = {{{returnType}}}.class{{#returnContainer}}, responseContainer = "{{{returnContainer}}}"{{/returnContainer}}){{#hasMore}},
+        {{/hasMore}}{{/responses}} })
+    {{#hasAuthMethods}}{{#authMethods}}{{#isOAuth}}{{#scopes.size}}@OAuthSecurity(enabled=true, scope="{{/scopes.size}}{{#scopes}}{{scope}}{{#hasMore}} {{/hasMore}}{{/scopes}}{{#scopes.size}}"){{/scopes.size}}{{/isOAuth}}{{/authMethods}}{{/hasAuthMethods}}{{^hasAuthMethods}}@OAuthSecurity(enabled=false){{/hasAuthMethods}}{{#hasAuthMethods}}{{^authMethods}}@OAuthSecurity(enabled=false){{/authMethods}}{{/hasAuthMethods}}   
+    public Response {{nickname}}({{#allParams}}{{>queryParams}}{{>pathParams}}{{>headerParams}}{{>bodyParams}}{{>formParams}},{{/allParams}} @Context SecurityContext securityContext)
+    throws NotFoundException{{#serviceFactoryClassname}}, ServiceFactoryFinderException{{/serviceFactoryClassname}} {
+        return get{{classname}}Service().{{nickname}}({{#allParams}}{{#isFile}}inputStream, fileDetail{{/isFile}}{{^isFile}}{{paramName}}{{/isFile}},{{/allParams}}securityContext);
+    }
+{{/operation}}
+}
+{{/operations}}

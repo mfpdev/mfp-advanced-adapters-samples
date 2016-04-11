@@ -1,0 +1,19 @@
+package {{package}};
+
+{{>generatedAnnotation}}
+public class {{classname}}ServiceFactoryFinder {
+
+	public static {{classname}}ServiceFactoryIfc findFactoryImpl() throws ServiceFactoryFinderException {
+		String svcFactoryClassname = "{{serviceFactoryClassname}}";
+		
+		if ( svcFactoryClassname != null && svcFactoryClassname.length() > 0 ) {
+			try {
+				return ({{classname}}ServiceFactoryIfc)Class.forName(svcFactoryClassname).newInstance();
+			} catch ( Exception e ) {
+				throw new ServiceFactoryFinderException(e);
+			}
+		} else {
+		    throw new ServiceFactoryFinderException("{{classname}}ServiceFactoryIfc" + " implementation class name not defined in codegen configuration");
+		}
+	}
+}
