@@ -24,6 +24,7 @@
         <module>mfp-api-geocoding-http-sample</module>
     	<module>my-spring-xml-adapter</module>
     <module>factory-customer-adapter</module>
+    <module>spring-customer-adapter</module>
   </modules>
     <parent>
         <artifactId>mfp-adapters-extensions</artifactId>
