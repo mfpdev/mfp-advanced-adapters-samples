@@ -1,0 +1,8 @@
+{
+	"modelPackage" 	: "com.swaggercodegen.samples.factory.customer.model",
+	"apiPackage" 	: "com.swaggercodegen.samples.factory.customer.api",
+	"additionalProperties" : {
+		"serviceFactoryClassname" : "com.swaggercodegen.samples.factory.customer.api.CustomerFactoryImpl"
+	}
+}
+	
