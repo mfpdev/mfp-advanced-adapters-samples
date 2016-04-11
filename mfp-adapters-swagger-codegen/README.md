@@ -134,7 +134,7 @@ Now build the Adapter and deploy it on MobileFirst Server !!!
 ## Samples
 To help you understand this mfp-adaper-swagger-codegen extension, assimilate and try all of what has been mentioned on this page there are two samples
 that are provided
-* _accounts-adapter_ sample which uses the service factory implementation approach to providing the service implementation
-* _accounts-spring-adapter_ sample which uses Spring dependency injection to provide implementation for the service.
+* _factory-customer-adapter_ sample which uses the service factory implementation approach to providing the service implementation
+* _spring-customer-adapter_ sample which uses Spring dependency injection to provide implementation for the service.
 
 
