@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="factoryCustomerAdapter"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>factoryCustomerAdapter</displayName>
+	<description>factoryCustomerAdapter</description>
+
+	<JAXRSApplicationClass>com.swaggercodegen.samples.factory.customer.api.FactoryCustomerAdapterApplication</JAXRSApplicationClass>
+</mfp:adapter>

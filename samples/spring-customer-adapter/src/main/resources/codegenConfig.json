@@ -1,0 +1,8 @@
+{
+	"modelPackage" 	: "com.swaggercodegen.samples.spring.customer.model",
+	"apiPackage" 	: "com.swaggercodegen.samples.spring.customer.api",
+	"additionalProperties" : {
+		"autowiredSpringService" : true
+	}
+}
+	

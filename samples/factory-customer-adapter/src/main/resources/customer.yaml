@@ -1,0 +1,242 @@
+swagger: "2.0"
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - https
+  
+#host - Default to localhost
+host: localhost
+
+info:
+  title: Sample Customer API Specification - Customer 
+  description: Sample Customer API definition 
+  version: 1.0
+  contact:
+    name: MobileFirst Development Team
+    email: mfpdev@ibm.com
+
+basePath: /mfp/api/adapters/factoryCustomerAdapter
+# common definitions 
+parameters:
+  Accept-Language:
+    in: header
+    name: Accept-Language
+    description: To support API localization
+    required: true
+    type: string
+  Content-Type:
+    in: header
+    name: Content-Type
+    description: To support API localization
+    required: true
+    type: string
+      
+#security section for MFP
+securityDefinitions:
+  mfp_oauth :
+    type: oauth2
+    scopes:
+      DEFAULT_SCOPE: Granted read/write access to api catalog
+      myAuthScope : Grants all access
+      customScope: Some customized scope
+    flow: accessCode
+    authorizationUrl: "https://github.com/login/oauth/authorize"
+    tokenUrl: "https://github.com/login/oauth/access_token"
+    
+paths:
+  /customers:
+    get:
+      x-since-version: "1.0"
+      tags:
+        - customer
+      summary: Find all customers
+      description: Find all customers
+      operationId: getAllCustomers
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/Content-Type"
+        - $ref: "#/parameters/Accept-Language"
+      responses:
+        "200":
+          description: List of customers found
+          schema:
+            properties:
+              customers :
+                type: array
+                items:
+                  $ref: "#/definitions/Customer"
+        "500":
+          description: Unexpected error(s)
+          schema:
+              $ref: "#/definitions/Error"
+    post:
+      x-since-version: "1.0.0"
+      tags:
+        - customer
+      summary: Create a new customer
+      description: Create a Customer (returns created customer)
+      operationId: createCustomer
+      security:
+        - mfp_oauth :
+          - DEFAULT_SCOPE
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/Content-Type"
+        - $ref: "#/parameters/Accept-Language"
+        - in: body
+          name: Customer
+          description: An instance of customer definition
+          required: false
+          schema:
+            $ref: "#/definitions/Customer"
+      responses:
+        "201":
+          description: No technical errors
+          schema:
+            $ref: "#/definitions/Customer"
+        "409":
+          description: Customer by this ID already exists
+          schema:
+            properties :
+              errorMsg409 :
+                type : string
+        "500":
+          description: Unexpected errors when trying to create customer
+          schema:
+              $ref: "#/definitions/Error"              
+  /customers/{customerId}:
+    get:
+      x-since-version: "1.0.0"
+      tags:
+        - customer
+      summary: Find Customer by ID
+      description: Retrieve customer by ID (returns Customer)
+      operationId: getCustomer
+      security:
+        - mfp_oauth:
+          - customScope
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/Content-Type"
+        - $ref: "#/parameters/Accept-Language"
+        - in: path
+          name: customerId
+          description: Customer ID
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully found customer
+          schema:
+            $ref: "#/definitions/Customer"
+        "404" :
+          description : Unable to find customer by this ID
+          schema :
+            properties :
+                errorMsg404 :
+                  type : string
+        "500":
+          description: Unexpected errors when finding customer
+          schema:
+              $ref: "#/definitions/Error"
+    delete:
+      x-since-version: "1.0.0"
+      tags:
+        - customer
+      summary: Delete customer by ID
+      description: Delete customer by ID
+      operationId: removeCustomer
+      security:
+        - mfp_oauth:
+            - myAuthScope
+            - customScope
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: "#/parameters/Content-Type"
+        - $ref: "#/parameters/Accept-Language"
+        - in: path
+          name: customerId
+          description: Customer ID
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successfully removed customer
+        "404":
+          description: Unable to find customer by this ID
+          schema:
+            properties :
+              errorMsg404 :
+                type : string
+        "500":
+          description: Unexpected errors when removing customer
+          schema:
+              $ref: "#/definitions/Error"
+definitions:
+  Error:
+    description: Warnings and errors from backend systems.  Message is for debug only, app should lookup localized message from local based on id
+    properties:
+      id:
+        type: string
+        description: Server-generated error code
+        enum: [NO_RESULTS_FOUND,SAVE_FAILED,ADD_FAILED,UPLOAD_FAILED,SCAN_FAILED,DELETE_FAILED]
+      message:
+        type: string
+        description: Message for debug only, not to be displayed
+      level:
+        type: string
+        description: Message level
+        enum: [INFO,WARNING,ERROR]
+  Customer:
+    description: 'Customer entity'
+    required:
+      - customerId  
+      - firstName
+      - lastName
+      - contactInfo
+    properties:
+      customerId :
+        description : 'Cutomer ID'
+        type : string
+      firstName:
+        description: 'Customer first name'
+        type: string
+      lastName:
+        description: 'Customer last name'
+        type: string
+      contactInfo:
+        description: 'Contact information of customer'
+        $ref: '#/definitions/ContactInfo'
+  ContactInfo:
+    description: 'Customer Contact Information Entity'
+    required:
+      - street  
+      - state
+      - country
+    properties:
+      street :
+        description : 'Name of street or road'
+        type : string
+      state:
+        description: 'State in the country'
+        type: string
+      country:
+        description: 'Country name'
+        type: string
+      email :
+        description: 'Email address of customer'
+        type: string
