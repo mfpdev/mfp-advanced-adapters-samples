@@ -36,17 +36,20 @@ public class LTPAChallengeHandler : WLChallengeHandler {
     
     //Send the credentials to the server
     public func sendLoginForm (user: String, password: String) {
-        if let resourseRequest = WLResourceRequest(URL: NSURL(string:self.loginURL!)!, method:WLHttpMethodPost) {
-            resourseRequest.sendWithBody("j_username=\(user)&j_password=\(password)&action=Login", completionHandler:{ (response, error) -> Void in
-                if error == nil {
-                   self.submitChallengeAnswer(nil)
-                } else {
-                    print ("Failed to login")
-                    self.submitFailure(nil)
-                }
-            })
-        }
+        let request = NSMutableURLRequest(URL: NSURL(string: self.loginURL!)!)
+        let session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        request.HTTPBody = String("j_username=\(user)&j_password=\(password)&action=Login").dataUsingEncoding(NSUTF8StringEncoding)
+        
+        
+        //request.addValue("Basic \(user):\(password)", forHTTPHeaderField: "Authurization")
+        
+        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            self.submitChallengeAnswer(nil)
+        })
+        task.resume()
     }
+    
 
     //Handle failure hook
     public override func handleFailure(failure: [NSObject : AnyObject]!) {
