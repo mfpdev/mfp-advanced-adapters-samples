@@ -15,13 +15,9 @@
 		D417DE081CC39B9D00DA6075 /* LTPAChallengeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417DE071CC39B9D00DA6075 /* LTPAChallengeHandler.swift */; };
 		D417DE0A1CC3A5E000DA6075 /* mfpclient.plist in Resources */ = {isa = PBXBuildFile; fileRef = D417DE091CC3A5E000DA6075 /* mfpclient.plist */; };
 		D417DE2A1CC4C05300DA6075 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417DE291CC4C05300DA6075 /* LoginViewController.swift */; };
-		D417DE2C1CC5078000DA6075 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D417DE2B1CC5078000DA6075 /* README.md */; };
-		E8AB18567AF8D776E50BF0F6 /* libPods-LTPABasedSSOSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84E9C2026BB5DC8315E938 /* libPods-LTPABasedSSOSample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A84E9C2026BB5DC8315E938 /* libPods-LTPABasedSSOSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTPABasedSSOSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		57DA82B8375DAB0424E31FE5 /* Pods-LTPABasedSSOSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTPABasedSSOSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTPABasedSSOSample/Pods-LTPABasedSSOSample.debug.xcconfig"; sourceTree = "<group>"; };
 		D417DDF21CC396A300DA6075 /* LTPABasedSSOSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTPABasedSSOSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D417DDF51CC396A300DA6075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D417DDF71CC396A300DA6075 /* HelloLTPAUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloLTPAUserViewController.swift; sourceTree = "<group>"; };
@@ -32,8 +28,6 @@
 		D417DE071CC39B9D00DA6075 /* LTPAChallengeHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPAChallengeHandler.swift; sourceTree = "<group>"; };
 		D417DE091CC3A5E000DA6075 /* mfpclient.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = mfpclient.plist; sourceTree = "<group>"; };
 		D417DE291CC4C05300DA6075 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D417DE2B1CC5078000DA6075 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E9AA69BF400F13419ED9320C /* Pods-LTPABasedSSOSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTPABasedSSOSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTPABasedSSOSample/Pods-LTPABasedSSOSample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,26 +35,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8AB18567AF8D776E50BF0F6 /* libPods-LTPABasedSSOSample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		80D11E45B498C86331BE14EB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				57DA82B8375DAB0424E31FE5 /* Pods-LTPABasedSSOSample.debug.xcconfig */,
-				E9AA69BF400F13419ED9320C /* Pods-LTPABasedSSOSample.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		926A6ED57F91ABAE7C05E421 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0A84E9C2026BB5DC8315E938 /* libPods-LTPABasedSSOSample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -68,11 +51,9 @@
 		D417DDE91CC396A300DA6075 = {
 			isa = PBXGroup;
 			children = (
-				D417DE2B1CC5078000DA6075 /* README.md */,
 				D417DE091CC3A5E000DA6075 /* mfpclient.plist */,
 				D417DDF41CC396A300DA6075 /* LTPABasedSSOSample */,
 				D417DDF31CC396A300DA6075 /* Products */,
-				80D11E45B498C86331BE14EB /* Pods */,
 				926A6ED57F91ABAE7C05E421 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -107,12 +88,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D417DE041CC396A300DA6075 /* Build configuration list for PBXNativeTarget "LTPABasedSSOSample" */;
 			buildPhases = (
-				4F61935371F185FE9CF7A490 /* 📦 Check Pods Manifest.lock */,
 				D417DDEE1CC396A300DA6075 /* Sources */,
 				D417DDEF1CC396A300DA6075 /* Frameworks */,
 				D417DDF01CC396A300DA6075 /* Resources */,
-				DC2705FC28367EFFAF48A9F7 /* 📦 Embed Pods Frameworks */,
-				900B1788A69D994EE4551516 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,54 +148,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		4F61935371F185FE9CF7A490 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		900B1788A69D994EE4551516 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTPABasedSSOSample/Pods-LTPABasedSSOSample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC2705FC28367EFFAF48A9F7 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTPABasedSSOSample/Pods-LTPABasedSSOSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		D417DDEE1CC396A300DA6075 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -225,7 +155,6 @@
 			files = (
 				D417DE2A1CC4C05300DA6075 /* LoginViewController.swift in Sources */,
 				D417DDF81CC396A300DA6075 /* HelloLTPAUserViewController.swift in Sources */,
-				D417DE2C1CC5078000DA6075 /* README.md in Sources */,
 				D417DE081CC39B9D00DA6075 /* LTPAChallengeHandler.swift in Sources */,
 				D417DDF61CC396A300DA6075 /* AppDelegate.swift in Sources */,
 			);
@@ -338,7 +267,6 @@
 		};
 		D417DE051CC396A300DA6075 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57DA82B8375DAB0424E31FE5 /* Pods-LTPABasedSSOSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LTPABasedSSOSample/Info.plist;
@@ -350,7 +278,6 @@
 		};
 		D417DE061CC396A300DA6075 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9AA69BF400F13419ED9320C /* Pods-LTPABasedSSOSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LTPABasedSSOSample/Info.plist;
