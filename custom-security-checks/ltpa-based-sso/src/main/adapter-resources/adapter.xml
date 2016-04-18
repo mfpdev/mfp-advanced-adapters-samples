@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="ltpaBasedSso"
+			 xmlns:mfp="http://www.ibm.com/mfp/integration"
+			 xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>LTPA Based SSO Security Check</displayName>
+	<description>A security check adapter which check for a valid existing LTPA token</description>
+
+	<!-- The LTPA based SSO security check -->
+	<securityCheckDefinition name="LTPA" class="net.mfpdev.sample.ltpa.LTPABasedSSOSecurityCheck">
+		<property name="expirationSec" displayName="Success Expiration In Seconds" defaultValue="3600"/>
+		<property name="loginURL" displayName="The login URL to point to in order to be able get the LTPA token" defaultValue="http://localhost:9080/plain-war/j_security_check"/>
+	</securityCheckDefinition>
+
+</mfp:adapter>
