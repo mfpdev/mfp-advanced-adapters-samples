@@ -38,16 +38,31 @@ public class LTPAChallengeHandler : WLChallengeHandler {
     public func sendLoginForm (user: String, password: String) {
         let request = NSMutableURLRequest(URL: NSURL(string: self.loginURL!)!)
         let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        request.HTTPBody = String("j_username=\(user)&j_password=\(password)&action=Login").dataUsingEncoding(NSUTF8StringEncoding)
+    
+        //Form based authentication
         
+        /*
+         request.HTTPMethod = "POST"
+         request.HTTPBody = String("j_username=\(user)&j_password=\(password)&action=Login").dataUsingEncoding(NSUTF8StringEncoding)
+        */
         
-        //request.addValue("Basic \(user):\(password)", forHTTPHeaderField: "Authurization")
+        //Basic Authorization
+        let credentials = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)
         
-        let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            self.submitChallengeAnswer(nil)
-        })
-        task.resume()
+        if let credentialsBase64Encoded = credentials?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        {
+            request.addValue("Basic \(credentialsBase64Encoded)", forHTTPHeaderField: "Authorization")
+            let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                if (error == nil) {
+                    self.submitChallengeAnswer(nil)
+                } else {
+                    self.submitFailure(nil)
+                }
+            })
+            task.resume()
+        } else {
+            self.submitFailure(nil)
+        }
     }
     
 

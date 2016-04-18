@@ -10,8 +10,8 @@
 	xmlns:mfp="http://www.ibm.com/mfp/integration"
 	xmlns:http="http://www.ibm.com/mfp/integration/http">
 
-	<displayName>HelloLTPAUser</displayName>
-	<description>HelloLTPAUser</description>
+	<displayName>Hello LTPA User</displayName>
+	<description>Resource Adapter which protected With LTPA Based SSO Security check </description>
 
 	<JAXRSApplicationClass>net.mfpdev.ltpa.sample.hello.HelloLTPAUserApplication</JAXRSApplicationClass>
 </mfp:adapter>
