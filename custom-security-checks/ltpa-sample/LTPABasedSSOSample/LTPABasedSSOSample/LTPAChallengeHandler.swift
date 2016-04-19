@@ -48,20 +48,26 @@ public class LTPAChallengeHandler : WLChallengeHandler {
         
         //Basic Authorization
         let credentials = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)
-        
+        self.submitFailure(nil)
+        return
         if let credentialsBase64Encoded = credentials?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
         {
             request.addValue("Basic \(credentialsBase64Encoded)", forHTTPHeaderField: "Authorization")
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-                if (error == nil) {
-                    self.submitChallengeAnswer(nil)
-                } else {
-                    self.submitFailure(nil)
-                }
+                dispatch_async(dispatch_get_main_queue(),{
+                    if (error == nil) {
+                        //Assume authentication succeeded, if we will be challenged again
+                        self.submitChallengeAnswer(nil)
+                    } else {
+                        self.submitFailure(nil)
+                    }
+                })
             })
             task.resume()
         } else {
-            self.submitFailure(nil)
+            dispatch_async(dispatch_get_main_queue(),{
+                self.submitFailure(nil)
+            })
         }
     }
     

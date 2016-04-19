@@ -24,7 +24,8 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidDisappear(animated: Bool) {
-         self.navigationItem.setHidesBackButton(true, animated: true)
+        usernameTextField.becomeFirstResponder()
+        self.navigationItem.setHidesBackButton(true, animated: true)
         self.clearFields()
     }
     

@@ -23,7 +23,7 @@ class HelloLTPAUserViewController: UIViewController {
             if error == nil {
                 self.alert("Hello \(response.responseJSON["displayName"]!)")
             } else {
-                self.alert(error.localizedDescription)
+               self.alert(error.localizedDescription)
             }
         })
         
