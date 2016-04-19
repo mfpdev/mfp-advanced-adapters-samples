@@ -68,17 +68,17 @@ This sample contains 4 components:
     </server>
   ```
 
-- Build the sample app:
+- Build the sample app:  
   - From a terminal window, navigate to the Swift App XCode project's root folder and run the following [CocoaPods](https://cocoapods.org/) command:  
   ```
     pod install
   ```
-- Register the sample app:
+- Register the sample app:  
   - From a terminal window, navigate to the Swift App XCode project's root folder and run:
   ```
     mfpdev app register
   ```
-- Run the sample app:
+- Run the sample app:  
   - From a terminal window, navigate to the Swift App XCode project's root folder and run:
   ```
     open LTPABasedSSOSample.xcworkspace
