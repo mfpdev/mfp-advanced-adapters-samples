@@ -1,7 +1,7 @@
 IBM MobileFirst Platform Foundation
 ===
 ## Using LTPA Based SSO Security Check Sample
-A sample application demonstrating the use of the [LTPA Based SSO](https://www.wikiwand.com/en/IBM_Lightweight_Third-Party_Authentication) Security Check to protect an [IBM MobileFirst Platform](http://www-03.ibm.com/software/products/en/mobilefirstplatform) resource adapter.  This will allow your application to call a user repository on the liberty server like [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol).
+A sample application demonstrating the use of the [LTPA Based SSO](https://www.wikiwand.com/en/IBM_Lightweight_Third-Party_Authentication) Security Check to protect an [IBM MobileFirst Platform](http://www-03.ibm.com/software/products/en/mobilefirstplatform) resource adapter.  This will allow your application to authenticate a user against repositories on the liberty server like [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol).
 
 This sample contains 4 components:  
 
