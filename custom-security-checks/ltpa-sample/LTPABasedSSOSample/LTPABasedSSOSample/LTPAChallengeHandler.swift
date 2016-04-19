@@ -35,28 +35,35 @@ public class LTPAChallengeHandler : WLChallengeHandler {
     }
     
     //Send the credentials to the server
-    public func sendLoginForm (user: String, password: String) {
+    public func sendLoginCredentials (user: String, password: String) {
         let request = NSMutableURLRequest(URL: NSURL(string: self.loginURL!)!)
         let session = NSURLSession.sharedSession()
-    
-        //Form based authentication
+        
+        // To use the Form based authentication uncomment the following and comment the Basic authentication part
         
         /*
+         
+         // Start Form Authorization
+         
          request.HTTPMethod = "POST"
          request.HTTPBody = String("j_username=\(user)&j_password=\(password)&action=Login").dataUsingEncoding(NSUTF8StringEncoding)
-        */
+         
+         // End Form Authorization
+         
+         */
         
-        //Basic Authorization
+        
+        
+        // Start Basic authentication
+        
         let credentials = "\(user):\(password)".dataUsingEncoding(NSUTF8StringEncoding)
-        self.submitFailure(nil)
-        return
         if let credentialsBase64Encoded = credentials?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
         {
             request.addValue("Basic \(credentialsBase64Encoded)", forHTTPHeaderField: "Authorization")
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 dispatch_async(dispatch_get_main_queue(),{
                     if (error == nil) {
-                        //Assume authentication succeeded, if we will be challenged again
+                        //Assume authentication succeeded, if not we will be challenged again
                         self.submitChallengeAnswer(nil)
                     } else {
                         self.submitFailure(nil)
@@ -69,9 +76,11 @@ public class LTPAChallengeHandler : WLChallengeHandler {
                 self.submitFailure(nil)
             })
         }
+        
+        // End Basic authentication
     }
     
-
+    
     //Handle failure hook
     public override func handleFailure(failure: [NSObject : AnyObject]!) {
         isInChallenge = false

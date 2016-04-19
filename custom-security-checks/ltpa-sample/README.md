@@ -1,7 +1,7 @@
 IBM MobileFirst Platform Foundation
 ===
 ## Using LTPA Based SSO Security Check Sample
-A sample application demonstrating use of the [LTPA SSO](https://www.wikiwand.com/en/IBM_Lightweight_Third-Party_Authentication) Based Security Check to protect an [IBM MobileFirst Platform](http://www-03.ibm.com/software/products/en/mobilefirstplatform) resource adapter.  This will allow your application to call a user repository on the liberty server like [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol).
+A sample application demonstrating the use of the [LTPA Based SSO](https://www.wikiwand.com/en/IBM_Lightweight_Third-Party_Authentication) Security Check to protect an [IBM MobileFirst Platform](http://www-03.ibm.com/software/products/en/mobilefirstplatform) resource adapter.  This will allow your application to call a user repository on the liberty server like [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol).
 
 This sample contains 4 components:  
 
@@ -17,14 +17,14 @@ This sample contains 4 components:
 
 ### Usage
 - Deploy the security check and the resource adapter:  
-  - From a terminal window, navigate to the *ltpa-based-sso* project's root folder and run the commands:  
+  - From a terminal window, navigate to the */ltpa-based-sso* project's root folder and run the commands:  
   ```
   mfpdev adapter build
   mfpdev adapter deploy
   ```
-  - Navigate to *HelloLTPAUserResourceAdapter* and run against the above commands.  
+  - Navigate to */HelloLTPAUserResourceAdapter* and run against the above commands.  
 
-  - Your adapters are now deployed.
+  - Your adapters are deployed now.
 
 - Configure The LTPA SSO Based Security Check:
   - From a terminal window run the following command:  
@@ -34,9 +34,9 @@ This sample contains 4 components:
   ```
 
   - Navigate to the *Security checks* tab and configure the `login URL`:  
-    -  For *BASIC* authentication method set it to your deployed WAR context (e.g: http://localhost:9080/plain-war).  
-    -  For *FORM* authentication method set it to the FORM action (e.g: http://localhost:9080/plain-war/j_security_check).
-    -  The sample by default is configure to use the *BASIC* authentication method. In order to change it to *FORM* authentication method edit the following:    
+    -  For *BASIC* authentication method set the login URL to point your deployed WAR context (e.g: http://localhost:9080/plain-war).  
+    -  For *FORM* authentication method set he login URL point to the FORM action (e.g: http://localhost:9080/plain-war/j_security_check).
+    -  The sample by default is configured to use the *BASIC* authentication method. In order to change it to *FORM* authentication method edit the following:    
       - [web.xml](./plain-war/src/main/webapp/WEB-INF/web.xml) in the [plain-war](./plain-war) project.
       - [LTPAChallengeHandler.swift](./LTPABasedSSOSample/LTPABasedSSOSample/LTPAChallengeHandler.swift) in the [LTPABasedSSOSample](./LTPABasedSSOSample) XCode project.  
 
@@ -47,7 +47,7 @@ This sample contains 4 components:
   ```
     mvn install
   ```
-  - From *target* folder copy the created file *plain-war.war* into your running liberty server (you can use IBM MobileFirst Platform server for this purpose), and map it in the *server.xml*.  For instance, if you copy *plain-war.war* file into *mfp-server* folder in your server, then your *server.xml* you will need to add the following:   
+  - From *target* folder copy the created file *plain-war.war* into your running liberty server (you can use IBM MobileFirst Platform server for this purpose) and map it in *server.xml*.  For instance, if you copy *plain-war.war* file into *mfp-server* folder on your server, then in your *server.xml* you will need to add the following:   
   ```xml
     <server>
     .
@@ -69,21 +69,23 @@ This sample contains 4 components:
   ```
 
 - Build and run the sample Swift app:
-  - From a terminal window, navigate to Swift App XCode project's root folder and run the [COCOAPODS](https://cocoapods.org/) command:  
+  - From a terminal window, navigate to the Swift App XCode project's root folder and run the following [CocoaPods](https://cocoapods.org/) command:  
   ```
     pod install
   ```
-  - After install was done you can open the workspace project by typing in terminal window:
-  ```
-    open LTPABasedSSOSample.xcworkspace
-  ```
 - Register the application:
-  - From a terminal window, navigate to Swift App XCode project's root folder and run:
+  - From a terminal window, navigate to the Swift App XCode project's root folder and run:
   ```
     mfpdev app register
   ```
-- You can now run the application in XCode
+- Running the application:
+  - From a terminal window, navigate to the Swift App XCode project's root folder and run:
+  ```
+    open LTPABasedSSOSample.xcworkspace
+  ```
+  - In the XCode project open *mfpclient.plist* and change the *host* property to `localhost` or to the domain you just configured on the security check adapter (The LTPA2 is a Cookie, so the domains need to be equals due to [Cross-site request forgery](https://www.wikiwand.com/en/Cross-site_request_forgery) policy)
 
+  - You can now run the Swift application.
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
