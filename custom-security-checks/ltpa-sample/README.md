@@ -87,6 +87,21 @@ This sample contains 4 components:
 
   - You can now run the Swift application.
 
+  - If you are are running this sample in front of new development liberty / MFP server then the user repository can be found inside the server.xml file:
+
+  ```xml
+  <server>
+    ...
+    <basicRegistry>
+      ...
+      <user name="admin" password="admin"/>
+
+    </basicRegistry>
+  ...
+  </server>
+  ```
+
+
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
 
