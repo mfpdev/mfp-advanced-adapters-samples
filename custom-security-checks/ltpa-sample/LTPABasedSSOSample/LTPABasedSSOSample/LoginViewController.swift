@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
     @IBAction func login(sender: AnyObject) {
         if (validateFields()) {
             if let challenge = WLClient.sharedInstance().getChallengeHandlerBySecurityCheck("LTPA") as? LTPAChallengeHandler {
-                challenge.sendLoginForm(self.usernameTextField.text!, password: self.passwordTextField.text!);
+                challenge.sendLoginCredentials(self.usernameTextField.text!, password: self.passwordTextField.text!);
             }
         } else {
             errorLable.text = "Username & password are required fields"
