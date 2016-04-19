@@ -1,18 +1,19 @@
 IBM MobileFirst Platform Foundation
 ===
-## LTPA SSO Based Sample
+## Using LTPA Based SSO Security Check Sample
 A sample application demonstrating use of the [LTPA SSO](https://www.wikiwand.com/en/IBM_Lightweight_Third-Party_Authentication) based Security Check to protect an [IBM MobileFirst Platform](http://www-03.ibm.com/software/products/en/mobilefirstplatform) resource adapter.  This will allow your application to call a user repository on the liberty server like [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol).
 
-This sample contains 4 components:
-1. [The LTPA SSO Based Security Check](/ltpa-based-sso) - This security check validates that the incoming request contains a valid LTPA2 cookie, and extracts the user from it.
-2. [The Resource Adapter](/HelloLTPAUserResourceAdapter) - This is the resource adapter which is protected by the LTPA SSO Based Security Check.
-3. [The WAR project](/plain-war) - This is the WAR project which has the protected resources by Liberty / WebSphere.
-4. [The Sample Swift Application](/LTPABasedSSOSample) - This sample calls the resource adapter and displays an alert with "Hello {User}" after a successful authentication.
+This sample contains 4 components:  
+
+1. [The LTPA SSO Based Security Check](./ltpa-based-sso) - This security check validates that the incoming request contains a valid LTPA2 cookie, and extracts the user from it.  
+2. [The Resource Adapter](./HelloLTPAUserResourceAdapter) - This is the resource adapter which is protected by the LTPA SSO Based Security Check.  
+3. [The WAR project](./plain-war) - This is the WAR project which has the protected resources by Liberty / WebSphere.  
+4. [The Sample Swift Application](./LTPABasedSSOSample) - This sample calls the resource adapter and displays an alert with "Hello {User}" after a successful authentication.  
 
 ### Prerequisites
 1. Understanding the IBM MobileFirst Platform [Authentication and Security](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/).
 2. Understanding the IBM MobileFirst Platform [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters/)
-3. Pre installed IBM MobileFirst Platform [development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/)
+3. Pre-installed IBM MobileFirst Platform [development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/)
 
 ### Usage
 - Deploy the security check and the resource adapter:  
@@ -21,18 +22,18 @@ This sample contains 4 components:
   mfpdev adapter build
   mfpdev adapter deploy
   ```
-  - Navigate to *HelloLTPAUserResourceAdapter* and run agains the above commands.  
+  - Navigate to *HelloLTPAUserResourceAdapter* and run against the above commands.  
 
-  - Your adapters is now deployed.
+  - Your adapters are now deployed.
 
-- Configure the The LTPA SSO Based Security Check:
+- Configure The LTPA SSO Based Security Check:
   - From a terminal window run the following command:  
 
   ```
     mfpdev server console
   ```
 
-  - Navigate to the *Security checks* tab and configure the login URL, which will point to your deployed WAR url (/plain-war) in case you are using *BASIC* authentication method or to the login action(/plain-war/j_security_check) in case you are using *FORM* authentication method.
+  - Navigate to the *Security checks* tab and configure the login URL, which will point to your deployed WAR URL (/plain-war) in case you are using *BASIC* authentication method or to the login action(/plain-war/j_security_check) in case you are using *FORM* authentication method.
 
 
   ![Security Check Configuration](/images/SecurityCheckConfig.png)
@@ -42,7 +43,7 @@ This sample contains 4 components:
   ```
     mvn install
   ```
-  - From target folder copy the created WAR file *plain-war.war* into your running liberty server (you can use IBM MobileFirst Platform server for this purpose) and map it in the server.xml. For instance if you copy *plain-war.war* file into mfp-server in your server, then your server.xml you will need to add this mapping:   
+  - From target folder copy the created WAR file *plain-war.war* into your running liberty server (you can use IBM MobileFirst Platform server for this purpose) and map it in the server.xml. For instance, if you copy *plain-war.war* file into mfp-server in your server, then your server.xml you will need to add this mapping:   
   ```xml
     <server>
     .
@@ -68,7 +69,7 @@ This sample contains 4 components:
   ```
     pod install
   ```
-  - After install done you can open the workspace project by typing in terminal window:
+  - After install was done you can open the workspace project by typing in terminal window:
   ```
     open LTPABasedSSOSample.xcworkspace
   ```
