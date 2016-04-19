@@ -5,7 +5,7 @@ A sample application demonstrating the use of the [LTPA Based SSO](https://www.w
 
 This sample contains 4 components:  
 
-1. [The LTPA SSO Based Security Check](./ltpa-based-sso) - This security check validates that the incoming request contains a valid LTPA2 cookie, and extracts the user from it.  
+1. [The LTPA Based SSO Security Check](./ltpa-based-sso) - This security check validates that the incoming request contains a valid LTPA2 cookie, and extracts the user from it.  
 2. [The Resource Adapter](./HelloLTPAUserResourceAdapter) - This is the resource adapter which is protected by the LTPA SSO Based Security Check.  
 3. [The WAR project](./plain-war) - This is the WAR project which has the protected resources by Liberty / WebSphere.  
 4. [The Sample Swift Application](./LTPABasedSSOSample) - This Swift application sample calls to the resource adapter and displays an alert with "Hello {User}" after a successful authentication.  
