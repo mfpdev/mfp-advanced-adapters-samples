@@ -12,8 +12,8 @@ This sample contains 4 components:
 
 ### Prerequisites
 1. Understanding the IBM MobileFirst Platform [Authentication and Security](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/).
-2. Understanding the IBM MobileFirst Platform [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters/)
-3. Pre-installed IBM MobileFirst Platform [development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/)
+2. Understanding the IBM MobileFirst Platform [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters/).
+3. Pre-installed IBM MobileFirst Platform [development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/).
 
 ### Usage
 - Deploy the security check and the resource adapter:  
@@ -36,7 +36,7 @@ This sample contains 4 components:
   - Navigate to the *Security checks* tab and configure the login URL, which will point to your deployed WAR URL (/plain-war) in case you are using *BASIC* authentication method or to the login action(/plain-war/j_security_check) in case you are using *FORM* authentication method.
 
 
-  ![Security Check Configuration](/images/SecurityCheckConfig.png)
+  ![Security Check Configuration](./images/SecurityCheckConfig.png)
 
 - install and deploy the war file:
   - From a terminal window, navigate to the *plain-war* project's root folder and run the commands:
