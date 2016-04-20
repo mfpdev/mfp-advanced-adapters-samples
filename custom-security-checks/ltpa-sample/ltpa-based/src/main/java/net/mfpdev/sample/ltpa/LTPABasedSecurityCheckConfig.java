@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package net.mfpdev.sample.ltpa;
 
 import com.ibm.mfp.server.security.external.checks.impl.ExternalizableSecurityCheckConfig;
