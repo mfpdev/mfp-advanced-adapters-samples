@@ -1,7 +1,7 @@
 IBM MobileFirst Platform Foundation
 ===
 ## Using LTPA Based Security Check Sample
-A sample application demonstrating the use of the [LTPA Based](https://www.wikiwand.com/en/IBM_Lightweight_Third-Party_Authentication) Security Check to protect an [IBM MobileFirst Platform](http://www-03.ibm.com/software/products/en/mobilefirstplatform) resource adapter.  This will allow your application to authenticate a user against repositories on the liberty server like [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol).
+This is a sample application demonstrating the use of the [LTPA Based](https://www.wikiwand.com/en/IBM_Lightweight_Third-Party_Authentication) Security Check to protect an [IBM MobileFirst Platform](http://www-03.ibm.com/software/products/en/mobilefirstplatform) resource adapter.  This will allow your application to authenticate a user against repositories on the liberty server like [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol).
 
 This sample contains 4 components:  
 
@@ -34,15 +34,15 @@ This sample contains 4 components:
   ```
 
   - Navigate to the *Security checks* tab and configure the `login URL`:  
-    -  For *BASIC* authentication method set the login URL to point your deployed WAR context (e.g: http://localhost:9080/plain-war).  
-    -  For *FORM* authentication method set he login URL point to the FORM action (e.g: http://localhost:9080/plain-war/j_security_check).
-    -  The sample by default is configured to use the *BASIC* authentication method. In order to change it to *FORM* authentication method edit the following:    
+    -  For *BASIC* authentication, set the login URL to point to your deployed WAR context (e.g: http://localhost:9080/plain-war).  
+    -  For *FORM-BASED* authentication, set the login URL point to the FORM action (e.g: http://localhost:9080/plain-war/j_security_check).
+    -  The sample by default is configured to use the *BASIC* authentication method. In order to change it to *FORM-BASED* authentication edit the following:    
       - [web.xml](./plain-war/src/main/webapp/WEB-INF/web.xml) in the [plain-war](./plain-war) project.
       - [LTPAChallengeHandler.swift](./LTPABasedSample/LTPABasedSample/LTPAChallengeHandler.swift) in the [LTPABasedSample](./LTPABasedSample) XCode project.  
 
   ![Security Check Configuration](./images/SecurityCheckConfig.png)
 
-- install and deploy the war file:
+- Install and deploy the war file:
   - From a terminal window, navigate to the *plain-war* project's root folder and run the command:
   ```
     mvn install
@@ -96,7 +96,7 @@ This sample contains 4 components:
 ### Connecting your application to LDAP registry
 Connecting to [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol) can be done with simple configuration in server.xml. To learn more see [Configuring LDAP user registries in Liberty](https://www.ibm.com/support/knowledgecenter/was_beta_liberty/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_sec_ldap.html).  
 
-As an instance to be able test the connection to an [Online LDAP Test Server](http://www.forumsys.com/en/tutorials/integration-how-to/ldap/online-ldap-test-server/) you need to add the following in your liberty server.xml file:
+For example, to be able test the connection to an [Online LDAP Test Server](http://www.forumsys.com/en/tutorials/integration-how-to/ldap/online-ldap-test-server/) you need to add the following in your liberty server.xml file:
 
 ```xml
 <server>
