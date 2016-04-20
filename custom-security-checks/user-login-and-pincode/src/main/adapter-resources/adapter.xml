@@ -16,27 +16,34 @@
        limitations under the License.
 
 -->
-<mfp:adapter name="socialLogin"
+<mfp:adapter name="userLoginAndPincode"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:mfp="http://www.ibm.com/mfp/integration"
              xmlns:http="http://www.ibm.com/mfp/integration/http">
 
-	<displayName>Social Login adapter</displayName>
-	<description>
-        Provides integration with Google and Facebook sign-in.
-        The client performs sign-in, obtains the vendor token, and sends it to the 'socialLogin' security check as a credentials parameter.
-        The security check verifies the token with its vendor, and creates an MFP Authenticated User.
-    </description>
+    <displayName>User Login and Pincode security checks</displayName>
 
-    <securityCheckDefinition name="socialLogin" class="net.mfpdev.sample.socialogin.SocialLoginSecurityCheck">
-        <property name="keepOriginalToken" type="boolean" defaultValue="false"
-                  displayName="keep original token"
-                  description="If true, the token submitted by the client is stored in the Authenticated User as an attribute 'originalToken'"
-        />
-        <property name="google.clientId"
-                  defaultValue="-- enter your client Id here --"
-                  displayName="google client Id"
-                  description="OAuth 2.0 client ID that was created for your server. Get it from Google Developers Console
-                  at https://console.developers.google.com/projectselector/apis/credentials"/>
+    <securityCheckDefinition name="UserLogin" class="net.mfpdev.sample.stepup.UserLoginSecurityCheck">
+        <property name="successStateExpirationSec" defaultValue="120" type="integer"
+                  displayName="Login duration"
+                  description="Duration of successful login in seconds"/>
+        <property name="maxAttempts" defaultValue="3" type="integer"
+                  displayName="Max attempts"
+                  description="Max number of attempts"/>
+        <property name="blockedStateExpirationSec" defaultValue="240" type="integer"
+                  displayName="Blocking duration"
+                  description="Duration of the blocking interval in seconds"/>
     </securityCheckDefinition>
 
+    <securityCheckDefinition name="PinCode" class="net.mfpdev.sample.stepup.PinCodeSecurityCheck">
+        <property name="successStateExpirationSec" defaultValue="1800" type="integer"
+                  displayName="Login duration"
+                  description="Duration of successful login in seconds"/>
+        <property name="maxAttempts" defaultValue="2" type="integer"
+                  displayName="Max attempts"
+                  description="Max number of attempts"/>
+        <property name="blockedStateExpirationSec" defaultValue="120" type="integer"
+                  displayName="Blocking duration"
+                  description="Duration of the blocking interval in seconds"/>
+    </securityCheckDefinition>
 </mfp:adapter>
