@@ -93,6 +93,24 @@ This sample contains 4 components:
   </server>
   ```
 
+### Connecting your application LDAP
+Connecting to [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol) can be done with simple configuration in server.xml. To learn more see [Configuring LDAP user registries in Liberty](https://www.ibm.com/support/knowledgecenter/was_beta_liberty/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_sec_ldap.html).
+As an instance to be able test the connection to an [Online LDAP Test Server](http://www.forumsys.com/en/tutorials/integration-how-to/ldap/online-ldap-test-server/) you need to add the following in your liberty server.xml file:
+
+```xml
+<server>
+  <featureManager>
+    ...
+    <feature>ldapRegistry-3.0</feature>
+    ...
+  </featureManager>
+  ...
+
+  <ldapRegistry baseDN="dc=example,dc=com" bindDN="cn=read-only-admin,dc=example,dc=com" bindPassword="password" port="389" host="ldap.forumsys.com" reuseConnection="false" returnToPrimaryServer="false" realm="BasicRegistry" ldapType="Custom"/>
+
+  ...
+</server>
+```
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
