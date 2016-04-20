@@ -94,7 +94,8 @@ This sample contains 4 components:
   ```
 
 ### Connecting your application to LDAP registry
-Connecting to [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol) can be done with simple configuration in server.xml. To learn more see [Configuring LDAP user registries in Liberty](https://www.ibm.com/support/knowledgecenter/was_beta_liberty/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_sec_ldap.html).
+Connecting to [LDAP](https://www.wikiwand.com/en/Lightweight_Directory_Access_Protocol) can be done with simple configuration in server.xml. To learn more see [Configuring LDAP user registries in Liberty](https://www.ibm.com/support/knowledgecenter/was_beta_liberty/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_sec_ldap.html).  
+
 As an instance to be able test the connection to an [Online LDAP Test Server](http://www.forumsys.com/en/tutorials/integration-how-to/ldap/online-ldap-test-server/) you need to add the following in your liberty server.xml file:
 
 ```xml
