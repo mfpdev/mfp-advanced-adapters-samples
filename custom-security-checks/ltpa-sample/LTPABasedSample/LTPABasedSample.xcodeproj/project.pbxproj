@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0CDB06EB0300CF2FC5C0E32E /* libPods-LTPABasedSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 154EF8E37D3D05815913DA55 /* libPods-LTPABasedSample.a */; };
+		D417DE0A1CC3A5E000DA6075 /* mfpclient.plist in Resources */ = {isa = PBXBuildFile; fileRef = D417DE091CC3A5E000DA6075 /* mfpclient.plist */; };
+		D45394A01CC7541F0094DD36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45394951CC7541F0094DD36 /* AppDelegate.swift */; };
+		D45394A11CC7541F0094DD36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D45394961CC7541F0094DD36 /* Assets.xcassets */; };
+		D45394A21CC7541F0094DD36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45394971CC7541F0094DD36 /* LaunchScreen.storyboard */; };
+		D45394A31CC7541F0094DD36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45394991CC7541F0094DD36 /* Main.storyboard */; };
+		D45394A41CC7541F0094DD36 /* HelloLTPAUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453949B1CC7541F0094DD36 /* HelloLTPAUserViewController.swift */; };
+		D45394A51CC7541F0094DD36 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D453949C1CC7541F0094DD36 /* Info.plist */; };
+		D45394A61CC7541F0094DD36 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453949D1CC7541F0094DD36 /* LoginViewController.swift */; };
+		D45394A71CC7541F0094DD36 /* LTPAChallengeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453949E1CC7541F0094DD36 /* LTPAChallengeHandler.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		105FE89AA0BD44DEB5F453D3 /* Pods-LTPABasedSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTPABasedSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample.debug.xcconfig"; sourceTree = "<group>"; };
+		154EF8E37D3D05815913DA55 /* libPods-LTPABasedSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTPABasedSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E6ECCD451C7FF86C9CC6147 /* Pods-LTPABasedSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTPABasedSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample.release.xcconfig"; sourceTree = "<group>"; };
+		D417DDF21CC396A300DA6075 /* LTPABasedSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTPABasedSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D417DE091CC3A5E000DA6075 /* mfpclient.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = mfpclient.plist; sourceTree = "<group>"; };
+		D45394951CC7541F0094DD36 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D45394961CC7541F0094DD36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D45394981CC7541F0094DD36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D453949A1CC7541F0094DD36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D453949B1CC7541F0094DD36 /* HelloLTPAUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloLTPAUserViewController.swift; sourceTree = "<group>"; };
+		D453949C1CC7541F0094DD36 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D453949D1CC7541F0094DD36 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D453949E1CC7541F0094DD36 /* LTPAChallengeHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPAChallengeHandler.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D417DDEF1CC396A300DA6075 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CDB06EB0300CF2FC5C0E32E /* libPods-LTPABasedSample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		926A6ED57F91ABAE7C05E421 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				154EF8E37D3D05815913DA55 /* libPods-LTPABasedSample.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEED273F3BD96C358938AB2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				105FE89AA0BD44DEB5F453D3 /* Pods-LTPABasedSample.debug.xcconfig */,
+				7E6ECCD451C7FF86C9CC6147 /* Pods-LTPABasedSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D417DDE91CC396A300DA6075 = {
+			isa = PBXGroup;
+			children = (
+				D417DE091CC3A5E000DA6075 /* mfpclient.plist */,
+				D45394941CC7541F0094DD36 /* LTPABasedSample */,
+				D417DDF31CC396A300DA6075 /* Products */,
+				926A6ED57F91ABAE7C05E421 /* Frameworks */,
+				CEED273F3BD96C358938AB2D /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		D417DDF31CC396A300DA6075 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D417DDF21CC396A300DA6075 /* LTPABasedSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D45394941CC7541F0094DD36 /* LTPABasedSample */ = {
+			isa = PBXGroup;
+			children = (
+				D453949E1CC7541F0094DD36 /* LTPAChallengeHandler.swift */,
+				D453949D1CC7541F0094DD36 /* LoginViewController.swift */,
+				D453949B1CC7541F0094DD36 /* HelloLTPAUserViewController.swift */,
+				D45394951CC7541F0094DD36 /* AppDelegate.swift */,
+				D45394961CC7541F0094DD36 /* Assets.xcassets */,
+				D45394971CC7541F0094DD36 /* LaunchScreen.storyboard */,
+				D45394991CC7541F0094DD36 /* Main.storyboard */,
+				D453949C1CC7541F0094DD36 /* Info.plist */,
+			);
+			path = LTPABasedSample;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D417DDF11CC396A300DA6075 /* LTPABasedSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D417DE041CC396A300DA6075 /* Build configuration list for PBXNativeTarget "LTPABasedSample" */;
+			buildPhases = (
+				0D8BD1B190D5D5CE572BD24A /* 📦 Check Pods Manifest.lock */,
+				D417DDEE1CC396A300DA6075 /* Sources */,
+				D417DDEF1CC396A300DA6075 /* Frameworks */,
+				D417DDF01CC396A300DA6075 /* Resources */,
+				E09A1CB42C03ADF72217E947 /* 📦 Embed Pods Frameworks */,
+				0487180A05C2D59D9ADF31EA /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LTPABasedSample;
+			productName = LTPABasedSample;
+			productReference = D417DDF21CC396A300DA6075 /* LTPABasedSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D417DDEA1CC396A300DA6075 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = IBM;
+				TargetAttributes = {
+					D417DDF11CC396A300DA6075 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = D417DDED1CC396A300DA6075 /* Build configuration list for PBXProject "LTPABasedSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D417DDE91CC396A300DA6075;
+			productRefGroup = D417DDF31CC396A300DA6075 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D417DDF11CC396A300DA6075 /* LTPABasedSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D417DDF01CC396A300DA6075 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D45394A21CC7541F0094DD36 /* LaunchScreen.storyboard in Resources */,
+				D45394A11CC7541F0094DD36 /* Assets.xcassets in Resources */,
+				D417DE0A1CC3A5E000DA6075 /* mfpclient.plist in Resources */,
+				D45394A51CC7541F0094DD36 /* Info.plist in Resources */,
+				D45394A31CC7541F0094DD36 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0487180A05C2D59D9ADF31EA /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0D8BD1B190D5D5CE572BD24A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E09A1CB42C03ADF72217E947 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D417DDEE1CC396A300DA6075 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D45394A61CC7541F0094DD36 /* LoginViewController.swift in Sources */,
+				D45394A01CC7541F0094DD36 /* AppDelegate.swift in Sources */,
+				D45394A41CC7541F0094DD36 /* HelloLTPAUserViewController.swift in Sources */,
+				D45394A71CC7541F0094DD36 /* LTPAChallengeHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D45394971CC7541F0094DD36 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D45394981CC7541F0094DD36 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D45394991CC7541F0094DD36 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D453949A1CC7541F0094DD36 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D417DE021CC396A300DA6075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D417DE031CC396A300DA6075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D417DE051CC396A300DA6075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 105FE89AA0BD44DEB5F453D3 /* Pods-LTPABasedSample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LTPABasedSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.mfpdev.ltpa.LTPABasedSample;
+				PRODUCT_NAME = LTPABasedSample;
+			};
+			name = Debug;
+		};
+		D417DE061CC396A300DA6075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E6ECCD451C7FF86C9CC6147 /* Pods-LTPABasedSample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LTPABasedSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.mfpdev.ltpa.LTPABasedSample;
+				PRODUCT_NAME = LTPABasedSample;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D417DDED1CC396A300DA6075 /* Build configuration list for PBXProject "LTPABasedSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D417DE021CC396A300DA6075 /* Debug */,
+				D417DE031CC396A300DA6075 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D417DE041CC396A300DA6075 /* Build configuration list for PBXNativeTarget "LTPABasedSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D417DE051CC396A300DA6075 /* Debug */,
+				D417DE061CC396A300DA6075 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D417DDEA1CC396A300DA6075 /* Project object */;
+}
