@@ -113,6 +113,9 @@ For example, to be able test the connection to an [Online LDAP Test Server](http
 </server>
 ```
 
+### Technical Overview
+For a technical overview see the following blog - [Working with LDAP and LTPA in IBM MobileFirst Platform Foundation 8.0 Beta](https://mobilefirstplatform.ibmcloud.com/blog/2016/04/21/using-ldap-as-user-registry/)  
+
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
 
