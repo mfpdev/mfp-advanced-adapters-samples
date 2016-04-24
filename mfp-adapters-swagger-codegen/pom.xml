@@ -51,16 +51,7 @@
     <maven>2.2.0</maven>
   </prerequisites>
   <build>
-  	<resources>
-      <resource>
-        <directory>.</directory>
-        <targetPath>META-INF</targetPath>
-        <includes>
-        	<include>LICENSE.txt</include>
-        </includes>
-      </resource>
-    </resources>
-    <plugins>
+  	<plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
