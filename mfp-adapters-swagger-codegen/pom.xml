@@ -20,13 +20,46 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ibm.mfp</groupId>
   <artifactId>mfp-adapters-swagger-codegen</artifactId>
+  <version>1.0</version>
   <packaging>jar</packaging>
-  <name>MFPAdapter-swagger-codegen</name>
-  <version>1.0-SNAPSHOT</version>
+  <name>MobileFirst Adapter Swagger-Codegen Extension</name>
+  <description>
+  	This module provides a swagger-codegen language extension for JAXRS to enable quick and 
+    easy hosting of ReST services described using Open API specs.
+  </description>
+  <url>https://github.com/mfpdev/mfp-advanced-adapters-samples/tree/development/mfp-adapters-swagger-codegen</url>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Venkatakrishnan</name>
+      <email>svkrish@in.ibm.com</email>
+      <organization>IBM</organization>
+      <organizationUrl>http://www.ibm.com</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git@github.com:mfpdev/mfp-advanced-adapters-samples.git</connection>
+    <developerConnection>scm:git:git@github.com:mfpdev/mfp-advanced-adapters-samples.git</developerConnection>
+    <url>git@github.com:mfpdev/mfp-advanced-adapters-samples.git</url>
+  </scm>
   <prerequisites>
     <maven>2.2.0</maven>
   </prerequisites>
   <build>
+  	<resources>
+      <resource>
+        <directory>.</directory>
+        <targetPath>META-INF</targetPath>
+        <includes>
+        	<include>LICENSE.txt</include>
+        </includes>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -44,24 +77,6 @@
           <forkMode>pertest</forkMode>
         </configuration>
       </plugin>
-
-      <!-- attach test jar -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>jar</goal>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-        </configuration>
-      </plugin>
-
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -112,7 +127,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <swagger-codegen-version>2.1.6-SNAPSHOT</swagger-codegen-version>
+    <swagger-codegen-version>2.1.6</swagger-codegen-version>
     <maven-plugin-version>1.0.0</maven-plugin-version>
     <junit-version>4.8.1</junit-version>
   </properties>
