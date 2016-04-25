@@ -177,7 +177,7 @@ public class MfpAdapterCodegen extends JavaJerseyServerCodegen  {
       }
       
       if ( additionalProperties.containsKey(AUTO_WIRED_SPRING_SERVICE) ) {
-    	  Boolean value = (Boolean)additionalProperties.get(AUTO_WIRED_SPRING_SERVICE);
+    	  Boolean value = Boolean.valueOf((String)additionalProperties.get(AUTO_WIRED_SPRING_SERVICE));
     	  if ( !value.booleanValue() ) {
     		  additionalProperties.remove(AUTO_WIRED_SPRING_SERVICE);
     	  }
