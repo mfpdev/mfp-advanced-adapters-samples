@@ -100,7 +100,7 @@
 	            </configuration>
 	            <dependencies>
 		            <dependency>
-						<groupId>com.ibm.mfp</groupId>
+						<groupId>net.mfpdev</groupId>
 						<artifactId>mfp-adapters-swagger-codegen</artifactId>
 						<version>1.0</version>
 					</dependency>
