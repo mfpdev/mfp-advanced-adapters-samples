@@ -22,6 +22,7 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.SecurityContext;
 
 import com.swaggercodegen.samples.spring.customer.model.Customer;
+import com.swaggercodegen.samples.spring.customer.model.InlineResponse404;
 import com.swaggercodegen.samples.spring.customer.model.InlineResponse409;
 
 public class CustomerServiceImpl implements CustomersApiService {
@@ -55,7 +56,7 @@ public class CustomerServiceImpl implements CustomersApiService {
 			customerStore.remove(customerId);
 			return Response.ok().build();
 		} else {
-			return Response.status(Status.NOT_FOUND).entity(new InlineResponse409().errorMsg409("Customer by this ID is not found")).build();
+			return Response.status(Status.NOT_FOUND).entity(new InlineResponse404().errorMsg404("Customer by this ID is not found")).build();
 		}
 	}
 
@@ -66,7 +67,7 @@ public class CustomerServiceImpl implements CustomersApiService {
 		if ( customerStore.get(customerId) != null  ) {
 			return Response.ok(customerStore.get(customerId)).build();
 		} else {
-			return Response.status(Status.NOT_FOUND).entity(new InlineResponse409().errorMsg409("Customer by this ID is not found")).build();
+			return Response.status(Status.NOT_FOUND).entity(new InlineResponse404().errorMsg404("Customer by this ID is not found")).build();
 		}
 	}
 
