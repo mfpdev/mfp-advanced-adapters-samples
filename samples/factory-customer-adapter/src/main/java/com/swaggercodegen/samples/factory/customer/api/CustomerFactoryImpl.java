@@ -15,7 +15,6 @@
  */
 package com.swaggercodegen.samples.factory.customer.api;
 
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.ws.rs.core.Response;
@@ -23,7 +22,7 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.SecurityContext;
 
 import com.swaggercodegen.samples.factory.customer.model.Customer;
-import com.swaggercodegen.samples.factory.customer.model.InlineResponse200;
+import com.swaggercodegen.samples.factory.customer.model.InlineResponse404;
 import com.swaggercodegen.samples.factory.customer.model.InlineResponse409;
 
 public class CustomerFactoryImpl implements CustomersApiServiceFactoryIfc {
@@ -69,7 +68,7 @@ public class CustomerFactoryImpl implements CustomersApiServiceFactoryIfc {
 				customerStore.remove(customerId);
 				return Response.ok().build();
 			} else {
-				return Response.status(Status.NOT_FOUND).entity(new InlineResponse409().errorMsg409("Customer by this ID is not found")).build();
+				return Response.status(Status.NOT_FOUND).entity(new InlineResponse404().errorMsg404("Customer by this ID is not found")).build();
 			}
 		}
 
@@ -80,7 +79,7 @@ public class CustomerFactoryImpl implements CustomersApiServiceFactoryIfc {
 			if ( customerStore.get(customerId) != null  ) {
 				return Response.ok(customerStore.get(customerId)).build();
 			} else {
-				return Response.status(Status.NOT_FOUND).entity(new InlineResponse409().errorMsg409("Customer by this ID is not found")).build();
+				return Response.status(Status.NOT_FOUND).entity(new InlineResponse404().errorMsg404("Customer by this ID is not found")).build();
 			}
 		}
 		
