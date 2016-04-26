@@ -1,7 +1,7 @@
 # MobileFirst Java Adapters with Swagger-Codegen 
 ## _Factory based service implementation sample_
 This is a sample that demonstrates the integration of MobileFirst Java Adatpers and mfp-adapters-swagger-codegen 
-which is a customization of Swagger Codegen.   See [mfp-adapters-swagger-codegen.](https://github.ibm.com/MobileFirst/mfp-adapters-extensions/tree/development/mfp-adapters-swagger-codegen)
+which is a customization of Swagger Codegen.   See [mfp-adapters-swagger-codegen.](https://github.com/mfpdev/mfp-advanced-adapters-samples/tree/development/mfp-adapters-swagger-codegen)
 You can download this sample, build the MobileFirst Java Adapter and deploy it.
 
 This is a simple sample that mimics a backend cusomter storage service whose API is defined adhering to Open API 

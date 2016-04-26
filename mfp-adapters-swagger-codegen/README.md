@@ -23,7 +23,7 @@ After you have created the MobileFirst Java Adapter maven project, edit the pom.
 <plugin>
     <groupId>io.swagger</groupId>
     <artifactId>swagger-codegen-maven-plugin</artifactId>
-    <version>2.1.6-SNAPSHOT</version>
+    <version>2.1.6</version>
     <configuration>
         <inputSpec>yourServiceAPI.yaml</inputSpec> 
         <language>MFPAdapter</language>
@@ -32,9 +32,9 @@ After you have created the MobileFirst Java Adapter maven project, edit the pom.
     </configuration>
     <dependencies>
         <dependency>
-        	<groupId>com.ibm.mfp</groupId>
+        	<groupId>net.mfpdev</groupId>
         	<artifactId>mfp-adapters-swagger-codegen</artifactId>
-        	<version>1.0-SNAPSHOT</version>
+        	<version>1.0.0-SNAPSHOT</version>
     	</dependency>
     </dependencies>
     <executions>
