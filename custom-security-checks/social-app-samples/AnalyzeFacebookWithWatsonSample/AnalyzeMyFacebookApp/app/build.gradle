@@ -28,7 +28,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "net.mfpdev.sample.socialWatson"
+        applicationId "com.github.mfpdev.sample.socialWatson"
         minSdkVersion 18
         targetSdkVersion 23
         versionCode 1

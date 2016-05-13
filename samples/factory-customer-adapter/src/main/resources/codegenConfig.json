@@ -1,8 +1,7 @@
 {
-	"modelPackage" 	: "com.swaggercodegen.samples.factory.customer.model",
-	"apiPackage" 	: "com.swaggercodegen.samples.factory.customer.api",
+	"modelPackage" 	: "com.github.mfpdev.samples.swaggercodegen.factory.customer.model",
+	"apiPackage" 	: "com.github.mfpdev.samples.swaggercodegen.factory.customer.api",
 	"additionalProperties" : {
-		"serviceFactoryClassname" : "com.swaggercodegen.samples.factory.customer.api.CustomerFactoryImpl"
+		"serviceFactoryClassname" : "com.github.mfpdev.samples.swaggercodegen.factory.customer.api.CustomerFactoryImpl"
 	}
 }
-	

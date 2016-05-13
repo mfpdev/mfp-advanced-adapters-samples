@@ -1,1 +1,1 @@
-net.mfpdev.adapters.swagger.codegen.MfpAdapterCodegen
+com.github.mfpdev.adapters.swagger.codegen.MfpAdapterCodegen

@@ -23,5 +23,5 @@
     <displayName>Hello Social User</displayName>
     <description>A sample adapter which protected with socialLogin scope</description>
 
-    <JAXRSApplicationClass>net.mfpdev.social.sample.helloSocialUser.HelloSocialUserApplication</JAXRSApplicationClass>
+    <JAXRSApplicationClass>com.github.mfpdev.social.sample.helloSocialUser.HelloSocialUserApplication</JAXRSApplicationClass>
 </mfp:adapter>

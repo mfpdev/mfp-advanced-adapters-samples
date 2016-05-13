@@ -24,7 +24,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="net.mfpdev.sample.sociallogin.SocialMainActivity">
+    tools:context="com.github.mfpdev.sample.sociallogin.SocialMainActivity">
 
     <Button
         android:id="@+id/sign_in_google"

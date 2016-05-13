@@ -23,18 +23,18 @@
     <displayName>Google OTP Adapter</displayName>
     <description>This adapter is a Google Authenticator One-Time Password security check sample which let validate a client Google Authenticator passcode against registered user's passcode.  The samples akso contains the API to provision a QR code via REST API /qrCode/{appId}/{appVersion} after it creates such entry in the registration service via a mobile app request to a REST API /setupGoogleOTP</description>
 
-   <JAXRSApplicationClass>net.mfpdev.sample.googleOTP.GoogleOTPApplication</JAXRSApplicationClass>
+   <JAXRSApplicationClass>com.github.mfpdev.sample.googleOTP.GoogleOTPApplication</JAXRSApplicationClass>
 
     <!-- QR Code attributes -->
     <property name="qrCodeOrgName" defaultValue="MFP"/>
     <property name="qrCodeEmail" defaultValue="user@mfp.com"/>
 
     <!-- The google OTP security check -->
-    <securityCheckDefinition name="googleOTP" class="net.mfpdev.sample.googleOTP.GoogleOTPSecurityCheck">
+    <securityCheckDefinition name="googleOTP" class="com.github.mfpdev.sample.googleOTP.GoogleOTPSecurityCheck">
         <property name="successStateExpirationSec" displayName="Success Expiration In Seconds" defaultValue="20"/>
     </securityCheckDefinition>
 
     <!-- The user login security check-->
-    <securityCheckDefinition name="userLogin" class="net.mfpdev.sample.googleOTP.UserLoginSecurityCheck"/>
+    <securityCheckDefinition name="userLogin" class="com.github.mfpdev.sample.googleOTP.UserLoginSecurityCheck"/>
 
 </wl:adapter>

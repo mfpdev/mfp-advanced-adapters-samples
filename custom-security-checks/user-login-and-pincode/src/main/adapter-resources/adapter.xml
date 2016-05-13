@@ -23,7 +23,7 @@
 
     <displayName>User Login and Pincode security checks</displayName>
 
-    <securityCheckDefinition name="UserLogin" class="net.mfpdev.sample.stepup.UserLoginSecurityCheck">
+    <securityCheckDefinition name="UserLogin" class="com.github.mfpdev.sample.stepup.UserLoginSecurityCheck">
         <property name="successStateExpirationSec" defaultValue="120" type="integer"
                   displayName="Login duration"
                   description="Duration of successful login in seconds"/>
@@ -35,7 +35,7 @@
                   description="Duration of the blocking interval in seconds"/>
     </securityCheckDefinition>
 
-    <securityCheckDefinition name="PinCode" class="net.mfpdev.sample.stepup.PinCodeSecurityCheck">
+    <securityCheckDefinition name="PinCode" class="com.github.mfpdev.sample.stepup.PinCodeSecurityCheck">
         <property name="successStateExpirationSec" defaultValue="1800" type="integer"
                   displayName="Login duration"
                   description="Duration of successful login in seconds"/>

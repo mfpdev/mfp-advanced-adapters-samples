@@ -30,7 +30,7 @@
     <!--
         The Adapter's application class. Initializes the Adapter
     -->
-    <JAXRSApplicationClass>net.mfpdev.geocoding.sample.HTTPConnectApplication</JAXRSApplicationClass>
+    <JAXRSApplicationClass>com.github.mfpdev.geocoding.sample.HTTPConnectApplication</JAXRSApplicationClass>
 
     <!--
         The Adapter's configuration parameters. Once deployed the MobileFirst administrator can modify the parameters

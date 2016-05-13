@@ -27,7 +27,7 @@
         using SMS and validation codes.
     </description>
 
-    <JAXRSApplicationClass>net.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
+    <JAXRSApplicationClass>com.github.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
 
     <property name="sid"
               displayName="The Twilio API SID to be used"

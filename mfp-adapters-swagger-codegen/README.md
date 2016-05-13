@@ -32,7 +32,7 @@ After you have created the MobileFirst Java Adapter maven project, edit the pom.
     </configuration>
     <dependencies>
         <dependency>
-        	<groupId>net.mfpdev</groupId>
+        	<groupId>com.github.mfpdev</groupId>
         	<artifactId>mfp-adapters-swagger-codegen</artifactId>
         	<version>1.0.0-SNAPSHOT</version>
     	</dependency>

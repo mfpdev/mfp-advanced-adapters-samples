@@ -27,7 +27,7 @@
         and a WSDL/SOAP based Weather Service for the implementation
     </description>
 
-    <JAXRSApplicationClass>net.mfpdev.weather.sample.api.WeatherAPIApplication</JAXRSApplicationClass>
+    <JAXRSApplicationClass>com.github.mfpdev.weather.sample.api.WeatherAPIApplication</JAXRSApplicationClass>
 
     <property name="apiKey"
               displayName="Google Geolocation API Key"

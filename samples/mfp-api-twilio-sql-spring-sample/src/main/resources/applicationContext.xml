@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
        © Copyright 2016 IBM Corp.
@@ -46,25 +45,25 @@
 
     <!-- Step #3, Inject the JdbcTemplate into our DAO              -->
     <bean id="dataAccessBean"
-          class="net.mfpdev.twilio.sample.phoneuser.DataAccess"
+          class="com.github.mfpdev.twilio.sample.phoneuser.DataAccess"
           c:t-ref="jdbcTemplate"/>
     <!-- Setup the database access components - Ends                -->
 
     <!-- Initialize the Twilio access Object, by injecting the
          configuration into the constructor                         -->
     <bean id="twilioAccessBean"
-          class="net.mfpdev.twilio.sample.phoneuser.TwilioAccess"
+          class="com.github.mfpdev.twilio.sample.phoneuser.TwilioAccess"
           c:sid="${sid}"
           c:token="${token}"
           c:from="${fromNumber}"/>
 
     <!-- We use annotations to inject the access objects into the
          resource. Nothing fancy here                               -->
-    <bean id="apiBean" class="net.mfpdev.twilio.sample.phoneuser.PhoneRecordAPIResource"/>
+    <bean id="apiBean" class="com.github.mfpdev.twilio.sample.phoneuser.PhoneRecordAPIResource"/>
 
     <!-- This is specific to the MFPF-Spring integration. Tell us
          where is your resource                                     -->
-    <bean class="net.mfpdev.adapters.spring.integration.JAXRSResourcesRegistryImpl">
+    <bean class="com.github.mfpdev.adapters.spring.integration.JAXRSResourcesRegistryImpl">
         <property name="resources">
             <list>
                 <ref bean="apiBean"/>

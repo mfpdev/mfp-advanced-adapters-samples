@@ -24,5 +24,5 @@
 	<displayName>springCustomerAdapter</displayName>
 	<description>springCustomerAdapter</description>
 
-	<JAXRSApplicationClass>net.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
+	<JAXRSApplicationClass>com.github.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
 </mfp:adapter>
