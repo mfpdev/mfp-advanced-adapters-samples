@@ -11,7 +11,7 @@
 	<key>wlServerContext</key>
 	<string>/mfp/</string>
 	<key>application id</key>
-	<string>net.mfpdev.ltpa.LTPABasedSample</string>
+	<string>com.github.mfpdev.ltpa.LTPABasedSample</string>
 	<key>application version</key>
 	<string>1.0</string>
 	<key>environment</key>
