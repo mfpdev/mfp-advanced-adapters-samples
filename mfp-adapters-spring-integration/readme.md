@@ -51,7 +51,7 @@ rm src/main/java/com/sample/MySpringXmlAdapterApplication.java
 Edit the **pom.xml** file and add the following dependency:
 ```xml
 <dependency>
-  <groupId>net.mfpdev</groupId>
+  <groupId>com.github.mfpdev</groupId>
   <artifactId>mfp-adapters-spring-integration</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
@@ -59,7 +59,7 @@ Edit the **pom.xml** file and add the following dependency:
 
 Edit the **adapter.xml** file ( **src/main/adapter-resources/adapter.xml** ), set the JAXRSApplicationClass element to be:
 ```xml
-<JAXRSApplicationClass>net.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
+<JAXRSApplicationClass>com.github.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
 ```
 
 Create the folder **src/main/resources**
@@ -82,7 +82,7 @@ Create the file **src/main/resources/applicationContext.xml** with the following
 
 
     <!-- Define the list of JAX-RS resources to use: -->
-    <bean class="net.mfpdev.adapters.spring.integration.JAXRSResourcesRegistryImpl">
+    <bean class="com.github.mfpdev.adapters.spring.integration.JAXRSResourcesRegistryImpl">
         <property name="resources">
             <list>
                 <bean class="com.sample.MySpringXmlAdapterResource"/>
@@ -186,7 +186,7 @@ In the following example we will show how to make the hello service configurable
 First, define the new property in the **adapter.xml** file:
 ```xml
 ...
-<JAXRSApplicationClass>net.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
+<JAXRSApplicationClass>com.github.mfpdev.adapters.spring.integration.SpringXMLApplication</JAXRSApplicationClass>
 
 <property name="helloServiceMessage"
           displayName="Hello message"

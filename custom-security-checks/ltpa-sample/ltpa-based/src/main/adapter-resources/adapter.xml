@@ -24,7 +24,7 @@
 	<description>A security check adapter which check for a valid existing LTPA token</description>
 
 	<!-- The LTPA based SSO security check -->
-	<securityCheckDefinition name="LTPA" class="net.mfpdev.sample.ltpa.LTPABasedSecurityCheck">
+	<securityCheckDefinition name="LTPA" class="com.github.mfpdev.sample.ltpa.LTPABasedSecurityCheck">
 		<property name="expirationSec" displayName="Success Expiration In Seconds" defaultValue="3600"/>
 		<property name="loginURL" displayName="The login URL to point to in order to be able get the LTPA token" defaultValue="http://localhost:9080/plain-war"/>
 	</securityCheckDefinition>

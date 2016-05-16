@@ -21,9 +21,9 @@
     <displayName>SMS OTP Adapter</displayName>
     <description>SMS One-Time Password security check sample which let validates SMS code for registered phone number.</description>
 
-    <JAXRSApplicationClass>net.mfpdev.sample.smsOTP.SMSOTPApplication</JAXRSApplicationClass>
+    <JAXRSApplicationClass>com.github.mfpdev.sample.smsOTP.SMSOTPApplication</JAXRSApplicationClass>
 
-    <securityCheckDefinition name="smsOTP" class="net.mfpdev.sample.smsOTP.SMSOTPSecurityCheck">
+    <securityCheckDefinition name="smsOTP" class="com.github.mfpdev.sample.smsOTP.SMSOTPSecurityCheck">
         <property name="twilioAccountSid"
                   displayName="The Twilio API SID to be used"
                   defaultValue="Enter a SID"

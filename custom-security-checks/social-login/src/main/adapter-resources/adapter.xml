@@ -27,7 +27,7 @@
         The security check verifies the token with its vendor, and creates an MFP Authenticated User.
     </description>
 
-    <securityCheckDefinition name="socialLogin" class="net.mfpdev.sample.socialogin.SocialLoginSecurityCheck">
+    <securityCheckDefinition name="socialLogin" class="com.github.mfpdev.sample.socialogin.SocialLoginSecurityCheck">
         <property name="keepOriginalToken" type="boolean" defaultValue="false"
                   displayName="keep original token"
                   description="If true, the token submitted by the client is stored in the Authenticated User as an attribute 'originalToken'"

@@ -24,7 +24,7 @@
 	<displayName>Analyze My Facebook Adapter</displayName>
 	<description>This adapter use the logged in Facebook and analyze the profile picture and feeds with Watson services</description>
 
-	<JAXRSApplicationClass>net.mfpdev.adapters.sample.socialWatson.AnalyzeMyFacebookApplication</JAXRSApplicationClass>
+	<JAXRSApplicationClass>com.github.mfpdev.adapters.sample.socialWatson.AnalyzeMyFacebookApplication</JAXRSApplicationClass>
 
 	<!-- To get your alchemyAPI key from http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language.html -->
 	<property name="alchemyAPIKey" defaultValue="AlchemyAPI Key" description="See http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language.html"/>
