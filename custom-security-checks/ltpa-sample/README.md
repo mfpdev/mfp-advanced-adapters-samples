@@ -17,11 +17,11 @@ This sample contains 4 components:
 
 ### Usage
 - Deploy the security check and the resource adapter:  
-  - To be able build *ltpa-based* adapter you will have to run the following:
+  - To be able to build ltpa-based adapter you will have to run the following:
    ```
    mvn install:install-file -Dfile=<MFP Install Path>/mfp-server/lib/com.ibm.websphere.security_1.0.11.jar -DgroupId=com.ibm.websphere -DartifactId=security -Dversion=1.0.11 -Dpackaging=jar
    ```
-   > NOTE: version for com.ibm.websphere.security_1.0.11 jar can be different, so you will have to change the path above.
+   > NOTE: version for com.ibm.websphere.security_1.0.11 jar can be different, so in such case you will have to change the path above.
 
    The dependency in the pom file should look like:
 
