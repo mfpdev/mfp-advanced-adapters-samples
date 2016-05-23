@@ -57,7 +57,11 @@ public class SocialLoginSecurityCheck extends UserAuthenticationSecurityCheck {
         super.authorize(scope, credentials, request, response);
         if (response.getType() == AuthorizationResponse.ResponseType.FAILURE) {
             Map<String, Object> failure = new HashMap<>();
-            failure.put(vendorName, "invalid token");
+            if (vendorName != null) {
+                failure.put(vendorName, "invalid token");
+            } else {
+                failure.put("invalid_vendor_name", "vendor name cannot be null");
+            }
             response.addFailure(getName(), failure);
         }
     }
