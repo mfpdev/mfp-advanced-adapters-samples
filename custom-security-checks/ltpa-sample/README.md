@@ -30,6 +30,7 @@ This sample contains 4 components:
       <groupId>com.ibm.websphere</groupId>
       <artifactId>security</artifactId>
       <version>1.0.11</version>
+      <scope>provided</scope>
    </dependency>
    ```
 
