@@ -46,7 +46,7 @@
 		<dependency>
 		  <groupId>com.github.mfpdev</groupId>
 		  <artifactId>mfp-adapters-spring-integration</artifactId>
-		  <version>1.0.0-SNAPSHOT</version>
+		  <version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -100,7 +100,7 @@
 		            <dependency>
 						<groupId>com.github.mfpdev</groupId>
 						<artifactId>mfp-adapters-swagger-codegen</artifactId>
-						<version>1.0.0-SNAPSHOT</version>
+						<version>1.0.0</version>
 					</dependency>
 				</dependencies>
 			    <executions>
