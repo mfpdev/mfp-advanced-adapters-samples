@@ -82,6 +82,7 @@ public class AnalyzeMyFacebookActivity extends AppCompatActivity implements
     //Chart titles
     public static final String PERSONALITY_BIG_5_TITLE = "Big 5";
     public static final String TONES_CHART_TITLE = "Tones";
+    public static final String SOCIAL_LOGIN_SCOPE = "socialLogin";
 
     private CallbackManager facebookCallbackManager;
     private SocialLoginChallengeHandler socialLoginChallengeHandler;
@@ -163,13 +164,13 @@ public class AnalyzeMyFacebookActivity extends AppCompatActivity implements
 
             @Override
             public void onCancel() {
-                socialLoginChallengeHandler.submitFailure(null);
+                socialLoginChallengeHandler.cancel();
                 wlLogger.debug("Facebook Login canceled");
             }
 
             @Override
             public void onError(FacebookException error) {
-                socialLoginChallengeHandler.submitFailure(null);
+                socialLoginChallengeHandler.cancel();
             }
         });
 
@@ -199,7 +200,7 @@ public class AnalyzeMyFacebookActivity extends AppCompatActivity implements
         final ProgressDialog progressDialog;
         progressDialog = ProgressDialog.show(this, "Please Wait...", "Analyzing Facebook..", false, true);
 
-        WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/analyzeMyFacebookAdapter/analyze"), WLResourceRequest.GET, socialLoginChallengeHandler.getSecurityCheck());
+        WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/analyzeMyFacebookAdapter/analyze"), WLResourceRequest.GET, SOCIAL_LOGIN_SCOPE);
         wlResourceRequest.send(new WLResponseListener() {
             @Override
             public void onSuccess(WLResponse wlResponse) {

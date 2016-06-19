@@ -71,6 +71,7 @@ public class SocialMainActivity extends AppCompatActivity implements
 
     private static final String SOCIAL_LOGIN_TAG = SocialMainActivity.class.getPackage().getName();
     private static final int GOOGLE_GET_TOKEN_INTENT = 9002;
+    public static final String SOCIAL_LOGIN_SCOPE = "socialLogin";
 
     //Flag to know from where we signInWithGoogle
     protected boolean isSignInFromChallenge = false;
@@ -205,7 +206,7 @@ public class SocialMainActivity extends AppCompatActivity implements
             public void onCancel() {
                 if (isSignInFromChallenge) {
                     // Cancel the challenge handler
-                    socialLoginChallengeHandler.submitFailure(null);
+                    socialLoginChallengeHandler.cancel();
                 }
                 wlLogger.debug("Facebook Login canceled");
             }
@@ -214,7 +215,7 @@ public class SocialMainActivity extends AppCompatActivity implements
             public void onError(FacebookException error) {
                 if (isSignInFromChallenge) {
                     // Cancel the challenge handler
-                    socialLoginChallengeHandler.submitFailure(null);
+                    socialLoginChallengeHandler.cancel();
                 }
                 wlLogger.error("Facebook Login failed ", error);
             }
@@ -320,7 +321,7 @@ public class SocialMainActivity extends AppCompatActivity implements
      * The adapter returns display name and user attributes in JSON format
      */
     private void callProtectedAdapter() {
-        WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/HelloSocialUser/hello"), WLResourceRequest.GET, socialLoginChallengeHandler.getSecurityCheck());
+        WLResourceRequest wlResourceRequest = new WLResourceRequest(URI.create("/adapters/HelloSocialUser/hello"), WLResourceRequest.GET, SOCIAL_LOGIN_SCOPE);
         wlResourceRequest.send(new WLResponseListener() {
             @Override
             public void onSuccess(WLResponse wlResponse) {

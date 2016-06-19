@@ -17,7 +17,7 @@
 package com.github.mfpdev.sample.socialWatson;
 
 import com.worklight.wlclient.api.WLResponse;
-import com.worklight.wlclient.api.challengehandler.WLChallengeHandler;
+import com.worklight.wlclient.api.challengehandler.SecurityCheckChallengeHandler;
 
 import org.json.JSONObject;
 
@@ -29,7 +29,7 @@ import org.json.JSONObject;
  * @author Ishai Borovoy
  * @since 14/03/2016
  */
-public class SocialLoginChallengeHandler extends WLChallengeHandler {
+public class SocialLoginChallengeHandler extends SecurityCheckChallengeHandler {
 
     private AnalyzeMyFacebookActivity mainActivity;
 
@@ -50,7 +50,7 @@ public class SocialLoginChallengeHandler extends WLChallengeHandler {
 
 
     @Override
-    public void submitFailure(WLResponse wlResponse) {
-        super.submitFailure(wlResponse);
+    public void cancel() {
+        super.cancel();
     }
 }

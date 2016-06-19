@@ -16,7 +16,7 @@
 package com.github.mfpdev.sample.sociallogin;
 
 import com.worklight.wlclient.api.WLResponse;
-import com.worklight.wlclient.api.challengehandler.WLChallengeHandler;
+import com.worklight.wlclient.api.challengehandler.SecurityCheckChallengeHandler;
 
 import org.json.JSONObject;
 
@@ -28,7 +28,7 @@ import org.json.JSONObject;
  * @author Ishai Borovoy
  * @since 14/03/2016
  */
-public class SocialLoginChallengeHandler extends WLChallengeHandler {
+public class SocialLoginChallengeHandler extends SecurityCheckChallengeHandler {
 
     private SocialMainActivity mainActivity;
 
@@ -53,7 +53,7 @@ public class SocialLoginChallengeHandler extends WLChallengeHandler {
     }
 
     @Override
-    public void submitFailure(WLResponse wlResponse) {
-        super.submitFailure(wlResponse);
+    public void cancel() {
+        super.cancel();
     }
 }
