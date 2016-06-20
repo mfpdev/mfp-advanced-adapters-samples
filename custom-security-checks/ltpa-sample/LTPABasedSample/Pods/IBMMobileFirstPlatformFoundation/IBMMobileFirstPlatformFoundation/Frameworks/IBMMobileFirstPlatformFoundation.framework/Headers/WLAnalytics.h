@@ -66,12 +66,12 @@ FOUNDATION_EXPORT DeviceEvent const NETWORK;
  This method logs analytics data
  Some data is already captured by the framework. To avoid collisions,
  the following keys will be excluded if logged in the metadata:
-    appStoreID
-    appStoreLabel
-    appStoreVersion
-    appStoreVersionDisplay
-    mfpAppName
-    mfpAppVersion
+    appID
+    appLabel
+    appVersion
+    appVersionCode
+    appName
+    appVersion
     deviceBrand
     deviceOSversion
     deviceOS

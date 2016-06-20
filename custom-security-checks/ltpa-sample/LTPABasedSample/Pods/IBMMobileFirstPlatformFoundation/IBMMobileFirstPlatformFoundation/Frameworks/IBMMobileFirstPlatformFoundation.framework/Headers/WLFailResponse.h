@@ -23,13 +23,9 @@
 
 typedef enum {
     WLErrorCodeUnexpectedError,
-    WLErrorCodeUnresponsiveHost,
-    WLErrorCodeRequestTimeout,
     WLErrorCodeProcedureError,
-	WLErrorCodeApplicationVersionDenied,
-	WLErrorCodeApplicationVersionNotify,
     WLErrorCodeSubmitFailure
-} WLErrorCode;
+} WLClientErrorCode;
 
 /**
  *
@@ -37,7 +33,8 @@ typedef enum {
  * Contains the original response data object from the server as well.
  */
 @interface WLFailResponse : WLResponse {
-	WLErrorCode errorCode;
+    WLClientErrorCode* clientErrorCode;
+	NSString *errorCode;
 	NSString *errorMsg;
 	
 }
@@ -46,7 +43,9 @@ typedef enum {
  * The possible errors are described in the WLErrorCode section.
  * The HYPERLINK <a href="_Enum_WLErrorCode" \o "http://wiki.worklight.com/index.php/IphoneSDK#WLErrorCode"> link WLErrorCode </a>section contains a description of possible error codes.
  */
- @property (nonatomic) WLErrorCode errorCode;
+@property (nonatomic) WLClientErrorCode* clientErrorCode;
+
+ @property (nonatomic) NSString* errorCode;
 
 /**
  * An error message for the developer, which is not necessarily suitable for displaying to the end user.
@@ -58,7 +57,7 @@ typedef enum {
  * This method returns a string message from a WLErrorCode.
  *
  **/
-+(NSString *) getErrorMessageFromCode: (WLErrorCode) code;
++(NSString *) getErrorMessageFromCode: (WLClientErrorCode) code;
 
 /**
  * This method returns an error message from the JSON response.
@@ -70,7 +69,9 @@ typedef enum {
  * This method returns the WLErrorCode from the JSON response.
  *
  **/
-+(WLErrorCode) getWLErrorCodeFromJSON: (NSDictionary *) jsonResponse;
++(WLClientErrorCode) getWLErrorCodeFromJSON: (NSDictionary *) jsonResponse;
+
++(WLFailResponse *)createFailResponseFromResponse:(WLResponse *) wlResponse error: (NSError *)error;
 
 
 

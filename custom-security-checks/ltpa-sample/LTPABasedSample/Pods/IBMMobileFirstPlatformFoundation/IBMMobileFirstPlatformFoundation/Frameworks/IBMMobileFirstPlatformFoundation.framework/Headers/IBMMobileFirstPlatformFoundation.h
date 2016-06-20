@@ -24,12 +24,12 @@ FOUNDATION_EXPORT const unsigned char IBMMobileFirstPlatformFoundationVersionStr
 
 #import <IBMMobileFirstPlatformFoundation/AccessToken.h>
 #import <IBMMobileFirstPlatformFoundation/BaseChallengeHandler.h>
-#import <IBMMobileFirstPlatformFoundation/ChallengeHandler.h>
+#import <IBMMobileFirstPlatformFoundation/GatewayChallengeHandler.h>
 #import <IBMMobileFirstPlatformFoundation/OCLogger.h>
 #import <IBMMobileFirstPlatformFoundation/OCLogger+Constants.h>
 #import <IBMMobileFirstPlatformFoundation/WLAnalytics.h>
 #import <IBMMobileFirstPlatformFoundation/WLAuthorizationManager.h>
-#import <IBMMobileFirstPlatformFoundation/WLChallengeHandler.h>
+#import <IBMMobileFirstPlatformFoundation/SecurityCheckChallengeHandler.h>
 #import <IBMMobileFirstPlatformFoundation/WLClient.h>
 #import <IBMMobileFirstPlatformFoundation/WLCookieExtractor.h>
 #import <IBMMobileFirstPlatformFoundation/WLDelegate.h>

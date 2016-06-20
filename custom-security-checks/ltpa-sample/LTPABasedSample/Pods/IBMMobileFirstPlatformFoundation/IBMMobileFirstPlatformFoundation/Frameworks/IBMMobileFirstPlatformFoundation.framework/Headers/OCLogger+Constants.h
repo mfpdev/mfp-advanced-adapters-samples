@@ -97,6 +97,7 @@ extern NSString* const KEY_METADATA_METHOD;
 extern NSString* const KEY_METADATA_LINE;
 extern NSString* const KEY_METADATA_FILE;
 extern NSString* const KEY_METADATA_STACKTRACE;
+extern NSString* const KEY_METADATA_EXCEPTION_MSG;
 extern NSString* const KEY_ARGUMENTS;
 
 extern NSString* const KEY_METADATA_USER;
@@ -127,6 +128,5 @@ extern NSString* const WL_INIT_PACKAGE;
 extern NSString* const WL_ACTION_PACKAGE;
 extern NSString* const WL_AUTH_PACKAGE;
 extern NSString* const WL_OAUTH_PACKAGE;
-extern NSString* const WL_PUSH_PACKAGE;
 extern NSString* const WL_CONFIG_PACKAGE;
 

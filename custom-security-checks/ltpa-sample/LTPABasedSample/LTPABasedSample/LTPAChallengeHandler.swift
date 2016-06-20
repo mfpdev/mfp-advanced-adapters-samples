@@ -25,7 +25,7 @@
 import Foundation
 import IBMMobileFirstPlatformFoundation
 
-public class LTPAChallengeHandler : WLChallengeHandler {
+public class LTPAChallengeHandler : SecurityCheckChallengeHandler {
     
     //The login view controller
     var loginViewController : LoginViewController?
@@ -82,14 +82,14 @@ public class LTPAChallengeHandler : WLChallengeHandler {
                         //Assume authentication succeeded, if not we will be challenged again
                         self.submitChallengeAnswer(nil)
                     } else {
-                        self.submitFailure(nil)
+                        self.cancel()
                     }
                 })
             })
             task.resume()
         } else {
             dispatch_async(dispatch_get_main_queue(),{
-                self.submitFailure(nil)
+                self.cancel()
             })
         }
         

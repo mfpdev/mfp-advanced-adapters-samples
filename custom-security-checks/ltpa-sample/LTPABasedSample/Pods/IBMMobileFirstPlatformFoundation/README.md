@@ -22,8 +22,8 @@ IBM MobileFirst Platform Foundation for iOS.  The SDK contains the following pod
 
 - **IBMMobileFirstPlatformFoundation**: Provides core functionality. It implements client-server connections, handles security, accesses server resources and handles their responses. Includes iOS and watchOS2 support.
 - **IBMMobileFirstPlatformFoundationJSONStore**: Enables the JSONStore feature for iOS native MobileFirst apps. It contains JSONStore native APIs.
-- **IBMMobileFirstPlatformFoundationPush: Provides support for push notifications from the server.
-- **IBMMobileFirstPlatformFoundationOpenSSLUtils: Provides support for encryption and decryption using OpenSSL.
+- **IBMMobileFirstPlatformFoundationPush: Provides** support for push notifications from the server.
+- **IBMMobileFirstPlatformFoundationOpenSSLUtils**: Provides support for encryption and decryption using OpenSSL.
 
 Each pod handles one or more iOS frameworks. All of the pods depend on, include and load the IBMMobileFirstPlatformFoundation pod/framework. 
 
@@ -51,8 +51,8 @@ Get started with the following tutorials:
 
 Copyright 2016 IBM Corp.
 
-   IBM - International License Agreement for Early Release of Programs
+   IBM - IBM MobileFirst Platform Foundation v8.0 license agreement
 
-       http://www.apache.org/licenses/LICENSE-2.0
+       https://mobilefirstplatform.ibmcloud.com/licenses/ipla/
 
-[Terms of Use](http://www.apache.org/licenses/LICENSE-2.0)
+[Terms of Use](https://mobilefirstplatform.ibmcloud.com/licenses/ipla/)

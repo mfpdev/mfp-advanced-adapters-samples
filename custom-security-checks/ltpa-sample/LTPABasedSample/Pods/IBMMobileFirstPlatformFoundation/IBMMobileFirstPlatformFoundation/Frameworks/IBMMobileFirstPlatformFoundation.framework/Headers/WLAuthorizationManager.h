@@ -45,6 +45,12 @@ extern NSString * const ERROR_OAUTH_CANCELED;
              withCompletionHandler:(void(^) (AccessToken* accessToken, NSError* error))completionHandler;
 
 /**
+ * Check if the WLResponse contains a Gateway Challenge
+ * @param wlResponse The incoming response
+ */
+- (BOOL)isGatewayResponse : (WLResponse *) wlResponse;
+
+/**
  *  Logout from the specified security check.
  *
  *  @param NSString - The security check to log out from.

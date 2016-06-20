@@ -33,6 +33,8 @@ typedef NS_ENUM(NSUInteger, WLAFHTTPClientParameterEncoding ) {
     WLFormURLParameterEncoding,
     WLJSONParameterEncoding,
     WLPropertyListParameterEncoding,
+    WLTextPlainEncoding,
+    WLOctetStreamEncoding
 };
 
 

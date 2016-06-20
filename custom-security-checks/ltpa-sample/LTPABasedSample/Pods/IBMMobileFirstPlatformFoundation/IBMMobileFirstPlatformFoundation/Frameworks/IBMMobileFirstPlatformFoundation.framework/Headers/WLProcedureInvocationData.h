@@ -28,6 +28,7 @@
  * <li>Parameters required by the procedure</li>
  * </ul>
  */
+ __attribute__((deprecated))
 @interface WLProcedureInvocationData : NSObject {
 	@private NSString *adapter;
 	NSString *procedure;

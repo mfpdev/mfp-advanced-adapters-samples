@@ -23,6 +23,7 @@
 /**
  * This class contains the result of calling a back-end service, including statuses and data items that the adapter function retrieves from the server.
  */
+ __attribute__((deprecated))
 @interface WLProcedureInvocationResult : NSObject {
 
 		

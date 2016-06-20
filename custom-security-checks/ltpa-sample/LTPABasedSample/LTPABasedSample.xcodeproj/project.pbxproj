@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CDB06EB0300CF2FC5C0E32E /* libPods-LTPABasedSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 154EF8E37D3D05815913DA55 /* libPods-LTPABasedSample.a */; };
+		3817FF0BA5EE15036FC5438A /* Pods_LTPABasedSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A803FFFED89779B005E82D1 /* Pods_LTPABasedSample.framework */; };
 		D417DE0A1CC3A5E000DA6075 /* mfpclient.plist in Resources */ = {isa = PBXBuildFile; fileRef = D417DE091CC3A5E000DA6075 /* mfpclient.plist */; };
 		D45394A01CC7541F0094DD36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45394951CC7541F0094DD36 /* AppDelegate.swift */; };
 		D45394A11CC7541F0094DD36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D45394961CC7541F0094DD36 /* Assets.xcassets */; };
@@ -20,9 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		105FE89AA0BD44DEB5F453D3 /* Pods-LTPABasedSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTPABasedSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample.debug.xcconfig"; sourceTree = "<group>"; };
-		154EF8E37D3D05815913DA55 /* libPods-LTPABasedSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTPABasedSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E6ECCD451C7FF86C9CC6147 /* Pods-LTPABasedSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTPABasedSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample.release.xcconfig"; sourceTree = "<group>"; };
+		21225909C8E769C06FEE775A /* Pods-LTPABasedSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTPABasedSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample.release.xcconfig"; sourceTree = "<group>"; };
+		924B81C887F49AF06DD24E69 /* Pods-LTPABasedSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTPABasedSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample.debug.xcconfig"; sourceTree = "<group>"; };
+		9A803FFFED89779B005E82D1 /* Pods_LTPABasedSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LTPABasedSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D417DDF21CC396A300DA6075 /* LTPABasedSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTPABasedSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D417DE091CC3A5E000DA6075 /* mfpclient.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = mfpclient.plist; sourceTree = "<group>"; };
 		D45394951CC7541F0094DD36 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,28 +40,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CDB06EB0300CF2FC5C0E32E /* libPods-LTPABasedSample.a in Frameworks */,
+				3817FF0BA5EE15036FC5438A /* Pods_LTPABasedSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77B22EAACF4AFFE251CD4FDA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				924B81C887F49AF06DD24E69 /* Pods-LTPABasedSample.debug.xcconfig */,
+				21225909C8E769C06FEE775A /* Pods-LTPABasedSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		926A6ED57F91ABAE7C05E421 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				154EF8E37D3D05815913DA55 /* libPods-LTPABasedSample.a */,
+				9A803FFFED89779B005E82D1 /* Pods_LTPABasedSample.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CEED273F3BD96C358938AB2D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				105FE89AA0BD44DEB5F453D3 /* Pods-LTPABasedSample.debug.xcconfig */,
-				7E6ECCD451C7FF86C9CC6147 /* Pods-LTPABasedSample.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		D417DDE91CC396A300DA6075 = {
@@ -71,7 +71,7 @@
 				D45394941CC7541F0094DD36 /* LTPABasedSample */,
 				D417DDF31CC396A300DA6075 /* Products */,
 				926A6ED57F91ABAE7C05E421 /* Frameworks */,
-				CEED273F3BD96C358938AB2D /* Pods */,
+				77B22EAACF4AFFE251CD4FDA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,12 +105,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D417DE041CC396A300DA6075 /* Build configuration list for PBXNativeTarget "LTPABasedSample" */;
 			buildPhases = (
-				0D8BD1B190D5D5CE572BD24A /* 📦 Check Pods Manifest.lock */,
+				461D5D12D894DD369364B371 /* [CP] Check Pods Manifest.lock */,
 				D417DDEE1CC396A300DA6075 /* Sources */,
 				D417DDEF1CC396A300DA6075 /* Frameworks */,
 				D417DDF01CC396A300DA6075 /* Resources */,
-				E09A1CB42C03ADF72217E947 /* 📦 Embed Pods Frameworks */,
-				0487180A05C2D59D9ADF31EA /* 📦 Copy Pods Resources */,
+				AAB18F8C30E47F22963A56CD /* [CP] Embed Pods Frameworks */,
+				2A263FCA6827429452354A80 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,14 +170,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0487180A05C2D59D9ADF31EA /* 📦 Copy Pods Resources */ = {
+		2A263FCA6827429452354A80 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,14 +185,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTPABasedSample/Pods-LTPABasedSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0D8BD1B190D5D5CE572BD24A /* 📦 Check Pods Manifest.lock */ = {
+		461D5D12D894DD369364B371 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,14 +200,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E09A1CB42C03ADF72217E947 /* 📦 Embed Pods Frameworks */ = {
+		AAB18F8C30E47F22963A56CD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,7 +336,7 @@
 		};
 		D417DE051CC396A300DA6075 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 105FE89AA0BD44DEB5F453D3 /* Pods-LTPABasedSample.debug.xcconfig */;
+			baseConfigurationReference = 924B81C887F49AF06DD24E69 /* Pods-LTPABasedSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LTPABasedSample/Info.plist;
@@ -348,7 +348,7 @@
 		};
 		D417DE061CC396A300DA6075 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E6ECCD451C7FF86C9CC6147 /* Pods-LTPABasedSample.release.xcconfig */;
+			baseConfigurationReference = 21225909C8E769C06FEE775A /* Pods-LTPABasedSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LTPABasedSample/Info.plist;
