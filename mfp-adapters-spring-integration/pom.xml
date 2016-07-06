@@ -52,7 +52,7 @@
         <dependency>
             <groupId>com.ibm.mfp</groupId>
             <artifactId>adapter-maven-api</artifactId>
-            <version>8.0.0</version>
+            <version>[8.0.0, 9.0.0)</version>
         </dependency>
 
         <dependency>

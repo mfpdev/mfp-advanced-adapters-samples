@@ -29,12 +29,12 @@
             <groupId>com.ibm.mfp</groupId>
             <artifactId>adapter-maven-api</artifactId>
             <scope>provided</scope>
-            <version>8.0.0</version>
+            <version>[8.0.0,9.0.0)</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.mfp</groupId>
             <artifactId>mfp-security-checks-base</artifactId>
-            <version>8.0.0</version>
+            <version>[8.0.0,9.0.0)</version>
         </dependency>
 
         <dependency>
@@ -85,7 +85,6 @@
             <plugin>
                 <groupId>com.ibm.mfp</groupId>
                 <artifactId>adapter-maven-plugin</artifactId>
-                <version>8.0.0</version>
                 <extensions>true</extensions>
             </plugin>
             <plugin>
