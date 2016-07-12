@@ -4,9 +4,9 @@ IBM MobileFirst Foundation
 This is a sample application demonstrating the use of the [SMS OTP Login](https://www.wikiwand.com/en/One-time_password) Security Check to protect an [IBM MobileFirst Platform](http://www-03.ibm.com/software/products/en/mobilefirstplatform) resource adapter.  This will allow your application to authenticate a user using SMS.  
 
 ### Prerequisites
-1. Understanding the IBM MobileFirst Platform [Authentication and Security](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/).
-2. Understanding the IBM MobileFirst Platform [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters/).
-3. Pre-installed IBM MobileFirst Platform[development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/) or running intances of .
+1. Understanding the IBM MobileFirst Foundation [Authentication and Security](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/).
+2. Understanding the IBM MobileFirst Foundation [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters/).
+3. Pre-installed IBM MobileFirst Foundation [development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/) or running instance of [Foundation on BlueMix](https://console.ng.bluemix.net/catalog/services/mobile-foundation/).
 
 ### To run the sample
 - Deploy the [SMS OTP Security check](https://github.com/mfpdev/mfp-advanced-adapters-samples/tree/development/custom-security-checks/sms-otp)
@@ -15,7 +15,6 @@ This is a sample application demonstrating the use of the [SMS OTP Login](https:
   ```
   mfpdev app register
   ```
-
 - open *SMS.xcworkspace*
 - Run the application
 
