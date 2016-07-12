@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uDk-9x-9qQ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="JBL-xX-cIN">
+            <objects>
+                <viewController storyboardIdentifier="helloUser" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uDk-9x-9qQ" customClass="MainViewController" customModule="SMS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vfz-0W-gnU"/>
+                        <viewControllerLayoutGuide type="bottom" id="riX-2m-sJn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uSC-Yt-WDE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="T0M-je-9mp">
+                                <rect key="frame" x="200" y="245" width="200" height="110"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UlY-92-4K1">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                        <state key="normal" title="Register a number"/>
+                                        <connections>
+                                            <action selector="registerNumber:" destination="uDk-9x-9qQ" eventType="touchUpInside" id="8QZ-gd-Uv0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9TD-tC-UrM">
+                                        <rect key="frame" x="0.0" y="80" width="200" height="30"/>
+                                        <state key="normal" title="SMS OTP Login"/>
+                                        <connections>
+                                            <action selector="smsOTPLogin:" destination="uDk-9x-9qQ" eventType="touchUpInside" id="0Zp-y4-LsS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="smD-Rr-Nq9"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SMS OTP Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLF-Y5-c1D">
+                                <rect key="frame" x="241" y="90" width="119" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zLF-Y5-c1D" firstAttribute="top" secondItem="Vfz-0W-gnU" secondAttribute="bottom" constant="70" id="EdZ-fu-HRQ"/>
+                            <constraint firstItem="T0M-je-9mp" firstAttribute="centerY" secondItem="uSC-Yt-WDE" secondAttribute="centerY" id="Ozi-2W-Iwk"/>
+                            <constraint firstItem="T0M-je-9mp" firstAttribute="centerX" secondItem="uSC-Yt-WDE" secondAttribute="centerX" id="lpy-tv-61y"/>
+                            <constraint firstItem="zLF-Y5-c1D" firstAttribute="centerX" secondItem="uSC-Yt-WDE" secondAttribute="centerX" id="yj7-g7-dki"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="9TD-tC-UrM" id="oUH-ov-pH3"/>
+                        <outlet property="registerButton" destination="UlY-92-4K1" id="lWm-fD-FWn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9oz-Sl-gzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-16" y="180"/>
+        </scene>
+    </scenes>
+</document>

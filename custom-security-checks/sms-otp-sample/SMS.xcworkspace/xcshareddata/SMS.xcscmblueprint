@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "283DB55F25ECB192B3D5D99C716C8F91CA8BA76F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "283DB55F25ECB192B3D5D99C716C8F91CA8BA76F" : 0,
+    "D0457B0B1578498CE4A7C1FCEDB46176DEA1680A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9EAD0A39-6ED7-489D-897E-6D0AD61027D2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "283DB55F25ECB192B3D5D99C716C8F91CA8BA76F" : "mfp-advanced-adapters-samples\/",
+    "D0457B0B1578498CE4A7C1FCEDB46176DEA1680A" : "mfp8samples\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SMS",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "custom-security-checks\/sms-otp-sample\/SMS.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mfpdev\/mfp-advanced-adapters-samples",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "283DB55F25ECB192B3D5D99C716C8F91CA8BA76F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.ibm.com:ISHAIB\/mfp8samples.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D0457B0B1578498CE4A7C1FCEDB46176DEA1680A"
+    }
+  ]
+}

@@ -60,7 +60,7 @@ public class FacebookSupport implements LoginVendor {
         HttpsURLConnection connection = null;
         String error;
         try {
-            String req = "https://graph.facebook.com/me?fields=id,name,email,picture.width(200).height(200).type(square)&access_token=" + tokenStr;
+            String req = "https://graph.facebook.com/me?fields=id,name,email,location,picture.width(200).height(200).type(square)&access_token=" + tokenStr;
             connection = (HttpsURLConnection) new URL(req).openConnection();
             connection.setSSLSocketFactory(sslSocketFactory);
             connection.setRequestMethod("GET");

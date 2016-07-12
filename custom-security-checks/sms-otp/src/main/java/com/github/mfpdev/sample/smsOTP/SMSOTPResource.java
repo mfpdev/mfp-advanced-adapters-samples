@@ -42,6 +42,7 @@ import java.util.regex.Pattern;
                 )
         )
 )
+
 @Path("/phone")
 @Api(value = "Register a phone number",
         description = "This JAX-RS Adapter contains an API to let registering the mobile phone number, so later it can be used for receiving SMS with passcode")
@@ -59,6 +60,36 @@ public class SMSOTPResource {
     @Context
     private ConfigurationAPI configAPI;
 
+
+    @Path("/isRegistered")
+    @GET
+    @Produces("application/json")
+    @OAuthSecurity(enabled = true)
+    @ApiOperation(value = "Check if a phone number is registered",
+            notes = "Check if a phone number is registered",
+            httpMethod = "GET",
+            response = Boolean.class
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK",
+                    response = String.class),
+            @ApiResponse(code = 401, message = "Not Authorized",
+                    response = String.class),
+            @ApiResponse(code = 500, message = "Cannot check if phone number is registered",
+                    response = String.class)
+    })
+
+    public Boolean isRegistered() {
+        //Getting client data from the security context
+        ClientData clientData = securityContext.getClientRegistrationData();
+        if (clientData == null) {
+            throw new InternalServerErrorException("This check allowed only from a mobile device.");
+        }
+
+        String number = clientData.getProtectedAttributes().get(SMSOTPSecurityCheck.PHONE_NUMBER);
+        return number != null && !number.trim().equals("");
+    }
+
     @Path("/register/{phoneNumber}")
     @POST
     @Produces("application/json")
@@ -67,7 +98,7 @@ public class SMSOTPResource {
     @ApiOperation(value = "Register a phone number",
             notes = "Register a phone number in the registration service for sending the OTP SMS code. This REST API can be called only from mobile client",
             httpMethod = "POST",
-            response = Void.class
+            response = Boolean.class
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK",
@@ -79,7 +110,8 @@ public class SMSOTPResource {
             @ApiResponse(code = 500, message = "Cannot register phone number",
                     response = String.class)
     })
-    public String registerPhoneNumber(@PathParam("phoneNumber") String phoneNumber) {
+
+    public Boolean registerPhoneNumber(@PathParam("phoneNumber") String phoneNumber) {
         if (!validate(phoneNumber)) {
             throw new BadRequestException(String.format("Phone number [%s] is invalid", phoneNumber));
         }
@@ -94,7 +126,7 @@ public class SMSOTPResource {
         clientData.getProtectedAttributes().put(SMSOTPSecurityCheck.PHONE_NUMBER, phoneNumber);
         securityContext.storeClientRegistrationData(clientData);
 
-        return "OK";
+        return true;
     }
 
     /**
