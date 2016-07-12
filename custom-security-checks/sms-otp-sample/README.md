@@ -6,7 +6,7 @@ This is a sample application demonstrating the use of the [SMS OTP Login](https:
 ### Prerequisites
 1. Understanding the IBM MobileFirst Foundation [Authentication and Security](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/).
 2. Understanding the IBM MobileFirst Foundation [Java Adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/java-adapters/).
-3. Pre-installed IBM MobileFirst Foundation [development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/) or running instance of [Foundation on BlueMix](https://console.ng.bluemix.net/catalog/services/mobile-foundation/).
+3. Pre-installed IBM MobileFirst Foundation [development environment](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/setting-up-your-development-environment/) or running instance of [Mobile Foundation on BlueMix](https://console.ng.bluemix.net/catalog/services/mobile-foundation/).
 
 ### To run the sample
 - Deploy the [SMS OTP Security check](https://github.com/mfpdev/mfp-advanced-adapters-samples/tree/development/custom-security-checks/sms-otp)
