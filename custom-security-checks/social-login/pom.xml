@@ -54,7 +54,7 @@
         <!-- parameters for deploy mfpf adapter -->
         <mfpfUrl>https://mobilefoundation-bb-server.mybluemix.net:443/mfpadmin</mfpfUrl>
         <mfpfUser>admin</mfpfUser>
-        <mfpfPassword>eucliD&amp;0k9</mfpfPassword>
+        <mfpfPassword>admin</mfpfPassword>
         <mfpfRuntime>mfp</mfpfRuntime>
     </properties>
 
