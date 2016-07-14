@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2016. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="LDAPLogin"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>LDAP Login SecurityCheck</displayName>
+	<description>Authenticate users against configured LDAP server</description>
+
+	<securityCheckDefinition name="ldap-login" class="com.github.mfpdev.sample.LDAP.LDAPLoginSecurityCheck">
+		<property name="ldapURL" defaultValue="ldap://bluepages.ibm.com" displayName="The LDAP Server URL"/>
+		<property name="ldapAdminDN" defaultValue="" displayName="The LDAP admin DN (leave empty for none)"/>
+		<property name="ldapAdminPassword" defaultValue="" displayName="The LDAP admin password (leave empty for none)"/>
+		<property name="ldapSearchString" defaultValue="(&amp;(emailAddress={searchValue}))" displayName="The LDAP search URL of users, use {searchValue} as template"/>
+
+
+		<property name="maxAttempts" defaultValue="3" displayName="How many attempts are allowed"/>
+		<property name="blockedStateExpirationSec" defaultValue="10" displayName="How long before the client can try again (seconds)"/>
+		<property name="successStateExpirationSec" defaultValue="60" displayName="How long is a successful state valid for (seconds)"/>
+	</securityCheckDefinition>
+
+</mfp:adapter>
