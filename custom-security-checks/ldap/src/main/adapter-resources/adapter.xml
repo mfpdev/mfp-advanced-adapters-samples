@@ -18,12 +18,12 @@
 		<property name="blockedStateExpirationSec" defaultValue="10" displayName="How long before the client can try again (seconds)"/>
 		<property name="successStateExpirationSec" defaultValue="60" displayName="How long is a successful state valid for (seconds)"/>
 
-		<property name="ldapUserAttribute" defaultValue="cn" displayName="The LDAP attribute for username"/>
-		<property name="ldapNameAttribute" defaultValue="emailAddress" displayName="The LDAP attribute for display name"/>
-		<property name="ldapURL" defaultValue="ldap://bluepages.ibm.com" displayName="The LDAP Server URL"/>
-		<property name="userFilter" defaultValue="(&amp;(emailAddress=%v))" displayName="The LDAP user filter, use %v as placeholder for user"/>
-		<property name="bindDN" defaultValue="-" displayName="The LDAP bind DN (- for none)"/>
-		<property name="bindPassword" defaultValue="-" displayName="The LDAP bind password (- for none)"/>
+		<property name="ldapUserAttribute" defaultValue="uid" displayName="The LDAP attribute for username"/>
+		<property name="ldapNameAttribute" defaultValue="cn" displayName="The LDAP attribute for display name"/>
+		<property name="ldapURL" defaultValue="ldap://localhost:10389" displayName="The LDAP Server URL"/>
+		<property name="userFilter" defaultValue="(&amp;(uid=%v))" displayName="The LDAP user filter, use %v as placeholder for user"/>
+		<property name="bindDN" defaultValue="uid=admin,ou=system" displayName="The LDAP bind DN (- for none)"/>
+		<property name="bindPassword" defaultValue="secret" displayName="The LDAP bind password (- for none)"/>
 	</securityCheckDefinition>
 
 </mfp:adapter>

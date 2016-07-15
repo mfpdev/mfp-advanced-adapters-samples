@@ -84,14 +84,15 @@ public class LDAPLoginSecurityCheck extends UserAuthenticationSecurityCheck {
                 String searchString = config.getUserFilter();
                 searchString = searchString.replaceAll("%v", username);
 
+                //Search the user
                 NamingEnumeration<SearchResult> searchResults = ldapContext.search("", searchString, sc);
                 ArrayList<SearchResult> searchResultsList = Collections.list(searchResults);
 
                 if (searchResultsList.size() != 1) {
-                    logger.info("user" + username + " has more than one instance in the LDAP repository");
                     errorMsg = "Wrong Credentials";
                     return false;
                 } else {
+                    //login with user DN + password
                     SearchResult searchResult = searchResultsList.get(0);
                     env.put(Context.SECURITY_PRINCIPAL, searchResult.getName());
                     env.put(Context.SECURITY_CREDENTIALS, password);
