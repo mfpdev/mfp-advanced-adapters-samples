@@ -27,6 +27,8 @@ import java.util.logging.Logger;
  *
  */
 public class LDAPLoginSecurityCheck extends UserAuthenticationSecurityCheck {
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
     static Logger logger = Logger.getLogger(LDAPSecurityCheckConfig.class.getName());
 
     private String userId, displayName;
@@ -52,9 +54,9 @@ public class LDAPLoginSecurityCheck extends UserAuthenticationSecurityCheck {
     protected boolean validateCredentials(Map<String, Object> credentials) {
         LDAPSecurityCheckConfig config = (LDAPSecurityCheckConfig) getConfiguration();
 
-        if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){
-            String username = credentials.get("username").toString();
-            String password = credentials.get("password").toString();
+        if(credentials!=null && credentials.containsKey(USERNAME) && credentials.containsKey(PASSWORD)){
+            String username = credentials.get(USERNAME).toString();
+            String password = credentials.get(PASSWORD).toString();
 
 
             Hashtable<String, String> env = new Hashtable<String, String>();
@@ -62,28 +64,29 @@ public class LDAPLoginSecurityCheck extends UserAuthenticationSecurityCheck {
             env.put(Context.SECURITY_AUTHENTICATION, "simple");
             env.put(Context.PROVIDER_URL, config.getLdapURL());
 
-            String adminDN = config.getLdapAdminDN();
-            String passwordAdmin = config.getLdapAdminPassword();
+            String bindDN = config.getBindDN();
+            String bindPassword = config.getBindPassword();
 
             //LDAP admin is not mandatory
-            if (adminDN != null && !adminDN.equals("*") && passwordAdmin != null && !passwordAdmin.equals("*")) {
-                env.put(Context.SECURITY_PRINCIPAL, config.getLdapAdminDN());
-                env.put(Context.SECURITY_CREDENTIALS, config.getLdapAdminPassword());
+            if (bindDN != null && !bindDN.equals("-") && bindPassword != null && !bindPassword.equals("-")) {
+                env.put(Context.SECURITY_PRINCIPAL, config.getBindDN());
+                env.put(Context.SECURITY_CREDENTIALS, config.getBindPassword());
             }
 
             SearchControls sc = new SearchControls();
-            String[] attributeFilter = { config.getLdapUserAttribute(),config.getLdapDisplayNameAttribute() };
+            String[] attributeFilter = { config.getLdapUserAttribute(),config.getLdapNameAttribute() };
 
             sc.setReturningAttributes(attributeFilter);
             sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
             try {
                 LdapContext ldapContext = new InitialLdapContext(env,null);
-                String searchString = config.getLdapSearchString();
-                searchString = searchString.replaceAll("\\{searchValue\\}", username);
+                String searchString = config.getUserFilter();
+                searchString = searchString.replaceAll("%v", username);
 
                 NamingEnumeration<SearchResult> searchResults = ldapContext.search("", searchString, sc);
                 ArrayList<SearchResult> searchResultsList = Collections.list(searchResults);
+
                 if (searchResultsList.size() != 1) {
                     logger.info("user" + username + " has more than one instance in the LDAP repository");
                     errorMsg = "Wrong Credentials";
@@ -96,7 +99,7 @@ public class LDAPLoginSecurityCheck extends UserAuthenticationSecurityCheck {
 
                         ldapContext = new InitialLdapContext(env, null);
                         userId = (String) searchResult.getAttributes().get(config.getLdapUserAttribute()).get();
-                        displayName = (String) searchResult.getAttributes().get(config.getLdapDisplayNameAttribute()).get();
+                        displayName = (String) searchResult.getAttributes().get(config.getLdapNameAttribute()).get();
                         return true;
                     } catch (Exception e) {
                         errorMsg = "Wrong Credentials";

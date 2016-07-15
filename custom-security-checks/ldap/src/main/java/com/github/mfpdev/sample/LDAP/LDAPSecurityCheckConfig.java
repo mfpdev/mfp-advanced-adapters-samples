@@ -31,64 +31,68 @@ import java.util.logging.Logger;
  */
 public class LDAPSecurityCheckConfig extends UserAuthenticationSecurityCheckConfig {
     //Define logger (Standard java.util.Logger)
-    static Logger logger = Logger.getLogger(LDAPSecurityCheckConfig.class.getName());
+    private static Logger logger = Logger.getLogger(LDAPSecurityCheckConfig.class.getName());
 
     //Configurable LDAP properties
     private final String ldapURL;
-    private final String ldapAdminDN;
-    private final String ldapAdminPassword;
-    private final String ldapSearchString;
+    private final String bindDN;
+    private final String bindPassword;
+    private final String userFilter;
     private final String ldapUserAttribute;
 
-    public String getLdapDisplayNameAttribute() {
-        return ldapDisplayNameAttribute;
+    public String getLdapNameAttribute() {
+        return ldapNameAttribute;
     }
 
     public String getLdapUserAttribute() {
         return ldapUserAttribute;
     }
 
-    private final String ldapDisplayNameAttribute;
+    private final String ldapNameAttribute;
 
     public String getLdapURL() {
         return ldapURL;
     }
 
-    public String getLdapAdminDN() {
-        return ldapAdminDN;
+    public String getBindDN() {
+        return bindDN;
     }
 
-    public String getLdapAdminPassword() {
-        return ldapAdminPassword;
+    public String getBindPassword() {
+        return bindPassword;
     }
 
-    public String getLdapSearchString() {
-        return ldapSearchString;
+    public String getUserFilter() {
+        return userFilter;
     }
 
     public LDAPSecurityCheckConfig(Properties properties) {
         super(properties);
 
         this.ldapURL = getStringProperty("ldapURL", properties, "");
-        this.ldapAdminDN = getStringProperty("ldapAdminDN", properties, "");
-        this.ldapAdminPassword = getStringProperty("ldapAdminPassword", properties, "");
-        this.ldapSearchString = getStringProperty("ldapSearchString", properties, "");
+        this.bindDN = getStringProperty("bindDN", properties, "");
+        this.bindPassword = getStringProperty("bindPassword", properties, "");
+        this.userFilter = getStringProperty("userFilter", properties, "");
         this.ldapUserAttribute = getStringProperty("ldapUserAttribute", properties, "");
-        this.ldapDisplayNameAttribute = getStringProperty("ldapDisplayNameAttribute", properties, "");
+        this.ldapNameAttribute = getStringProperty("ldapNameAttribute", properties, "");
 
-        logger.info(String.format("Initializing a LDAP Security configuration with ldapURL=[%s], ldapAdminDN=[%s], ldapAdminPassword=[%s], ldapSearchString=[%s]",
-                ldapURL, ldapAdminPassword, ldapAdminPassword, ldapSearchString));
+        logger.info(String.format("Initializing a LDAP Security configuration with ldapURL=[%s], bindDN=[%s], bindPassword=[%s], userFilter=[%s]",
+                ldapURL, bindPassword, bindPassword, userFilter));
 
-        try {
-            new URL(this.ldapURL);
-        } catch (MalformedURLException e) {
-            logger.warning("LDAP URL is invalid - " + this.ldapURL);
+        if  (ldapURL == null || !ldapURL.contains("ldap://")) {
+            addMessage(getWarnings(),"ldapURL", "LDAP URL is invalid");
         }
 
-        if (ldapSearchString == null || ldapSearchString.trim().length() <= 0) {
-            String warning = "LDAP search string is empty - " + this.ldapSearchString;
-            logger.warning(warning);
-            addMessage(getErrors(),"ldapSearchString", warning);
+        if (userFilter == null || !userFilter.contains("%v")) {
+            addMessage(getWarnings(),"userFilter", "userFilter is invalid");
+        }
+
+        if (ldapUserAttribute == null || ldapUserAttribute.trim().length() <= 0) {
+            addMessage(getWarnings(),"ldapUserAttribute", "ldapUserAttribute is mandatory");
+        }
+
+        if (ldapNameAttribute == null || ldapNameAttribute.trim().length() <= 0) {
+            addMessage(getWarnings(),"ldapNameAttribute", "ldapNameAttribute is mandatory");
         }
     }
 }
