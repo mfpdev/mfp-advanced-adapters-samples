@@ -14,10 +14,12 @@
 	<description>Authenticate users against configured LDAP server</description>
 
 	<securityCheckDefinition name="ldap-login" class="com.github.mfpdev.sample.LDAP.LDAPLoginSecurityCheck">
+		<property name="ldapUserAttribute" defaultValue="cn" displayName="The attribute LDAP ldap to be used as username"/>
+		<property name="ldapDisplayNameAttribute" defaultValue="emailAddress" displayName="The attribute from LDAP to be used as dislayName"/>
 		<property name="ldapURL" defaultValue="ldap://bluepages.ibm.com" displayName="The LDAP Server URL"/>
-		<property name="ldapAdminDN" defaultValue="" displayName="The LDAP admin DN (leave empty for none)"/>
-		<property name="ldapAdminPassword" defaultValue="" displayName="The LDAP admin password (leave empty for none)"/>
-		<property name="ldapSearchString" defaultValue="(&amp;(emailAddress={searchValue}))" displayName="The LDAP search URL of users, use {searchValue} as template"/>
+		<property name="ldapAdminDN" defaultValue="" displayName="The LDAP admin DN (* for none)"/>
+		<property name="ldapAdminPassword" defaultValue="" displayName="The LDAP admin password (* for none)"/>
+		<property name="ldapSearchString" defaultValue="(&amp;(emailAddress={searchValue}))" displayName="The LDAP search string, use {searchValue} as placeholder"/>
 
 
 		<property name="maxAttempts" defaultValue="3" displayName="How many attempts are allowed"/>

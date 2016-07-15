@@ -52,38 +52,40 @@ public class LDAPLoginSecurityCheck extends UserAuthenticationSecurityCheck {
     protected boolean validateCredentials(Map<String, Object> credentials) {
         LDAPSecurityCheckConfig config = (LDAPSecurityCheckConfig) getConfiguration();
 
-
         if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){
             String username = credentials.get("username").toString();
             String password = credentials.get("password").toString();
 
+
+            Hashtable<String, String> env = new Hashtable<String, String>();
+            env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+            env.put(Context.SECURITY_AUTHENTICATION, "simple");
+            env.put(Context.PROVIDER_URL, config.getLdapURL());
+
+            String adminDN = config.getLdapAdminDN();
+            String passwordAdmin = config.getLdapAdminPassword();
+
+            //LDAP admin is not mandatory
+            if (adminDN != null && !adminDN.equals("*") && passwordAdmin != null && !passwordAdmin.equals("*")) {
+                env.put(Context.SECURITY_PRINCIPAL, config.getLdapAdminDN());
+                env.put(Context.SECURITY_CREDENTIALS, config.getLdapAdminPassword());
+            }
+
+            SearchControls sc = new SearchControls();
+            String[] attributeFilter = { config.getLdapUserAttribute(),config.getLdapDisplayNameAttribute() };
+
+            sc.setReturningAttributes(attributeFilter);
+            sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
+
             try {
-                // String cn = "ishaib@il.ibm.com";
-                Hashtable<String, String> env = new Hashtable<String, String>();
-                env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-                env.put(Context.SECURITY_AUTHENTICATION, "simple");
-                env.put(Context.PROVIDER_URL, config.getLdapURL());
-
-                if (config.getLdapAdminDN() != null && config.getLdapAdminPassword() != null) {
-                    env.put(Context.SECURITY_PRINCIPAL, config.getLdapAdminDN());
-                    env.put(Context.SECURITY_CREDENTIALS, config.getLdapAdminPassword());
-                }
-
-                SearchControls sc = new SearchControls();
-                String[] attributeFilter = { "emailAddress","uid","employeetype" };
-
-                sc.setReturningAttributes(attributeFilter);
-                sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
-
                 LdapContext ldapContext = new InitialLdapContext(env,null);
                 String searchString = config.getLdapSearchString();
-                String filter = searchString.replace("{searchValue}", username);
+                searchString = searchString.replaceAll("\\{searchValue\\}", username);
 
-                NamingEnumeration<SearchResult> searchResults = ldapContext.search("", filter, sc);
+                NamingEnumeration<SearchResult> searchResults = ldapContext.search("", searchString, sc);
                 ArrayList<SearchResult> searchResultsList = Collections.list(searchResults);
-
                 if (searchResultsList.size() != 1) {
-                    logger.warning("user" + username + " has more than one instance in the LDAP repository");
+                    logger.info("user" + username + " has more than one instance in the LDAP repository");
                     errorMsg = "Wrong Credentials";
                     return false;
                 } else {
@@ -91,16 +93,17 @@ public class LDAPLoginSecurityCheck extends UserAuthenticationSecurityCheck {
                     env.put(Context.SECURITY_PRINCIPAL, searchResult.getName());
                     env.put(Context.SECURITY_CREDENTIALS, password);
                     try {
+
                         ldapContext = new InitialLdapContext(env, null);
-                        userId = username;
-                        displayName = username;
+                        userId = (String) searchResult.getAttributes().get(config.getLdapUserAttribute()).get();
+                        displayName = (String) searchResult.getAttributes().get(config.getLdapDisplayNameAttribute()).get();
                         return true;
                     } catch (Exception e) {
                         errorMsg = "Wrong Credentials";
                     }
                 }
             } catch (Exception e) {
-                errorMsg = "Credentials not set properly";
+                errorMsg = "Connection to user repository failed";
             }
         }
         else{

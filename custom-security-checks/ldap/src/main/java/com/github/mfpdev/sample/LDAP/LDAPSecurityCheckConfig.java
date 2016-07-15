@@ -38,6 +38,17 @@ public class LDAPSecurityCheckConfig extends UserAuthenticationSecurityCheckConf
     private final String ldapAdminDN;
     private final String ldapAdminPassword;
     private final String ldapSearchString;
+    private final String ldapUserAttribute;
+
+    public String getLdapDisplayNameAttribute() {
+        return ldapDisplayNameAttribute;
+    }
+
+    public String getLdapUserAttribute() {
+        return ldapUserAttribute;
+    }
+
+    private final String ldapDisplayNameAttribute;
 
     public String getLdapURL() {
         return ldapURL;
@@ -62,6 +73,8 @@ public class LDAPSecurityCheckConfig extends UserAuthenticationSecurityCheckConf
         this.ldapAdminDN = getStringProperty("ldapAdminDN", properties, "");
         this.ldapAdminPassword = getStringProperty("ldapAdminPassword", properties, "");
         this.ldapSearchString = getStringProperty("ldapSearchString", properties, "");
+        this.ldapUserAttribute = getStringProperty("ldapUserAttribute", properties, "");
+        this.ldapDisplayNameAttribute = getStringProperty("ldapDisplayNameAttribute", properties, "");
 
         logger.info(String.format("Initializing a LDAP Security configuration with ldapURL=[%s], ldapAdminDN=[%s], ldapAdminPassword=[%s], ldapSearchString=[%s]",
                 ldapURL, ldapAdminPassword, ldapAdminPassword, ldapSearchString));
@@ -75,7 +88,7 @@ public class LDAPSecurityCheckConfig extends UserAuthenticationSecurityCheckConf
         if (ldapSearchString == null || ldapSearchString.trim().length() <= 0) {
             String warning = "LDAP search string is empty - " + this.ldapSearchString;
             logger.warning(warning);
-            addMessage(getWarnings(),"ldapSearchString", warning);
+            addMessage(getErrors(),"ldapSearchString", warning);
         }
     }
 }
