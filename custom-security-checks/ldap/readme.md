@@ -26,7 +26,7 @@ A Maven project containing [LDAP](https://www.wikiwand.com/en/Lightweight_Direct
       * Install and configure local LDAP server like [Apache Directory](http://directory.apache.org/studio/downloads.html), This is quite straightforward, and explained [here](http://www.stefan-seelmann.de/blog/setting-up-an-ldap-server-for-your-development-environment).
       * Use public Online LDAP Test server, as an example see one in the following [link.](http://www.forumsys.com/en/tutorials/integration-how-to/ldap/online-ldap-test-server/)
 
-  2. For test it with one of MobileFirst Foundation SDKs follow this [link.](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/user-authentication/).  You can use one of the User Login Samples as is.
+  2. For test it with one of MobileFirst Foundation SDKs follow this [link.](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/user-authentication/)  You can use one of the User Login samples as is.
 
 ### Supported Levels
 IBM MobileFirst Foundation 8.0
