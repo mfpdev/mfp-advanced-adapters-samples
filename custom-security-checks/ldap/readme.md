@@ -12,7 +12,7 @@ A Maven project containing [LDAP](https://www.wikiwand.com/en/Lightweight_Direct
 * Use either Maven or MobileFirst Developer CLI to [build and deploy adapters](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/).
 
 ## Configuration
-* Configure the following to be able works with you LDAP server:
+* Configure the following to be able works with you LDAP server in [adapter.xml](./src/main/adapter-resources/adapter.xml) or in [console](http://localhost:9080/mfpconsole):
   1. **ldapUserAttribute** - The LDAP attribute for username. e.g: **uid**
   2. **ldapNameAttribute** - The LDAP attribute for display name. e.g: **cn**
   3. **ldapURL** - The LDAP Server URL. This URL include the protocol and the port (if different from the default 389). e.g: **ldap://localhost:10389**
