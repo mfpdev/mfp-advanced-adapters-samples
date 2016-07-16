@@ -18,8 +18,6 @@ package com.github.mfpdev.sample.LDAP;
 
 import com.ibm.mfp.security.checks.base.UserAuthenticationSecurityCheckConfig;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
 
