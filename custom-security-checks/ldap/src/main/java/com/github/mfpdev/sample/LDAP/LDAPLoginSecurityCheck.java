@@ -100,11 +100,11 @@ public class LDAPLoginSecurityCheck extends UserAuthenticationSecurityCheck {
                 } else {
                     //login with user DN + password
                     SearchResult searchResult = searchResultsList.get(0);
-                    env.put(Context.SECURITY_PRINCIPAL, searchResult.getName());
-                    env.put(Context.SECURITY_CREDENTIALS, password);
-                    try {
 
-                        ldapContext = new InitialLdapContext(env, null);
+                    ldapContext.addToEnvironment(Context.SECURITY_PRINCIPAL, searchResult.getName());
+                    ldapContext.addToEnvironment(Context.SECURITY_CREDENTIALS, password);
+                    try {
+                        ldapContext.reconnect(null);
                         userId = (String) searchResult.getAttributes().get(config.getLdapUserAttribute()).get();
                         displayName = (String) searchResult.getAttributes().get(config.getLdapNameAttribute()).get();
                         return true;
