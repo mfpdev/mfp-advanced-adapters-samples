@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "ibm-mfp-web-sdk",
+      "/Users/ishaib/Documents/Dev/mfp-advanced-adapters-samples/custom-security-checks/qrcode-web-login-sample/web"
+    ]
+  ],
+  "_from": "ibm-mfp-web-sdk@*",
+  "_id": "ibm-mfp-web-sdk@8.0.2016070716",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/ibm-mfp-web-sdk",
+  "_nodeVersion": "5.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/ibm-mfp-web-sdk-8.0.2016070716.tgz_1468175077573_0.8568019485101104"
+  },
+  "_npmUser": {
+    "email": "ibmmfpf@us.ibm.com",
+    "name": "ibmmfpf"
+  },
+  "_npmVersion": "3.7.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "ibm-mfp-web-sdk",
+    "raw": "ibm-mfp-web-sdk",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/ibm-mfp-web-sdk/-/ibm-mfp-web-sdk-8.0.2016070716.tgz",
+  "_shasum": "dda89814b1f3be4ff8f7e4b9b650afdcacc552d8",
+  "_shrinkwrap": null,
+  "_spec": "ibm-mfp-web-sdk",
+  "_where": "/Users/ishaib/Documents/Dev/mfp-advanced-adapters-samples/custom-security-checks/qrcode-web-login-sample/web",
+  "author": {
+    "name": "IBM"
+  },
+  "dependencies": {},
+  "description": "IBM MobileFirst Platform Foundation Web Environment SDK",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "dda89814b1f3be4ff8f7e4b9b650afdcacc552d8",
+    "tarball": "https://registry.npmjs.org/ibm-mfp-web-sdk/-/ibm-mfp-web-sdk-8.0.2016070716.tgz"
+  },
+  "keywords": [
+    "cordova-web",
+    "ibm",
+    "mfp",
+    "mobilefirst",
+    "web sdk",
+    "worklight"
+  ],
+  "license": "SEE LICENSE IN LICENSE.TXT",
+  "main": "ibmmfpf.js",
+  "maintainers": [
+    {
+      "name": "ibmmfpf",
+      "email": "ibmmfpf@us.ibm.com"
+    }
+  ],
+  "name": "ibm-mfp-web-sdk",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "https://hub.jazz.net/git/ibmmfpf/ibm-mfp-web-sdk"
+  },
+  "scripts": {},
+  "typings": "./lib/typings/ibmmfpf.d.ts",
+  "version": "8.0.2016070716"
+}
