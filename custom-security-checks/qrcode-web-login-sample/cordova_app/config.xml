@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.sample.qrcode" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:mfp="http://www.ibm.com/mobilefirst/cordova-plugin-mfp">
+    <name>QRCode Login</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="developer@yourcompany.com" href="https://yourcompany.com">
+        Your Company Team
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-mfp" spec="~8.0" />
+    <plugin name="cordova-plugin-splashscreen" spec="~3" />
+    <plugin name="cordova-plugin-whitelist" spec="~1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon src="res/icon/android/icon-96-xhdpi.png" />
+        <icon density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
+        <icon density="mdpi" src="res/icon/android/icon-48-mdpi.png" />
+        <icon density="hdpi" src="res/icon/android/icon-72-hdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
+        <icon density="xxhdpi" src="res/icon/android/icon-144-xxhdpi.png" />
+        <icon density="xxxhdpi" src="res/icon/android/icon-192-xxxhdpi.png" />
+        <splash src="res/screen/android/screen-mdpi-portrait.png" />
+        <splash density="land-hdpi" src="res/screen/android/screen-hdpi-landscape.png" />
+        <splash density="land-ldpi" src="res/screen/android/screen-ldpi-landscape.png" />
+        <splash density="land-mdpi" src="res/screen/android/screen-mdpi-landscape.png" />
+        <splash density="land-xhdpi" src="res/screen/android/screen-xhdpi-landscape.png" />
+        <splash density="hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+        <splash density="mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+        <splash density="xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+        <update src="res/screen/android/splash-hdpi.9.png" target="res/drawable-hdpi/splash.9.png" />
+        <update src="res/screen/android/splash-ldpi.9.png" target="res/drawable-ldpi/splash.9.png" />
+        <update src="res/screen/android/splash-mdpi.9.png" target="res/drawable-mdpi/splash.9.png" />
+        <update src="res/screen/android/splash-xhdpi.9.png" target="res/drawable-xhdpi/splash.9.png" />
+        <update src="res/screen/android/splash-xxhdpi.9.png" target="res/drawable-xxhdpi/splash.9.png" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="57" src="res/icon/ios/icon.png" width="57" />
+        <icon height="114" src="res/icon/ios/icon@2x.png" width="114" />
+        <icon height="40" src="res/icon/ios/icon-40.png" width="40" />
+        <icon height="80" src="res/icon/ios/icon-40@2x.png" width="80" />
+        <icon height="50" src="res/icon/ios/icon-50.png" width="50" />
+        <icon height="100" src="res/icon/ios/icon-50@2x.png" width="100" />
+        <icon height="60" src="res/icon/ios/icon-60.png" width="60" />
+        <icon height="120" src="res/icon/ios/icon-60@2x.png" width="120" />
+        <icon height="180" src="res/icon/ios/icon-60@3x.png" width="180" />
+        <icon height="72" src="res/icon/ios/icon-72.png" width="72" />
+        <icon height="144" src="res/icon/ios/icon-72@2x.png" width="144" />
+        <icon height="76" src="res/icon/ios/icon-76.png" width="76" />
+        <icon height="152" src="res/icon/ios/icon-76@2x.png" width="152" />
+        <icon height="29" src="res/icon/ios/icon-small.png" width="29" />
+        <icon height="58" src="res/icon/ios/icon-small@2x.png" width="58" />
+        <icon height="87" src="res/icon/ios/icon-small@3x.png" width="87" />
+        <splash height="480" src="res/screen/ios/Default~iphone.png" width="320" />
+        <splash height="960" src="res/screen/ios/Default@2x~iphone.png" width="640" />
+        <splash height="1024" src="res/screen/ios/Default-Portrait~ipad.png" width="768" />
+        <splash height="2048" src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
+        <splash height="768" src="res/screen/ios/Default-Landscape~ipad.png" width="1024" />
+        <splash height="1536" src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" />
+        <splash height="1136" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
+        <splash height="1334" src="res/screen/ios/Default-667h~iphone.png" width="750" />
+        <splash height="2208" src="res/screen/ios/Default-736h~iphone.png" width="1242" />
+        <splash height="1242" src="res/screen/ios/Default-736h-Landscape~iphone.png" width="2208" />
+    </platform>
+    <platform name="windows">
+        <icon height="30" src="res/icon/windows/Square30x30Logo.scale-100.png" width="30" />
+        <icon height="44" src="res/icon/windows/Square44x44Logo.scale-100.png" width="44" />
+        <icon height="106" src="res/icon/windows/Square44x44Logo.scale-240.png" width="106" />
+        <icon height="70" src="res/icon/windows/Square70x70Logo.scale-100.png" width="70" />
+        <icon height="71" src="res/icon/windows/Square71x71Logo.scale-100.png" width="71" />
+        <icon height="170" src="res/icon/windows/Square71x71Logo.scale-240.png" width="170" />
+        <icon height="150" src="res/icon/windows/Square150x150Logo.scale-100.png" width="150" />
+        <icon height="360" src="res/icon/windows/Square150x150Logo.scale-240.png" width="360" />
+        <icon height="310" src="res/icon/windows/Square310x310Logo.scale-100.png" width="310" />
+        <icon height="50" src="res/icon/windows/StoreLogo.scale-100.png" width="50" />
+        <icon height="120" src="res/icon/windows/StoreLogo.scale-240.png" width="120" />
+        <splash height="300" src="res/screen/windows/SplashScreen.scale-100.png" width="620" />
+        <splash height="1920" src="res/screen/windows/SplashScreenPhone.scale-240.png" width="1152" />
+        <splash height="150" src="res/screen/windows/Wide310x150Logo.scale-100.png" width="310" />
+        <splash height="360" src="res/screen/windows/Wide310x150Logo.scale-240.png" width="744" />
+    </platform>
+    <mfp:android>
+        <mfp:sdkChecksum>963082199</mfp:sdkChecksum>
+        <mfp:appChecksum>0</mfp:appChecksum>
+        <mfp:security>
+            <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
+        </mfp:security>
+    </mfp:android>
+    <mfp:ios>
+        <mfp:sdkChecksum>751670658</mfp:sdkChecksum>
+        <mfp:appChecksum>0</mfp:appChecksum>
+        <mfp:security>
+            <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
+        </mfp:security>
+    </mfp:ios>
+    <mfp:windows>
+        <mfp:windows8>
+            <mfp:sdkChecksum>0</mfp:sdkChecksum>
+            <mfp:security>
+                <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
+            </mfp:security>
+        </mfp:windows8>
+        <mfp:windowsphone8>
+            <mfp:sdkChecksum>0</mfp:sdkChecksum>
+            <mfp:security>
+                <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
+            </mfp:security>
+        </mfp:windowsphone8>
+        <mfp:windows10>
+            <mfp:sdkChecksum>0</mfp:sdkChecksum>
+            <mfp:security>
+                <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
+            </mfp:security>
+        </mfp:windows10>
+        <mfp:appChecksum>0</mfp:appChecksum>
+    </mfp:windows>
+    <mfp:platformVersion>8.0.0.00-20160628-1146</mfp:platformVersion>
+    <mfp:clientCustomInit enabled="false" />
+    <mfp:server runtime="mfp" url="https://mobilefoundation-bb-server.mybluemix.net:443" />
+    <mfp:directUpdateAuthenticityPublicKey />
+    <mfp:languagePreferences>en</mfp:languagePreferences>
+    <engine name="ios" spec="~4.1.1" />
+</widget>

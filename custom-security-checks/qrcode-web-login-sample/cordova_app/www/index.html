@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--
+    Copyright 2016 IBM Corp.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+
+    <!-- load script with wlCommonInit defined before loading cordova.js -->
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/UserLoginChallengeHandler.js"></script>
+    <title>Remember Me</title>
+  </head>
+  <body>
+      <div id="header">
+          <h1>QRCode Login</h1>
+      </div>
+      <div id="wrapper">
+          <div id="loginDiv" style="display: none;">
+                <input type="text" autocapitalize="off" autocorrect="off" placeholder="Enter Username" id="username" /><br />
+                <input type="password" placeholder="Enter Password" id="password" /><br/>
+                <p id="rememberMeText"><input type="checkbox" id="rememberMe">Remember me</p>
+                <br clear="all"/>
+                <button id="login">Login</button>
+                <p class="label" id="statusMsg"></p>
+          </div>
+
+          <div id="protectedDiv" style="display: none;">
+                <p class="label" id ="helloUser"></p>
+                <button id="qrCodeLogin">QRCode Login</button>
+                <button id="logout">Logout</button>
+                <p class="label" id="resultLabel"></p>
+          </div>
+          <div id="blockedDiv" style="display: none;">
+              <p class="label" id="blockedMsg"></p>
+          </div>
+      </div>
+  </body>
+</html>

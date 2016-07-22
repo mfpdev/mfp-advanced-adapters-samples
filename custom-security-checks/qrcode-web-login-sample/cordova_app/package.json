@@ -1,0 +1,14 @@
+{
+    "name": "cordova-template-mfp",
+    "version": "8.0.201602110615",
+    "description": "MobileFirst Platform Foundation Cordova Template.",
+    "dependencies": {},
+    "author": {
+        "name": "IBM"
+    },
+    "license": "IBM",
+    "readme": "<!---Licensed Materials - Property of IBM\n5725-I43 (C) Copyright IBM Corp. 2015. All Rights Reserved.\nUS Government Users Restricted Rights - Use, duplication or\ndisclosure restricted by GSA ADP Schedule Contract with IBM Corp.-->\n\n# IBM MobileFirst Platform Foundation Cordova Template\nThis template serves as a simple hello world application for MobileFirst Cordova\n\nRefer to the documentation links for more information.\n\n## Installation\n- Method 1: Add the template to a MobileFirst Cordova app by using the\nMFP Cordova Create command. It is installed by default.\n\nAutomatically add the plugin by creating a new Cordova project using the MobileFirst CLI create command:\n\n            mfp cordova create\n\n## Supported Platforms\n- Android\n- iOS\n\n## Documentation\n- [Overview](http://www-01.ibm.com/support/knowledgecenter/SSHS8R_7.1.0/com.ibm.worklight.dev.doc/dev/c_developing_hybrid_apps.html?lang=en)\n- [Developing Hybrid Application](http://www-01.ibm.com/support/knowledgecenter/SSHS8R_7.1.0/com.ibm.worklight.dev.doc/dev/c_init_wl_framework_hybrid_app.html?lang=en)\n- [API](http://www-01.ibm.com/support/knowledgecenter/SSHS8R_7.1.0/com.ibm.worklight.apiref.doc/topics/r_apiref.html?lang=en)\n- [MobileFirst CLI Commands](http://www-01.ibm.com/support/knowledgecenter/SSHS8R_7.1.0/com.ibm.worklight.dev.doc/dev/r_wl_cli_list_of_commands.html)\n",
+    "readmeFilename": "README.md",
+    "_id": "cordova-template-mfp@8.0.0",
+    "_from": "cordova-template-mfp@*"
+}
