@@ -34,7 +34,7 @@
 		<property name="ldapURL" defaultValue="ldap://localhost:10389" displayName="The LDAP Server URL"/>
 		<property name="userFilter" defaultValue="(&amp;(uid=%v))" displayName="The LDAP user filter, use %v as placeholder for user"/>
 		<property name="bindDN" defaultValue="uid=admin,ou=system" displayName="The LDAP bind DN (- for none)"/>
-		<property name="bindPassword" defaultValue="secret" displayName="The LDAP bind password (- for none)"/>
+		<property name="bindPassword" defaultValue="secret" displayName="The LDAP bind password (- for none)" type="string"/>
 	</securityCheckDefinition>
 
 </mfp:adapter>
