@@ -1,10 +1,10 @@
 ## Introduction
 
-Many mobile applications require users to sign a license agreement before they can use the application. They have to first accept the terms & conditions, and then they can proceed. And, if the license agreement changes, they are prompted to sign it again.
+Many mobile applications require users to sign a license agreement before they can use the application. They have to first accept the terms & conditions, and then they can proceed. In case  the license agreement changes, they are required to sign it again.
 
 This repository contains a License Agreement security check with a sample application that demonstrates it's use.
 
-Full description about the implementation and use of this security check can be found in this [blog post](https://mobilefirstplatform.ibmcloud.com/blog/2016/07/21/implementing-license-agreement-signature-using-mobilefirst-foundation-v8/).
+Full description about the implementation and use of this security check can be found in this [blog post](https://mobilefirstplatform.ibmcloud.com/blog/2016/07/24/implementing-license-agreement-signature-using-mobilefirst-foundation-v8/).
 
 ## Build and Setup
 
