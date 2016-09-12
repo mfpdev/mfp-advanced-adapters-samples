@@ -82,4 +82,10 @@ public class SpringBaseApplication extends Application {
         singletones.add(new SpringRequestFinishListener());
         return singletones;
     }
+
+    public void destroy() {
+        if (appContext != null) {
+            appContext.close();
+        }
+    }
 }

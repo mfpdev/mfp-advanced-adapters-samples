@@ -21,6 +21,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @ImportResource(value = "applicationContext.xml")
 public class SpringXMLApplication extends SpringBaseApplication {
-
-
+    public void destroy() {
+        super.destroy();
+    }
 }
