@@ -19,6 +19,7 @@ import com.github.mfpdev.adapters.spring.integration.internal.PropertiesConfig;
 import com.github.mfpdev.adapters.spring.integration.internal.RequestScopeConfig;
 import com.github.mfpdev.adapters.spring.integration.internal.SpringRequestFinishListener;
 import com.github.mfpdev.adapters.spring.integration.internal.SpringRequestStartListener;
+import com.ibm.mfp.adapter.api.AdaptersAPI;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -40,6 +41,9 @@ public class SpringBaseApplication extends Application {
     @Context
     public ConfigurationAPI configurationAPI;
 
+    @Context
+    public AdaptersAPI adaptersAPI;
+
     AnnotationConfigApplicationContext appContext = null;
 
     ApplicationContext getOrCreateApplicationContext(){
@@ -49,6 +53,7 @@ public class SpringBaseApplication extends Application {
 
         DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
         defaultListableBeanFactory.registerSingleton("mfp_configurationAPI", configurationAPI);
+        defaultListableBeanFactory.registerSingleton("mfp_adaptersAPI", adaptersAPI);
         appContext = new AnnotationConfigApplicationContext(defaultListableBeanFactory);
         appContext.register(RequestScopeConfig.class);
         appContext.register(PropertiesConfig.class);
